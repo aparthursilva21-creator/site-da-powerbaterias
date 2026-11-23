@@ -17,8 +17,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700;800&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="assets/power-hero.css">
+  <link rel="stylesheet" href="assets/power-garage.css">
   <script src="app.js" defer></script>
   <script src="assets/power-hero.js" defer></script>
+  <script src="assets/power-garage.js" defer></script>
   <script>document.documentElement.classList.add('pb-js');</script>
   <noscript><style>.pb-opening{display:none!important}</style></noscript>
 </head>
@@ -106,49 +108,155 @@
       <div class="intro-grid"><div><div class="kicker"><i></i> SUA PRÓXIMA PARTIDA COMEÇA AQUI</div><h2>ENERGIA NÃO<br>É SÓ O QUE<br><em>MOVE O CARRO.</em></h2></div><div class="intro-side"><p>É chegar ao trabalho. Buscar quem você ama. Seguir seu caminho. Na Power Baterias, você encontra atendimento especializado para escolher sua próxima bateria com confiança.</p><a class="link-arrow" href="#garagem">VAMOS ENCONTRAR A SUA <span>↗</span></a><div class="intro-pills"><span>ESCOLHA ASSISTIDA</span><span>ATENDIMENTO HUMANO</span><span>SEM PREÇOS NO SITE</span></div></div></div>
     </section>
 
-    <section id="garagem" class="section garage">
-      <div class="section-serial">/ 02 — POWER GARAGE</div>
-      <div class="section-heading"><div><div class="kicker"><i></i> CONHEÇA NOSSA GARAGEM VIRTUAL</div><h2>QUAL BATERIA<br><em>VAI COM VOCÊ?</em></h2></div><p>Selecione seu carro, conheça linhas de baterias e veja o encaixe ilustrativo. Um exemplo de bateria de caminhão demonstra o que acontece quando a peça não cabe. A compatibilidade real é sempre confirmada pela equipe.</p></div>
-      <div class="garage-layout">
-        <div class="garage-controls">
-          <div class="control-head"><span>ETAPA 01 / VEÍCULO</span><span class="live-indicator"><i></i> INTERATIVO</span></div>
-          <h3>COMECE PELO<br>SEU CARRO.</h3>
-          <label for="carBrand">MARCA</label>
-          <select id="carBrand"><option value="">Selecione a marca</option><option value="Chevrolet">Chevrolet</option><option value="Honda">Honda</option><option value="Volkswagen">Volkswagen</option><option value="Fiat">Fiat</option></select>
-          <label for="carModel">MODELO</label>
-          <select id="carModel" disabled><option value="">Escolha uma marca primeiro</option></select>
-          <label for="carYear">ANO</label>
-          <select id="carYear"><option value="">Selecione o ano</option></select>
-          <div class="control-separator"></div>
-          <span class="control-head"><span>ETAPA 02 / EXPERIMENTE</span><span>SIMULAÇÃO VISUAL</span></span>
-          <h4>QUAL BATERIA VAMOS EXPERIMENTAR?</h4>
-          <div class="battery-options" role="group" aria-label="Baterias para demonstração">
-            <button class="battery-choice" data-size="padrao" data-battery="Heliar 60Ah" aria-pressed="false"><span class="battery-swatch"></span><span><b>HELIAR</b><small>60Ah • exemplo</small></span></button>
-            <button class="battery-choice" data-size="padrao" data-battery="Moura 60Ah" aria-pressed="false"><span class="battery-swatch"></span><span><b>MOURA</b><small>60Ah • exemplo</small></span></button>
-            <button class="battery-choice" data-size="compacta" data-battery="Start-Stop 50Ah" aria-pressed="false"><span class="battery-swatch mini"></span><span><b>START-STOP</b><small>50Ah • exemplo</small></span></button>
-            <button class="battery-choice" data-size="grande" data-battery="Linha pesada (caminhão)" aria-pressed="false"><span class="battery-swatch big"></span><span><b>LINHA PESADA</b><small>Exemplo gigante</small></span></button>
+    <section id="garagem" class="power-garage pg-section" aria-labelledby="pgTitle">
+      <div class="pg-shell">
+        <div class="pg-heading">
+          <div>
+            <div class="pg-eyebrow"><span class="pg-led"></span> EXPERIÊNCIA INTERATIVA / POWER GARAGE <span class="pg-eyebrow-num">002</span></div>
+            <h2 id="pgTitle">SEU CARRO.<br><em>SUA PRÓXIMA ENERGIA.</em></h2>
           </div>
-          <button class="btn btn-green garage-contact" id="garageContact">CONFIRMAR COM A EQUIPE <span>↗</span></button>
+          <p>Uma nova forma de explorar baterias. Escolha seu veículo, descubra o espaço do cofre e experimente modelos antes de falar com nossos especialistas.</p>
         </div>
-        <div class="garage-screen">
-          <div class="screen-top"><span>POWER GARAGE / ENGINE VIEW</span><span>VISÃO ILUSTRATIVA • CAPÔ ABERTO</span></div>
-          <div class="engine-stage" id="engineStage">
-            <div class="engine-glow"></div>
-            <div class="hood"><div class="hood-top">POWER / AUTOMOTIVE SYSTEM</div></div>
-            <div class="engine-bay">
-              <div class="engine-core"><div class="engine-core-title">POWER <span>ENGINE</span></div><div class="engine-core-lines"></div></div>
-              <div class="engine-tube tube-one"></div><div class="engine-tube tube-two"></div>
-              <div class="engine-coolant"></div><div class="engine-cap">+</div>
-              <div class="battery-slot"><span>BATTERY SLOT</span><div class="battery-3d" id="garageBattery"><div class="battery-lid"><i></i><i></i></div><div class="battery-front"><b id="garageBatteryBrand">POWER</b><small id="garageBatteryLabel">SIMULAÇÃO</small></div></div></div>
-              <div class="engine-grid"></div>
+
+        <!-- BLOCO 01: SHOWROOM -->
+        <div class="pg-showroom" id="pgShowroom">
+          <div class="pg-showroom-aura" aria-hidden="true"></div>
+          <div class="pg-showroom-copy">
+            <span class="pg-step-label"><b>01</b> / SHOWROOM DIGITAL</span>
+            <h3>UMA EXPERIÊNCIA<br>QUE COMEÇA<br><em>NO MOVIMENTO.</em></h3>
+            <p>O carro preto é a porta de entrada. Escolha seu veículo para iniciar uma exploração personalizada.</p>
+            <button type="button" class="pg-button pg-button-primary" id="pgStart">ESCOLHER MEU CARRO <span aria-hidden="true">↗</span></button>
+            <span class="pg-showroom-note">CENA DE APRESENTAÇÃO • VEÍCULO ILUSTRATIVO</span>
+          </div>
+          <div class="pg-showroom-stage" aria-label="Sedã preto em cenário automotivo, acima de uma plataforma iluminada">
+            <div class="pg-stage-halo"></div>
+            <div class="pg-turntable"><div class="pg-ring pg-ring-outer"></div><div class="pg-ring pg-ring-inner"></div><div class="pg-ring-center"></div></div>
+            <img src="assets/hero-car.webp" alt="Sedã preto de apresentação, com luzes verdes de estúdio" width="850" height="659" loading="lazy" decoding="async">
+            <span class="pg-stage-chip"><span></span> POWER / SHOWROOM</span>
+            <span class="pg-stage-footnote">MODELO 3D GIRATÓRIO EM PRODUÇÃO</span>
+          </div>
+        </div>
+
+        <!-- BLOCO 02: SELETOR -->
+        <div class="pg-lab" id="pgLab">
+          <div class="pg-lab-heading">
+            <span class="pg-step-label"><b>02</b> / SELEÇÃO DO VEÍCULO</span>
+            <div class="pg-lab-title-row"><h3>QUAL É O SEU CARRO?</h3><span class="pg-process-status"><i></i> ETAPA INTERATIVA</span></div>
+            <p>Vamos começar com modelos populares. É possível explorar a apresentação visual, mas a bateria correta precisa ser confirmada tecnicamente.</p>
+          </div>
+          <form class="pg-form" id="pgVehicleForm" autocomplete="off">
+            <div class="pg-field">
+              <label for="pgBrand">01 / MARCA</label>
+              <select id="pgBrand" required><option value="">Selecione a marca</option><option value="Chevrolet">Chevrolet / GM</option><option value="Fiat">Fiat</option><option value="Volkswagen">Volkswagen</option><option value="Ford">Ford</option><option value="Honda">Honda</option><option value="Toyota">Toyota</option></select>
             </div>
-            <div class="engine-caption"><span>MODELO</span><strong id="selectedCar">ESCOLHA SEU VEÍCULO</strong></div>
-          </div>
-          <div class="compatibility" id="compatibility" aria-live="polite"><span id="compatibilityIcon" class="compat-icon">◎</span><div><strong id="compatibilityTitle">PRONTO PARA EXPERIMENTAR</strong><p id="compatibilityText">Escolha um veículo e um tamanho de bateria para visualizar o encaixe.</p></div></div>
-          <div class="screen-bottom"><span>ESTA SIMULAÇÃO NÃO CONFIRMA COMPATIBILIDADE REAL.</span><span>POWER LAB / V01</span></div>
+            <div class="pg-field">
+              <label for="pgModel">02 / MODELO</label>
+              <select id="pgModel" required disabled><option value="">Escolha uma marca</option></select>
+            </div>
+            <div class="pg-field">
+              <label for="pgYear">03 / ANO</label>
+              <select id="pgYear" required><option value="">Selecione o ano</option></select>
+            </div>
+            <div class="pg-field">
+              <label for="pgEngine">04 / MOTORIZAÇÃO</label>
+              <select id="pgEngine" required><option value="">Selecione uma opção</option><option value="1.0">1.0</option><option value="1.3">1.3</option><option value="1.4">1.4</option><option value="1.5">1.5</option><option value="1.6">1.6</option><option value="1.8">1.8</option><option value="2.0">2.0</option><option value="Outra / não sei">Outra / não sei</option></select>
+            </div>
+            <button type="submit" class="pg-button pg-button-primary pg-form-submit">EXPLORAR MEU VEÍCULO <span aria-hidden="true">↗</span></button>
+          </form>
+          <div class="pg-selection-summary" id="pgSummary" role="status" aria-live="polite"><span class="pg-summary-pulse"></span> SELECIONE UM VEÍCULO PARA EXPLORAR A PRÓXIMA ETAPA</div>
         </div>
+
+        <!-- BLOCO 03: COFRE, VISUAL ILUSTRATIVO, NÃO REFERÊNCIA MECÂNICA -->
+        <div class="pg-stage-section" id="pgEngineSection">
+          <div class="pg-block-title">
+            <div><span class="pg-step-label"><b>03</b> / VISUALIZAÇÃO DO COFRE</span><h3>POR DENTRO<br><em>DA ENERGIA.</em></h3></div>
+            <span class="pg-mini-flag">PROTÓTIPO VISUAL / SEM FOTO TÉCNICA</span>
+          </div>
+          <div class="pg-engine-layout">
+            <div class="pg-engine-screen" id="pgEngineScreen" data-state="waiting">
+              <div class="pg-engine-scan" aria-hidden="true"></div>
+              <div class="pg-engine-noise" aria-hidden="true"></div>
+              <span class="pg-engine-corner pg-engine-corner-tl"></span><span class="pg-engine-corner pg-engine-corner-tr"></span>
+              <span class="pg-engine-corner pg-engine-corner-bl"></span><span class="pg-engine-corner pg-engine-corner-br"></span>
+              <div class="pg-engine-wait" id="pgEngineWait"><span class="pg-wait-symbol">ϟ</span><strong>AGUARDANDO SELEÇÃO</strong><small>O cofre do motor aparece nesta área depois que você escolhe o veículo.</small></div>
+              <div class="pg-engine-visual" id="pgEngineVisual" aria-label="Esquema abstrato de um compartimento de bateria, usado apenas para demonstrar animações">
+                <div class="pg-engine-hood"><span>POWER / TECH VIEW</span></div>
+                <div class="pg-engine-outline">
+                  <div class="pg-engine-module pg-engine-module-a"></div><div class="pg-engine-module pg-engine-module-b"></div><div class="pg-engine-module pg-engine-module-c"></div>
+                  <div class="pg-engine-pipes"></div>
+                  <div class="pg-battery-target" aria-hidden="true"><span>ÁREA ILUSTRATIVA<br>DA BATERIA</span></div>
+                  <div class="pg-inserted-battery" id="pgInsertedBattery"><div class="pg-inserted-top"><span>+</span><span>−</span></div><strong id="pgInsertedBrand">POWER</strong><small>VISUAL CONCEITUAL</small></div>
+                </div>
+                <div class="pg-engine-scope"><i></i> FOCO NO COMPARTIMENTO</div>
+              </div>
+              <div class="pg-engine-screen-bar"><span>POWER GARAGE / ENGINE VIEW</span><span id="pgCarCaption">ESCOLHA UM CARRO</span></div>
+            </div>
+            <div class="pg-engine-info">
+              <span class="pg-small-eyebrow">LEITURA VISUAL</span>
+              <h4 id="pgVisualTitle">SEU COFRE, MAIS DE PERTO.</h4>
+              <p id="pgVisualDesc">A experiência final mostrará imagens ou modelos reais do compartimento correspondente ao carro selecionado.</p>
+              <div class="pg-spec-list"><div><span>VEÍCULO</span><strong id="pgSpecVehicle">NÃO SELECIONADO</strong></div><div><span>FONTE TÉCNICA</span><strong>AGUARDANDO VALIDAÇÃO</strong></div><div><span>COMPATIBILIDADE</span><strong>AINDA NÃO VERIFICADA</strong></div></div>
+              <div class="pg-engine-disclaimer"><span>!</span> A imagem do compartimento nesta fase é conceitual e não representa o motor de um Celta, Onix ou qualquer outro modelo específico.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOCO 04: BATERIAS -->
+        <div class="pg-products" id="pgProducts">
+          <div class="pg-block-title"><div><span class="pg-step-label"><b>04</b> / EXPERIMENTE UMA BATERIA</span><h3>ESCOLHA UMA.<br><em>VEJA O ENCAIXE.</em></h3></div><p>As embalagens abaixo são mockups visuais provisórios. Fotografias reais das versões Heliar e Moura serão adicionadas após validação do catálogo.</p></div>
+          <div class="pg-battery-grid" role="group" aria-label="Modelos usados na demonstração visual">
+            <button class="pg-product-card" type="button" data-pg-product="heliar" aria-pressed="false">
+              <span class="pg-product-top"><span>HELIAR</span><span>01 / 03</span></span>
+              <span class="pg-product-art"><span class="pg-product-battery pg-battery-heliar"><i></i><strong>HELIAR</strong><small>60Ah</small></span></span>
+              <span class="pg-product-bottom"><strong>Heliar 60Ah</strong><small>Representação ilustrativa</small><span>EXPERIMENTAR <b>↗</b></span></span>
+            </button>
+            <button class="pg-product-card" type="button" data-pg-product="moura" aria-pressed="false">
+              <span class="pg-product-top"><span>MOURA</span><span>02 / 03</span></span>
+              <span class="pg-product-art"><span class="pg-product-battery pg-battery-moura"><i></i><strong>MOURA</strong><small>60Ah</small></span></span>
+              <span class="pg-product-bottom"><strong>Moura 60Ah</strong><small>Representação ilustrativa</small><span>EXPERIMENTAR <b>↗</b></span></span>
+            </button>
+            <button class="pg-product-card" type="button" data-pg-product="heavy" aria-pressed="false">
+              <span class="pg-product-top"><span>EXEMPLO DE TAMANHO</span><span>03 / 03</span></span>
+              <span class="pg-product-art"><span class="pg-product-battery pg-battery-heavy"><i></i><strong>LINHA PESADA</strong><small>DIMENSÃO EXAGERADA</small></span></span>
+              <span class="pg-product-bottom"><strong>Bateria superdimensionada</strong><small>Apenas para demonstrar a animação</small><span>TESTAR LIMITE <b>↗</b></span></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- BLOCO 05: RESULTADO E PRÓXIMO PASSO -->
+        <div class="pg-result" id="pgResult" data-result="idle" aria-live="polite">
+          <div class="pg-result-symbol" id="pgResultIcon">◎</div>
+          <div class="pg-result-copy"><span class="pg-step-label"><b>05</b> / RESULTADO DA SIMULAÇÃO</span><h3 id="pgResultTitle">PRONTO PARA TESTAR?</h3><p id="pgResultDescription">Selecione seu veículo e experimente uma das baterias acima. O resultado ainda não é uma verificação técnica real.</p></div>
+          <div class="pg-result-actions">
+            <button class="pg-button pg-button-dark" type="button" id="pgInspect" disabled>VISUALIZAR BATERIA <span aria-hidden="true">↗</span></button>
+            <button class="pg-button pg-button-primary" type="button" id="pgWhatsApp">CONFIRMAR NO WHATSAPP <span aria-hidden="true">↗</span></button>
+          </div>
+        </div>
+        <p class="pg-honesty"><strong>IMPORTANTE:</strong> nesta primeira versão, a área de instalação, as embalagens e o resultado de encaixe são ilustrativos. Encaixe visual não significa compatibilidade mecânica ou elétrica. Só exibiremos o selo “compatibilidade confirmada” após conferência de dados técnicos reais por veículo, ano, versão e bateria.</p>
       </div>
-      <p class="fine-print"><b>ATENÇÃO:</b> Os tamanhos e o cofre de motor são ilustrativos. Nenhuma escolha nesta demonstração representa recomendação técnica. A bateria correta depende das especificações do veículo, ano, versão, tecnologia e confirmação profissional.</p>
+
+      <!-- BLOCO 06: INSPEÇÃO EM MODAL -->
+      <dialog class="pg-inspector" id="pgInspector" aria-labelledby="pgInspectorTitle">
+        <button class="pg-inspector-close" id="pgInspectorClose" type="button" aria-label="Fechar visualização">×</button>
+        <div class="pg-inspector-visual">
+          <span>POWER GARAGE / INSPECT MODE</span>
+          <div class="pg-inspector-orbit" id="pgInspectorOrbit">
+            <div class="pg-rotatable-battery" id="pgRotatableBattery">
+              <div class="pg-face pg-face-front"><strong id="pgInspectorBrandFront">HELIAR</strong><small id="pgInspectorAhFront">60Ah</small></div>
+              <div class="pg-face pg-face-back"></div><div class="pg-face pg-face-left"></div><div class="pg-face pg-face-right"></div><div class="pg-face pg-face-top"><span>＋</span><span>−</span></div><div class="pg-face pg-face-bottom"></div>
+            </div>
+          </div>
+          <div class="pg-inspector-rotate"><button type="button" id="pgRotateLeft" aria-label="Girar para a esquerda">↶</button><span>GIRO 3D CONCEITUAL</span><button type="button" id="pgRotateRight" aria-label="Girar para a direita">↷</button></div>
+        </div>
+        <div class="pg-inspector-text">
+          <span class="pg-step-label"><b>06</b> / VISUALIZAÇÃO DETALHADA</span>
+          <h3 id="pgInspectorTitle">HELIAR 60Ah</h3>
+          <p>Explore o formato de apresentação em 3D. A versão final terá o modelo do produto e informações fornecidas pelo fabricante.</p>
+          <div class="pg-spec-list"><div><span>CAPACIDADE NOMINAL</span><strong id="pgInspectorAh">60Ah (exemplo de linha)</strong></div><div><span>DIMENSÕES / POLARIDADE</span><strong>CONSULTAR FICHA OFICIAL</strong></div><div><span>TECNOLOGIA / CCA</span><strong>CONSULTAR FICHA OFICIAL</strong></div><div><span>VISUALIZAÇÃO INTERNA</span><strong>MODELO DIDÁTICO FUTURO</strong></div></div>
+          <button type="button" class="pg-button pg-button-primary" id="pgInspectorWhatsApp">CONSULTAR ESTE MODELO <span aria-hidden="true">↗</span></button>
+          <small>Sem preços. Atendimento e especificações pelo WhatsApp.</small>
+        </div>
+      </dialog>
     </section>
 
     <section id="modelos" class="section catalog">
