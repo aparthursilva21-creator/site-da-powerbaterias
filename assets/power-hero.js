@@ -31,9 +31,52 @@
     timers.push(window.setTimeout(() => setLightingState(2), 3500));
   }
 
+  // Abertura cinematográfica: logo e raio verde primeiro, depois revela o hero.
+  // O botão "Pular" e a preferência por movimento reduzido não são bloqueados.
+  const opening = document.getElementById('pbOpening');
+  const skipOpening = document.getElementById('pbOpeningSkip');
+  let openingTimer;
+  let introFinished = false;
+
+  function completeOpening() {
+    if (!opening || introFinished) return;
+    introFinished = true;
+    window.clearTimeout(openingTimer);
+    if (document.activeElement === skipOpening) skipOpening.blur();
+    opening.classList.add('is-leaving');
+    document.body.classList.remove('pb-opening-active');
+    replayLighting();
+    window.setTimeout(() => opening.remove(), 880);
+  }
+
+  function initializeOpening() {
+    if (!opening) {
+      replayLighting();
+      return;
+    }
+    // Ao acessar diretamente uma seção via âncora, mostra o conteúdo sem atraso.
+    const directSection = !!window.location.hash && window.location.hash !== '#inicio';
+    if (reducedMotion.matches || directSection) {
+      introFinished = true;
+      opening.remove();
+      replayLighting();
+      return;
+    }
+    document.body.classList.add('pb-opening-active');
+    setLightingState(0);
+    openingTimer = window.setTimeout(completeOpening, 2070);
+  }
+
+  skipOpening?.addEventListener('click', completeOpening);
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !introFinished) completeOpening();
+  });
   replay?.addEventListener('click', replayLighting);
-  reducedMotion.addEventListener?.('change', replayLighting);
-  replayLighting();
+  reducedMotion.addEventListener?.('change', () => {
+    if (reducedMotion.matches && !introFinished) completeOpening();
+    else replayLighting();
+  });
+  initializeOpening();
 
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(([entry]) => {
