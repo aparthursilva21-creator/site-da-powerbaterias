@@ -166,7 +166,7 @@
   $('#garageContact')?.addEventListener('click', () => {
     const vehicle = description() === 'ESCOLHA SEU VEÍCULO' ? 'não informado' : description();
     const product = pickedProduct || 'não selecionada';
-    whatsapp('Olá, Power Baterias! Usei a garagem virtual ILUSTRATIVA do site e gostaria de confirmar a bateria adequada ao meu veículo.\\n\\nVeículo: ' + vehicle + '\\nBateria experimentada: ' + product + '\\n\\nPodem verificar a compatibilidade real, disponibilidade e orçamento?');
+    whatsapp('Olá, Power Baterias! Usei a garagem virtual ILUSTRATIVA do site e gostaria de confirmar a bateria adequada ao meu veículo.\n\nVeículo: ' + vehicle + '\nBateria experimentada: ' + product + '\n\nPodem verificar a compatibilidade real, disponibilidade e orçamento?');
   });
 
   // Catálogo: nenhuma compra ou preço no site.
