@@ -16,6 +16,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.172.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/"}}</script>
+  <script type="module" src="assets/power-hero-3d.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -52,23 +54,44 @@
             <div class="hero-v3-proof-local"><span>✳</span><small>Atendimento em<br><strong>Samambaia Norte / DF</strong></small></div>
           </div>
         </div>
-        <div class="hero-v3-visual" aria-label="Fotografia ilustrativa de um Audi preto em perspectiva frontal de três quartos.">
+        <div class="hero-v3-visual power-motion" id="powerMotion" data-motion-mode="loading" data-phase="0" aria-label="Cena 3D demonstrativa de um veículo atendido pela Power Baterias">
           <div class="hero-v3-visual-light" aria-hidden="true"></div>
-          <div class="hero-v3-visual-photo">
+          <div class="hero-v3-visual-photo power-motion-poster">
             <img
               src="https://images.unsplash.com/photo-1652509959347-f90615132073?auto=format&amp;fit=crop&amp;w=1600&amp;q=88"
               srcset="https://images.unsplash.com/photo-1652509959347-f90615132073?auto=format&amp;fit=crop&amp;w=900&amp;q=82 900w, https://images.unsplash.com/photo-1652509959347-f90615132073?auto=format&amp;fit=crop&amp;w=1600&amp;q=88 1600w"
               sizes="(max-width: 800px) 100vw, 62vw"
-              alt="Audi preto esportivo visto em perspectiva de frente e de lado"
+              alt="Sedã esportivo escuro em ângulo frontal de três quartos"
               fetchpriority="high"
-              decoding="async"
-              width="1600" height="1050">
+              decoding="async" width="1600" height="1050">
           </div>
-          <div class="hero-v3-visual-wash" aria-hidden="true"></div>
-          <div class="hero-v3-visual-foot">
-            <span><i></i> POWER MOTION</span>
-            <span>UMA NOVA EXPERIÊNCIA ESTÁ CHEGANDO</span>
+          <div class="power-motion-canvas">
+            <canvas id="powerMotionCanvas" aria-hidden="true"></canvas>
           </div>
+          <div class="hero-v3-visual-wash power-motion-wash" aria-hidden="true"></div>
+          <div class="power-motion-call" id="powerMotionCall" aria-hidden="true">
+            <span class="power-motion-phone">✆</span>
+            <span>ALÔ, POWER?<small>PRECISO DE SOCORRO!</small></span>
+            <span class="power-motion-waves" aria-hidden="true">)))</span>
+          </div>
+          <div class="power-motion-loading" id="powerMotionLoading" aria-live="polite"><span class="power-motion-loading-ring"></span><span>PREPARANDO CENA 3D...</span></div>
+          <div class="power-motion-dashboard">
+            <div class="power-motion-status"><i></i><div><small>POWER MOTION / CINEMATIC RESCUE</small><strong id="powerMotionStatus" aria-live="off">PREPARANDO A CENA...</strong></div></div>
+            <div class="power-motion-buttons">
+              <button id="powerMotionReplay" type="button" aria-label="Rever animação" title="Rever animação" hidden>↻</button>
+              <button id="powerMotionPause" type="button" aria-label="Pausar animação" title="Pausar animação" hidden>Ⅱ</button>
+              <span id="powerMotionStep">01 / 06</span>
+            </div>
+          </div>
+          <div class="power-motion-timeline" aria-label="Etapas da cena">
+            <span data-motion-step="0" class="is-active">FALHA</span>
+            <span data-motion-step="1">CHAMADO</span>
+            <span data-motion-step="2">CHEGADA</span>
+            <span data-motion-step="3">INSTALAÇÃO</span>
+            <span data-motion-step="4">PARTIDA</span>
+            <span data-motion-step="5">MOVIMENTO</span>
+          </div>
+          <div class="power-motion-credit">RECONSTITUIÇÃO DIGITAL 3D • IMAGENS ILUSTRATIVAS</div>
         </div>
       </div>
       <div class="hero-v3-bottomline">
