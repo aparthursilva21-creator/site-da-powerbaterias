@@ -147,3 +147,15 @@
   .rider-bike,.call-bubble{transition:none!important}
   .story-film .film-target{animation:none}
 }
+
+/* Garagem: quatro escolhas, e bateria de linha pesada barrada visualmente. */
+.battery-options{grid-template-columns:repeat(2,minmax(0,1fr))}
+.battery-choice{height:83px;flex-direction:row;gap:13px;text-align:left;padding:10px 12px}
+.battery-choice b{font-size:11px}
+.battery-choice small{font-size:9px}
+.battery-swatch{flex:none}
+.battery-3d.show.is-large{transform:translateY(-47px) rotate(-12deg) scale(1.46);opacity:.85}
+.compatibility.is-warning{background:#233021;border-color:#86b65e}
+.compatibility.is-warning .compat-icon{border-color:var(--green);font-weight:900;color:var(--green)}
+.compatibility.is-warning strong{color:var(--green)}
+@media(max-width:360px){.battery-choice{padding:8px 5px;gap:6px}.battery-choice b{font-size:9px}}
