@@ -1,0 +1,46 @@
+/* POWER BATERIAS — catálogo com fotografias reais | edição V08 */
+.pb-products-collection{padding:64px 0 86px;background:#090f0a}
+.pb-products-heading{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:27px}
+.pb-products-heading h2{font:800 clamp(29px,3vw,43px)/1.16 'Montserrat',Arial,sans-serif;letter-spacing:-1.1px;margin:12px 0 0}
+.pb-products-heading p{margin:0;max-width:350px;font-size:12px;line-height:1.8;color:#adbbae}
+.pb-product-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.pb-photo-card{min-width:0;background:linear-gradient(150deg,#141d15,#0c120e);border:1px solid rgba(180,204,168,.17);overflow:hidden;display:flex;flex-direction:column;transition:border-color .25s,transform .25s}
+.pb-photo-card:hover{border-color:rgba(140,199,108,.46);transform:translateY(-3px)}
+.pb-photo-surface{height:clamp(225px,22vw,310px);position:relative;background:#f8f9f7;display:flex;justify-content:center;align-items:center;overflow:hidden;padding:24px}
+.pb-photo-surface:after{content:"";position:absolute;inset:0;border-bottom:1px solid #e1e6df;pointer-events:none}
+.pb-photo-surface img{display:block;max-width:100%;width:100%;height:100%;object-fit:contain;object-position:center;transition:transform .5s cubic-bezier(.2,.8,.2,1);filter:contrast(1.05)}
+.pb-photo-card:hover .pb-photo-surface img{transform:scale(1.045)}
+.pb-photo-card[data-photo="heliar"] .pb-photo-surface img{max-width:94%;object-fit:contain;image-rendering:auto}
+.pb-photo-card[data-photo="moura-box"] .pb-photo-surface img{max-width:98%}
+.pb-photo-card[data-photo="moura-car"] .pb-photo-surface img{max-width:100%}
+.pb-photo-overline{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 19px;border-bottom:1px solid rgba(190,211,183,.15);font:800 9px 'Montserrat',Arial,sans-serif;letter-spacing:.7px;color:#b9c6b4}
+.pb-photo-overline span:last-child{color:#94b58a}
+.pb-photo-info{padding:21px 20px 23px;display:flex;flex-direction:column;flex:1}
+.pb-photo-info h3{font:800 clamp(17px,1.65vw,22px)/1.2 'Montserrat',Arial,sans-serif;letter-spacing:-.4px;margin:0 0 9px}
+.pb-photo-info p{font-size:12px;color:#a9b8aa;line-height:1.75;margin:0}
+.pb-photo-info a{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(190,211,183,.14);margin-top:auto;padding-top:18px;font:800 10px 'Montserrat',Arial,sans-serif;color:#c2e5ae}
+.pb-photo-info a:hover{color:#e4ffd1}
+.pb-photo-info a span{font-size:17px}
+.pb-photo-source{font-size:10px;line-height:1.6;color:#8da08c;margin-top:20px}
+.pb-product-lines{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:36px}
+.pb-product-line{padding:19px 20px;border-left:2px solid #537b44;background:#121c14}
+.pb-product-line strong{display:block;font:800 14px 'Montserrat',Arial,sans-serif;margin-bottom:7px}
+.pb-product-line p{font-size:11px;line-height:1.7;color:#aebdaf;margin:0}
+.pb-garage-product-preview{margin:18px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.pb-garage-product{display:flex;gap:14px;align-items:center;background:#111a13;border:1px solid rgba(185,215,170,.17);padding:12px;min-width:0}
+.pb-garage-product .pb-garage-product-photo{flex:0 0 92px;height:86px;background:#f6f8f4;display:grid;place-items:center;border-radius:5px;overflow:hidden}
+.pb-garage-product .pb-garage-product-photo img{width:100%;height:100%;object-fit:contain}
+.pb-garage-product strong{font:800 13px 'Montserrat',Arial,sans-serif}
+.pb-garage-product small{display:block;margin-top:6px;color:#a7b9a6;font-size:10px;line-height:1.5}
+.pb-garage-product a{font-size:10px;margin-top:10px;display:inline-block;color:#b7e29c}
+.pb-garage-product a:hover{text-decoration:underline}
+.pb-home-products .v7-feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.pb-home-products .v7-feature{display:grid;grid-template-columns:100px 1fr;gap:18px;min-height:185px;padding:15px;align-items:center;background:#111a13}
+.pb-home-products .v7-feature>div:not(.pb-home-product-image){align-self:center}
+.pb-home-product-image{height:150px;display:grid;place-items:center;background:#f7f8f5;border-radius:4px;overflow:hidden}
+.pb-home-product-image img{width:100%;height:100%;object-fit:contain}
+.pb-home-products .v7-feature h3{margin:0 0 7px}
+.pb-home-products .v7-feature .v7-link{margin-top:17px}
+@media(max-width:1000px){.pb-product-gallery{gap:10px}.pb-photo-surface{height:230px;padding:15px}.pb-photo-info{padding:17px}.pb-photo-info h3{font-size:17px}.pb-products-heading{align-items:start;flex-direction:column;gap:13px}}
+@media(max-width:700px){.pb-products-collection{padding:48px 0}.pb-product-gallery{grid-template-columns:1fr;gap:16px}.pb-photo-card{display:grid;grid-template-columns:44% 56%;grid-template-rows:auto auto}.pb-photo-overline{grid-column:1/-1}.pb-photo-surface{grid-column:1;grid-row:2;height:210px;padding:10px}.pb-photo-info{grid-column:2;grid-row:2;padding:20px 14px}.pb-photo-info h3{font-size:16px}.pb-photo-info p{font-size:11px}.pb-photo-info a{font-size:9px}.pb-product-lines{grid-template-columns:1fr}.pb-garage-product-preview{grid-template-columns:1fr}.pb-home-products .v7-feature-grid{grid-template-columns:1fr}.pb-home-products .v7-feature{min-height:160px;grid-template-columns:95px 1fr}.pb-home-product-image{height:125px}}
+@media(prefers-reduced-motion:reduce){.pb-photo-card,.pb-photo-surface img{transition:none!important}}
