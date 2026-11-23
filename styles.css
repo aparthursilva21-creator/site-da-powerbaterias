@@ -159,3 +159,8 @@
 .compatibility.is-warning .compat-icon{border-color:var(--green);font-weight:900;color:var(--green)}
 .compatibility.is-warning strong{color:var(--green)}
 @media(max-width:360px){.battery-choice{padding:8px 5px;gap:6px}.battery-choice b{font-size:9px}}
+
+/* Identidade oficial: marca Heliar Power Baterias derivada da arte enviada. */
+.logo-official {display:flex;flex:0 0 auto;align-items:center;overflow:visible}
+.logo-official img {display:block;width:clamp(190px,19vw,245px);height:auto;max-height:85px;object-fit:contain;object-position:left center}
+@media(max-width:680px) {.logo-official img{width:195px;max-height:68px}}
