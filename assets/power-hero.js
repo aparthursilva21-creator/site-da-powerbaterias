@@ -1,46 +1,62 @@
 (() => {
+  'use strict';
   const stage = document.querySelector('.pb-hero');
   if (!stage) return;
-  const barSet = [...document.querySelectorAll('.pb-progress-bars i')];
+
+  const bars = [...stage.querySelectorAll('.pb-progress-bars i')];
   const progress = document.getElementById('pbProgressNumber');
   const replay = document.getElementById('pbReplay');
   const menu = document.getElementById('pbMenu');
   const nav = document.getElementById('pbNav');
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let phaseTimers = [];
-  let obs;
-  const setPhase = (step) => {
-    stage.dataset.drivePhase = String(step);
-    if (progress) progress.textContent = String(step + 1).padStart(2, '0') + ' / 03';
-    barSet.forEach((bar, i) => bar.classList.toggle('on', i <= step));
-  };
-  function start() {
-    phaseTimers.forEach(clearTimeout);
-    phaseTimers = [];
-    if (reduce.matches) { setPhase(2); return; }
-    setPhase(0);
-    phaseTimers.push(setTimeout(() => setPhase(1), 1600));
-    phaseTimers.push(setTimeout(() => setPhase(2), 3650));
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let timers = [];
+
+  // V05: os indicadores marcam apenas a evolução sutil da iluminação.
+  // O automóvel, as rodas e o asfalto NÃO se movem.
+  function setLightingState(index) {
+    stage.dataset.drivePhase = String(index);
+    if (progress) progress.textContent = String(index + 1).padStart(2, '0') + ' / 03';
+    bars.forEach((bar, i) => bar.classList.toggle('on', i <= index));
   }
-  replay?.addEventListener('click', start);
-  start();
+
+  function replayLighting() {
+    timers.forEach(window.clearTimeout);
+    timers = [];
+    if (reducedMotion.matches) {
+      setLightingState(2);
+      return;
+    }
+    setLightingState(0);
+    timers.push(window.setTimeout(() => setLightingState(1), 1650));
+    timers.push(window.setTimeout(() => setLightingState(2), 3500));
+  }
+
+  replay?.addEventListener('click', replayLighting);
+  reducedMotion.addEventListener?.('change', replayLighting);
+  replayLighting();
+
   if ('IntersectionObserver' in window) {
-    obs = new IntersectionObserver(([entry]) => {
+    new IntersectionObserver(([entry]) => {
       stage.classList.toggle('pb-out-of-view', !entry.isIntersecting);
-    }, {threshold:0.05});
-    obs.observe(stage);
+    }, { threshold: 0.05 }).observe(stage);
   }
   document.addEventListener('visibilitychange', () => {
     stage.classList.toggle('pb-page-hidden', document.hidden);
   });
-  reduce.addEventListener?.('change', start);
+
+  function closeMenu() {
+    nav?.classList.remove('open');
+    menu?.setAttribute('aria-expanded', 'false');
+    menu?.setAttribute('aria-label', 'Abrir menu');
+  }
   menu?.addEventListener('click', () => {
     const expanded = menu.getAttribute('aria-expanded') !== 'true';
     menu.setAttribute('aria-expanded', String(expanded));
+    menu.setAttribute('aria-label', expanded ? 'Fechar menu' : 'Abrir menu');
     nav?.classList.toggle('open', expanded);
   });
-  nav?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-    nav.classList.remove('open');
-    menu?.setAttribute('aria-expanded', 'false');
-  }));
+  nav?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeMenu();
+  });
 })();
