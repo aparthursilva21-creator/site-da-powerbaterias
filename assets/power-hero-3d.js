@@ -380,6 +380,8 @@ if (root) {
       await loadCar();
       root.dataset.motionMode='3d';
       loading?.setAttribute('hidden','');
+      replay?.removeAttribute('hidden');
+      toggle?.removeAttribute('hidden');
       setPhase(0);animate();
       // Os personagens não impedem o carregamento da cena principal.
       loadBike().catch(err=>console.warn('POWER MOTION: moto indisponível',err));
