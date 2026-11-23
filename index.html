@@ -102,7 +102,7 @@
 
     <section id="garagem" class="section garage">
       <div class="section-serial">/ 02 — POWER GARAGE</div>
-      <div class="section-heading"><div><div class="kicker"><i></i> CONHEÇA NOSSA GARAGEM VIRTUAL</div><h2>QUAL BATERIA<br><em>VAI COM VOCÊ?</em></h2></div><p>Escolha um veículo e experimente o encaixe de diferentes tamanhos em uma visualização ilustrativa. Antes da compra, nossa equipe confirma a compatibilidade técnica.</p></div>
+      <div class="section-heading"><div><div class="kicker"><i></i> CONHEÇA NOSSA GARAGEM VIRTUAL</div><h2>QUAL BATERIA<br><em>VAI COM VOCÊ?</em></h2></div><p>Selecione seu carro, conheça linhas de baterias e veja o encaixe ilustrativo. Um exemplo de bateria de caminhão demonstra o que acontece quando a peça não cabe. A compatibilidade real é sempre confirmada pela equipe.</p></div>
       <div class="garage-layout">
         <div class="garage-controls">
           <div class="control-head"><span>ETAPA 01 / VEÍCULO</span><span class="live-indicator"><i></i> INTERATIVO</span></div>
@@ -115,11 +115,12 @@
           <select id="carYear"><option value="">Selecione o ano</option></select>
           <div class="control-separator"></div>
           <span class="control-head"><span>ETAPA 02 / EXPERIMENTE</span><span>SIMULAÇÃO VISUAL</span></span>
-          <h4>QUAL TAMANHO VAMOS TESTAR?</h4>
-          <div class="battery-options" role="group" aria-label="Tamanhos ilustrativos de bateria">
-            <button class="battery-choice" data-size="compacta" aria-pressed="false"><span class="battery-swatch mini"></span><span><b>COMPACTA</b><small>Visual menor</small></span></button>
-            <button class="battery-choice" data-size="padrao" aria-pressed="false"><span class="battery-swatch"></span><span><b>PADRÃO</b><small>Visual médio</small></span></button>
-            <button class="battery-choice" data-size="grande" aria-pressed="false"><span class="battery-swatch big"></span><span><b>GRANDE</b><small>Visual maior</small></span></button>
+          <h4>QUAL BATERIA VAMOS EXPERIMENTAR?</h4>
+          <div class="battery-options" role="group" aria-label="Baterias para demonstração">
+            <button class="battery-choice" data-size="padrao" data-battery="Heliar 60Ah" aria-pressed="false"><span class="battery-swatch"></span><span><b>HELIAR</b><small>60Ah • exemplo</small></span></button>
+            <button class="battery-choice" data-size="padrao" data-battery="Moura 60Ah" aria-pressed="false"><span class="battery-swatch"></span><span><b>MOURA</b><small>60Ah • exemplo</small></span></button>
+            <button class="battery-choice" data-size="compacta" data-battery="Start-Stop 50Ah" aria-pressed="false"><span class="battery-swatch mini"></span><span><b>START-STOP</b><small>50Ah • exemplo</small></span></button>
+            <button class="battery-choice" data-size="grande" data-battery="Linha pesada (caminhão)" aria-pressed="false"><span class="battery-swatch big"></span><span><b>LINHA PESADA</b><small>Exemplo gigante</small></span></button>
           </div>
           <button class="btn btn-green garage-contact" id="garageContact">CONFIRMAR COM A EQUIPE <span>↗</span></button>
         </div>
@@ -132,7 +133,7 @@
               <div class="engine-core"><div class="engine-core-title">POWER <span>ENGINE</span></div><div class="engine-core-lines"></div></div>
               <div class="engine-tube tube-one"></div><div class="engine-tube tube-two"></div>
               <div class="engine-coolant"></div><div class="engine-cap">+</div>
-              <div class="battery-slot"><span>BATTERY SLOT</span><div class="battery-3d" id="garageBattery"><div class="battery-lid"><i></i><i></i></div><div class="battery-front"><b>POWER</b><small>SIMULAÇÃO</small></div></div></div>
+              <div class="battery-slot"><span>BATTERY SLOT</span><div class="battery-3d" id="garageBattery"><div class="battery-lid"><i></i><i></i></div><div class="battery-front"><b id="garageBatteryBrand">POWER</b><small id="garageBatteryLabel">SIMULAÇÃO</small></div></div></div>
               <div class="engine-grid"></div>
             </div>
             <div class="engine-caption"><span>MODELO</span><strong id="selectedCar">ESCOLHA SEU VEÍCULO</strong></div>
