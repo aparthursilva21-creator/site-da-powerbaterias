@@ -11,3 +11,14 @@
 @media(max-width:600px){.pb-header-inner{padding:0 17px;height:69px}.pb-brand{width:203px}.pb-nav{top:69px}.pb-hero{min-height:820px}.pb-hero-inner{min-height:820px;padding:35px 19px 32px}.pb-hero-copy{width:100%}.pb-overline{font-size:8px;letter-spacing:1.1px;gap:8px;white-space:normal}.pb-overline>span{width:24px;flex:none}.pb-hero h1{font-size:clamp(36px,7.6vw,50px);line-height:1.15;letter-spacing:-1.5px;margin:26px 0 17px}.pb-hero h1 em{letter-spacing:-1.6px}.pb-hero-copy>p{font-size:12px;line-height:1.62;max-width:465px}.pb-actions{margin-top:24px;gap:9px}.pb-pill{height:46px;font-size:11px;gap:8px;padding:0 12px}.pb-pill-outline{min-width:0}.pb-pill-outline svg{width:22px}.pb-pill-primary{min-width:0}.pb-bolt{font-size:21px}.pb-arrow{font-size:15px}.pb-proof{margin-top:25px;gap:14px}.pb-google{font-size:30px}.pb-proof-review{gap:8px}.pb-proof-review small{font-size:10px}.pb-proof-review strong{font-size:15px}.pb-proof-review b{font-size:11px;letter-spacing:0}.pb-proof-location{gap:6px}.pb-proof-location svg{width:19px;height:24px}.pb-proof-location span{font-size:10px}.pb-divider{height:27px}.pb-progress{margin-top:25px;gap:12px;font-size:10px}.pb-progress-bars{gap:6px}.pb-progress-bars i{width:26px}.pb-progress button{width:24px;height:24px}.pb-car-area{width:122vw;right:-14%;top:490px}.pb-visual-caption{font-size:7px;right:12px;bottom:14px}}
 @media(max-width:370px){.pb-overline{font-size:7px}.pb-hero h1{font-size:34px}.pb-actions{flex-direction:column;align-items:flex-start}.pb-hero{min-height:860px}.pb-hero-inner{min-height:860px}.pb-car-area{top:545px}.pb-proof{gap:10px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.pb-hero :is(.pb-car-layer,.pb-mist,.pb-road-motion,.pb-lightflare){animation:none!important}.pb-hero .pb-wheel{display:none!important}.pb-hero .pb-road-motion{opacity:0!important}.pb-hero .pb-mist{opacity:0!important}}
+
+/* Acabamento: o carro se mistura ao fundo sem bordas retangulares. */
+.pb-car-layer{
+  -webkit-mask-image:radial-gradient(ellipse 83% 80% at 59% 55%,#000 50%,rgba(0,0,0,.94) 66%,transparent 99%);
+  mask-image:radial-gradient(ellipse 83% 80% at 59% 55%,#000 50%,rgba(0,0,0,.94) 66%,transparent 99%);
+}
+.pb-car-image{
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.45) 9%,#000 18%);
+  mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.45) 9%,#000 18%);
+}
+@media(max-width:600px){.pb-car-area{top:466px}.pb-visual-caption{bottom:8px}}
