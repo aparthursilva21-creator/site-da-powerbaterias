@@ -24,7 +24,7 @@ if (root) {
   const names = ['SEM PARTIDA','PEDIDO DE SOCORRO','POWER A CAMINHO','TROCA DE BATERIA','PARTIDA RECUPERADA','ENERGIA EM MOVIMENTO'];
   const tags = ['FALHA','CHAMADO','RESGATE','INSTALAÇÃO','PARTIDA','NA ESTRADA'];
   let renderer, scene, camera, carRig, carVisual, carMixer;
-  let bikeRoot, courierRoot, battery, batteryGlow, wheelNodes = [];
+  let bikeRoot, courierRoot, battery, batteryGlow, hoodPivot, wheelNodes = [];
   let headlamps = [], spots = [], particles = [], roadLines = [];
   let playedMs = 0, lastFrame = 0, running = true, onScreen = true, active = true, phase = -1;
   let rafId = 0;
@@ -198,6 +198,31 @@ if (root) {
       if(/wheel|tire|tyre/i.test(obj.name))wheelNodes.push(obj);
     });
     carRig.add(carVisual);
+    // Uma tampa de cofre sobreposta permite mostrar a etapa de abertura
+    // quando o modelo genérico não tem capô articulado separado.
+    const underHood=new THREE.Mesh(
+      new THREE.BoxGeometry(1.65,.035,1.55),
+      new THREE.MeshStandardMaterial({color:0x0a120d,metalness:.5,roughness:.55}));
+    underHood.position.set(0,.995,1.52);carRig.add(underHood);
+    for(let n=0;n<5;n++){
+      const engineDetail=new THREE.Mesh(
+        new THREE.BoxGeometry(1.1,.037,.055),
+        new THREE.MeshStandardMaterial({color:0x344438,metalness:.6,roughness:.4}));
+      engineDetail.position.set(0,1.025,.98+n*.19);
+      carRig.add(engineDetail);
+    }
+    hoodPivot=new THREE.Group();
+    hoodPivot.position.set(0,1.07,.63);
+    const hoodPanel=new THREE.Mesh(
+      new THREE.BoxGeometry(1.82,.075,1.75),
+      new THREE.MeshPhysicalMaterial({color:0x101719,metalness:.83,roughness:.22,clearcoat:.85,clearcoatRoughness:.2}));
+    hoodPanel.position.set(0,0,.88);
+    hoodPanel.castShadow=true;hoodPivot.add(hoodPanel);
+    const hoodEdge=new THREE.Mesh(
+      new THREE.BoxGeometry(1.73,.025,.025),
+      new THREE.MeshStandardMaterial({color:0x263b30,emissive:0x14301b,emissiveIntensity:.18,metalness:.5}));
+    hoodEdge.position.set(0,.01,1.74);hoodPivot.add(hoodEdge);
+    carRig.add(hoodPivot);
     if(gltf.animations?.length){
       carMixer=new THREE.AnimationMixer(carVisual);
       const clip=gltf.animations.find(a=>/wheel/i.test(a.name))||gltf.animations[0];
@@ -258,6 +283,13 @@ if (root) {
     carRig.position.x=current===0 ? Math.sin(nowMs*.037)*.018 : 0;
     carRig.position.y=drive ? .012*Math.sin(nowMs*.01) : 0;
     carRig.rotation.y=drive?-.08:.0;
+    if(hoodPivot){
+      let lift=0;
+      if(current===2)lift=.9*smooth((frac-.64)/.34);
+      if(current===3)lift=1;
+      if(current===4)lift=1-smooth(frac*.95);
+      hoodPivot.rotation.x=-1.04*lift;
+    }
     if(carMixer){
       carMixer.timeScale=drive?1.4:0;
       if(drive)carMixer.update(dt);
