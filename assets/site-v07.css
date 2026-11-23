@@ -1,6 +1,6 @@
 /* POWER BATERIAS | v07 — sistema visual editorial e páginas independentes
    Base: tema da logo. O verde é detalhe, nunca decoração dominante. */
-:root{--v7-bg:#080d09;--v7-black:#060907;--v7-panel:#101712;--v7-line:rgba(187,210,182,.16);--v7-ink:#f4f7f1;--v7-muted:#aebbae;--v7-green:#83d63f;--v7-light:#c1f59e;--v7-serif:'Montserrat','DM Sans',Arial,sans-serif}
+:root{--v7-bg:#080d09;--v7-black:#060907;--v7-panel:#101712;--v7-line:rgba(187,210,182,.16);--v7-ink:#f4f7f1;--v7-muted:#aebbae;--v7-green:#75c83c;--v7-light:#b7e99a;--v7-serif:'Montserrat','DM Sans',Arial,sans-serif}
 html{scroll-padding-top:100px}
 body.v7{background:var(--v7-black);color:var(--v7-ink);font-family:'DM Sans',Arial,sans-serif;overflow-x:hidden}
 .v7 *{box-sizing:border-box}
@@ -25,7 +25,7 @@ body.v7{background:var(--v7-black);color:var(--v7-ink);font-family:'DM Sans',Ari
 .v7-link{display:inline-flex;align-items:center;gap:18px;border-bottom:1px solid rgba(150,208,132,.55);padding:0 0 10px;font:800 11px/1.3 var(--v7-serif);letter-spacing:.3px;transition:gap .2s ease,color .2s;color:var(--v7-ink)}
 .v7-link:hover{gap:27px;color:var(--v7-light)}
 .v7-link span{font-size:19px;line-height:1;color:var(--v7-green)}
-.v7-button{display:inline-flex;align-items:center;justify-content:center;gap:20px;min-height:49px;padding:13px 21px;border-radius:999px;border:1px solid transparent;background:linear-gradient(140deg,#9aea58,#78cd34);color:#102006!important;font:800 11px/1.2 var(--v7-serif);transition:transform .25s,box-shadow .25s;background-clip:padding-box}
+.v7-button{display:inline-flex;align-items:center;justify-content:center;gap:20px;min-height:49px;padding:13px 21px;border-radius:999px;border:1px solid transparent;background:linear-gradient(140deg,#a3df73,#76c83d);color:#102006!important;font:800 11px/1.2 var(--v7-serif);transition:transform .25s,box-shadow .25s;background-clip:padding-box}
 .v7-button:hover{transform:translateY(-2px);box-shadow:0 12px 30px #83d63f2d}
 .v7-button span{font-size:18px}
 .v7-button.secondary{background:transparent;border-color:#83927e;color:#f4f7f1!important}
