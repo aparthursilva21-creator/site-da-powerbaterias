@@ -8,96 +8,70 @@
   <meta property="og:title" content="Power Baterias — A energia que move você">
   <meta property="og:description" content="Sua próxima partida começa aqui. Encontre sua bateria e fale com a Power Baterias em Samambaia Norte.">
   <meta property="og:type" content="website">
-  <!-- Foto provisória do hero: Ivan Kazlouskij via Unsplash, licença Unsplash. A produção 3D autoral virá na fase seguinte. -->
-  <title>Power Baterias | A energia que move você — Brasília, DF</title>
+  <!-- Hero desenvolvido com base na arte de referência aprovada pelo cliente. -->
+  <title>Power Baterias | Energia para seguir em frente — Brasília, DF</title>
   <link rel="icon" href="assets/bolt.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700;800&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assets/power-hero.css">
   <script src="app.js" defer></script>
-  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.172.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/"}}</script>
-  <script type="module" src="assets/power-hero-3d.js"></script>
+  <script src="assets/power-hero.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-  <div class="microbar"><span><span class="pulse-dot"></span> POWER EXPERIENCE / VERSÃO DE DESENVOLVIMENTO</span><span>SAMAMBAIA NORTE • BRASÍLIA — DF</span></div>
-  <header class="site-header" id="header">
-    <a class="logo logo-official" href="#inicio" aria-label="Heliar Power Baterias, início">
-      <img src="assets/power-logo-traced.svg" width="260" height="100" alt="Heliar Power Baterias">
-    </a>
-    <nav class="nav" id="nav" aria-label="Menu principal">
-      <a href="#inicio">Início</a><a href="#sobre">Sobre nós</a><a href="#garagem">Minha bateria</a><a href="#modelos">Baterias</a><a href="#servicos">Serviços</a><a href="#localizacao">A loja</a>
-    </nav>
-    <div class="header-actions">
-      <a class="nav-whatsapp" href="https://wa.me/5561995191090?text=Ol%C3%A1%2C%20Power%20Baterias!%20Gostaria%20de%20um%20atendimento." target="_blank" rel="noopener noreferrer">FALE COM A POWER <span>↗</span></a>
-      <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="nav" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+  <header class="pb-header">
+    <div class="pb-header-inner">
+      <a class="pb-brand" href="#inicio" aria-label="Power Baterias — início"><img src="assets/power-logo-traced.svg" alt="Heliar Power Baterias" width="290" height="86"></a>
+      <div class="pb-separator" aria-hidden="true"></div>
+      <nav class="pb-nav" aria-label="Navegação principal" id="pbNav">
+        <a href="#inicio" class="active" aria-current="page">Início</a>
+        <a href="#sobre">Sobre nós</a>
+        <a href="#garagem">Minha bateria</a>
+        <a href="#modelos">Baterias</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#localizacao">A loja</a>
+      </nav>
+      <div class="pb-separator pb-separator-end" aria-hidden="true"></div>
+      <a class="pb-header-wa" href="https://wa.me/5561995191090?text=Ol%C3%A1%2C%20Power%20Baterias!%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 11.5a8.6 8.6 0 0 1-12.7 7.5L3 20l1.3-5a8.6 8.6 0 1 1 16.7-3.5Z"/><path d="M8.7 8.4c.5-.6 1-.5 1.2 0l.7 1.4c.2.3.1.6-.2.9l-.4.4c.6 1.2 1.5 2.1 2.7 2.6l.6-.6c.3-.3.6-.3.9-.1l1.4.8c.5.3.5.8 0 1.2-1.7 1.7-6.5-1.2-7.1-4.5-.1-.7 0-1.4.2-2.1Z"/></svg> WhatsApp</a>
+      <button class="pb-menu" type="button" id="pbMenu" aria-controls="pbNav" aria-expanded="false" aria-label="Abrir menu"><span></span><span></span><span></span></button>
     </div>
   </header>
   <main id="conteudo">
-    <!-- HERO V03 — layout primeiro, animação cinematográfica em produção -->
-    <section class="hero hero-v3" id="inicio" aria-labelledby="heroTitle">
-      <div class="hero-v3-atmosphere" aria-hidden="true"></div>
-      <div class="hero-v3-inner">
-        <div class="hero-v3-copy">
-          <div class="hero-v3-overline"><span class="hero-v3-led"></span> POWER BATERIAS <span class="hero-v3-overline-sep">/</span> SAMAMBAIA NORTE — DF</div>
-          <h1 id="heroTitle">ENERGIA PARA<br><span>SEGUIR</span> EM FRENTE.</h1>
-          <div class="hero-v3-accent" aria-hidden="true"></div>
-          <p>Seu carro precisa de uma nova partida? Conte com atendimento especializado, baterias de confiança e a equipe da <strong>Power Baterias</strong> para continuar sua jornada.</p>
-          <div class="hero-v3-actions">
-            <a href="#garagem" class="btn btn-green hero-v3-primary">ENCONTRAR MINHA BATERIA <span aria-hidden="true">↗</span></a>
-            <a href="#sos" class="hero-v3-secondary">PRECISO DE SOCORRO <span aria-hidden="true">↗</span></a>
+    <section id="inicio" class="pb-hero" aria-labelledby="heroTitle" data-drive-phase="0">
+      <div class="pb-glow" aria-hidden="true"></div>
+      <div class="pb-car-area" id="pbCarArea" aria-label="Carro preto de luxo em uma cena automotiva noturna. A cena simula uma sensação de movimento.">
+        <div class="pb-car-scene">
+          <div class="pb-car-layer" id="pbCarLayer">
+            <img class="pb-car-image" src="assets/hero-car.webp" alt="Sedã preto em perspectiva frontal de três quartos com reflexos verdes e faróis acesos" width="850" height="659" fetchpriority="high" decoding="async">
+            <img class="pb-wheel pb-wheel-front" src="assets/wheel-front.webp" alt="" aria-hidden="true" width="67" height="170" decoding="async">
+            <img class="pb-wheel pb-wheel-rear" src="assets/wheel-rear.webp" alt="" aria-hidden="true" width="40" height="130" decoding="async">
           </div>
-          <div class="hero-v3-proof">
-            <div class="hero-v3-proof-rating"><span class="hero-v3-proof-stars" aria-label="5 estrelas ilustrativas">★★★★★</span><strong>4,8/5</strong><small>63 avaliações informadas*</small></div>
-            <div class="hero-v3-proof-line"></div>
-            <div class="hero-v3-proof-local"><span>✳</span><small>Atendimento em<br><strong>Samambaia Norte / DF</strong></small></div>
-          </div>
-        </div>
-        <div class="hero-v3-visual power-motion" id="powerMotion" data-motion-mode="loading" data-phase="0" aria-label="Cena 3D demonstrativa de um veículo atendido pela Power Baterias">
-          <div class="hero-v3-visual-light" aria-hidden="true"></div>
-          <div class="hero-v3-visual-photo power-motion-poster">
-            <img
-              src="https://images.unsplash.com/photo-1652509959347-f90615132073?auto=format&amp;fit=crop&amp;w=1600&amp;q=88"
-              srcset="https://images.unsplash.com/photo-1652509959347-f90615132073?auto=format&amp;fit=crop&amp;w=900&amp;q=82 900w, https://images.unsplash.com/photo-1652509959347-f90615132073?auto=format&amp;fit=crop&amp;w=1600&amp;q=88 1600w"
-              sizes="(max-width: 800px) 100vw, 62vw"
-              alt="Sedã esportivo escuro em ângulo frontal de três quartos"
-              fetchpriority="high"
-              decoding="async" width="1600" height="1050">
-          </div>
-          <div class="power-motion-canvas">
-            <canvas id="powerMotionCanvas" aria-hidden="true"></canvas>
-          </div>
-          <div class="hero-v3-visual-wash power-motion-wash" aria-hidden="true"></div>
-          <div class="power-motion-call" id="powerMotionCall" aria-hidden="true">
-            <span class="power-motion-phone">✆</span>
-            <span>ALÔ, POWER?<small>PRECISO DE SOCORRO!</small></span>
-            <span class="power-motion-waves" aria-hidden="true">)))</span>
-          </div>
-          <div class="power-motion-loading" id="powerMotionLoading" aria-live="polite"><span class="power-motion-loading-ring"></span><span>PREPARANDO CENA 3D...</span></div>
-          <div class="power-motion-dashboard">
-            <div class="power-motion-status"><i></i><div><small>POWER MOTION / CINEMATIC RESCUE</small><strong id="powerMotionStatus" aria-live="off">PREPARANDO A CENA...</strong></div></div>
-            <div class="power-motion-buttons">
-              <button id="powerMotionReplay" type="button" aria-label="Rever animação" title="Rever animação" hidden>↻</button>
-              <button id="powerMotionPause" type="button" aria-label="Pausar animação" title="Pausar animação" hidden>Ⅱ</button>
-              <span id="powerMotionStep">01 / 06</span>
-            </div>
-          </div>
-          <div class="power-motion-timeline" aria-label="Etapas da cena">
-            <span data-motion-step="0" class="is-active">FALHA</span>
-            <span data-motion-step="1">CHAMADO</span>
-            <span data-motion-step="2">CHEGADA</span>
-            <span data-motion-step="3">INSTALAÇÃO</span>
-            <span data-motion-step="4">PARTIDA</span>
-            <span data-motion-step="5">MOVIMENTO</span>
-          </div>
-          <div class="power-motion-credit">RECONSTITUIÇÃO DIGITAL 3D • IMAGENS ILUSTRATIVAS</div>
+          <div class="pb-mist pb-mist-1" aria-hidden="true"></div>
+          <div class="pb-mist pb-mist-2" aria-hidden="true"></div>
+          <div class="pb-road-motion" aria-hidden="true"></div>
+          <div class="pb-lightflare" aria-hidden="true"></div>
         </div>
       </div>
-      <div class="hero-v3-bottomline">
-        <span>POWER BATERIAS <b>●</b> ENERGIA QUE MOVE VOCÊ</span>
-        <a href="#experiencia">DESCUBRA A POWER <span aria-hidden="true">↓</span></a>
+      <div class="pb-hero-inner">
+        <div class="pb-hero-copy">
+          <div class="pb-overline"><span aria-hidden="true"></span> POWER BATERIAS <i>•</i> SAMAMBAIA NORTE / DF</div>
+          <h1 id="heroTitle">Energia para<br><em>seguir em frente.</em></h1>
+          <p>Atendimento especializado, baterias de alta confiabilidade e toda a agilidade que você precisa para voltar à estrada, com segurança e tranquilidade.</p>
+          <div class="pb-actions">
+            <a class="pb-pill pb-pill-primary" href="#garagem"><span class="pb-bolt" aria-hidden="true">ϟ</span> Encontrar minha bateria <span class="pb-arrow" aria-hidden="true">→</span></a>
+            <a class="pb-pill pb-pill-outline" href="#sos"><svg viewBox="0 0 32 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 17V9h6l4-6h9l4 6h3v8H3Z"/><path d="M9 9h16M1 13h5M29 13h2"/><circle cx="10" cy="18" r="3"/><circle cx="24" cy="18" r="3"/></svg> Pedir socorro</a>
+          </div>
+          <div class="pb-proof">
+            <div class="pb-proof-review"><span class="pb-google" aria-hidden="true">G</span><div><small>Avaliação no Google</small><span><strong>4,8/5</strong> <b aria-label="Cinco estrelas decorativas">★★★★★</b></span></div></div>
+            <div class="pb-divider" aria-hidden="true"></div>
+            <div class="pb-proof-location"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a8 8 0 0 0-8 8c0 5 8 12 8 12s8-7 8-12a8 8 0 0 0-8-8Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></svg><span>Samambaia Norte / DF</span></div>
+          </div>
+          <div class="pb-progress" aria-label="Estado da animação do carro"><span id="pbProgressNumber">01 / 03</span><div class="pb-progress-bars"><i class="on"></i><i></i><i></i></div><button id="pbReplay" type="button" aria-label="Reiniciar animação do carro" title="Reiniciar animação">↻</button></div>
+        </div>
       </div>
+      <span class="pb-visual-caption">CONCEITO CINEMATOGRÁFICO · CENA ILUSTRATIVA</span>
     </section>
 
     <div class="marquee" aria-hidden="true"><div class="marquee-inner">POWER BATERIAS <span>✳</span> A ENERGIA QUE MOVE VOCÊ <span>✳</span> POWER BATERIAS <span>✳</span> A ENERGIA QUE MOVE VOCÊ <span>✳</span></div></div>
