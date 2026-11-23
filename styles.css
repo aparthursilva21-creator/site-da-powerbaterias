@@ -402,3 +402,14 @@
 @media(prefers-reduced-motion:reduce){
   .hero-v3-visual-photo img{animation:none!important;transform:none}
 }
+
+/* Ajuste fino da primeira dobra solicitado pelo cliente. */
+@media(min-width:851px){
+  .hero-v3-inner{align-items:center;min-height:clamp(545px,calc(100svh - 220px),660px)}
+  .hero-v3-copy{transform:translateY(-20px)}
+  .hero-v3-visual{height:clamp(530px,51vw,655px)}
+}
+.hero-v3-copy h1{font-size:clamp(59px,4.9vw,84px)}
+@media(max-width:1150px) and (min-width:851px){.hero-v3-copy h1{font-size:clamp(55px,5.5vw,72px)}}
+@media(max-width:850px){.hero-v3-copy h1{font-size:clamp(58px,9.1vw,78px)}}
+@media(max-width:580px){.hero-v3-copy h1{font-size:clamp(50px,10.9vw,63px)}}
