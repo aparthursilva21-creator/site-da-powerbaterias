@@ -96,6 +96,9 @@
   const compatText = $('#compatibilityText');
   const compatIcon = $('#compatibilityIcon');
   let pickedBattery = '';
+  let pickedProduct = '';
+  const garageBatteryBrand = $('#garageBatteryBrand');
+  const garageBatteryLabel = $('#garageBatteryLabel');
   if (year) {
     for (let y = new Date().getFullYear(); y >= 1995; y--) {
       const opt = document.createElement('option');
@@ -117,31 +120,41 @@
     model.addEventListener('change', () => { setVehicleTitle(); setCompatStatus(); });
     year?.addEventListener('change', () => { setVehicleTitle(); setCompatStatus(); });
   }
-  const sizeLabel = { compacta: 'compacto', padrao: 'padrão', grande: 'grande' };
+  const sizeLabel = { compacta: 'compacto', padrao: 'padrão', grande: 'linha pesada' };
   function setCompatStatus() {
     if (!compatTitle || !compatText || !compatIcon) return;
-    if (!pickedBattery) {
+    const warning = pickedBattery === 'grande';
+    $('#compatibility')?.classList.toggle('is-warning', warning);
+    if (!pickedProduct) {
       compatTitle.textContent = 'PRONTO PARA EXPERIMENTAR';
-      compatText.textContent = 'Escolha um veículo e um tamanho para experimentar o encaixe visual.';
+      compatText.textContent = 'Escolha um veículo e uma bateria para ver um encaixe ilustrativo.';
       compatIcon.textContent = '◎';
       return;
     }
-    compatTitle.textContent = 'VISUALIZAÇÃO DE TAMANHO ' + sizeLabel[pickedBattery].toUpperCase();
-    compatIcon.textContent = '✓';
-    const car = brand?.value && model?.value ? ' no ' + description() : '';
-    compatText.textContent = 'Este é apenas um encaixe ilustrativo' + car + '. Consulte nossa equipe para saber quais modelos são realmente compatíveis.';
+    if (warning) {
+      compatTitle.textContent = 'NÃO CABE NESTA SIMULAÇÃO';
+      compatIcon.textContent = '×';
+      compatText.textContent = 'Esta bateria grande foi incluída só como demonstração: excede o espaço representado para um automóvel. Não é uma avaliação de compatibilidade do seu veículo.';
+    } else {
+      compatTitle.textContent = 'ENCAIXE VISUAL SIMULADO';
+      compatIcon.textContent = '◎';
+      const car = brand?.value && model?.value ? ' no ' + description() : '';
+      compatText.textContent = 'A ' + pickedProduct + ' está apenas representada visualmente' + car + '. O encaixe NÃO comprova compatibilidade técnica. Consulte nossa equipe.';
+    }
   }
   $$('.battery-choice').forEach(button => {
     button.addEventListener('click', () => {
       pickedBattery = button.dataset.size || '';
+      pickedProduct = button.dataset.battery || '';
       $$('.battery-choice').forEach(item => {
         const active = item === button;
         item.classList.toggle('active', active);
         item.setAttribute('aria-pressed', String(active));
       });
+      if (garageBatteryBrand) garageBatteryBrand.textContent = pickedBattery === 'grande' ? 'LINHA PESADA' : pickedProduct.split(' ')[0].toUpperCase();
+      if (garageBatteryLabel) garageBatteryLabel.textContent = pickedBattery === 'grande' ? 'DEMONSTRAÇÃO' : (pickedProduct.match(/[0-9]+Ah/) || ['EXEMPLO'])[0].toUpperCase();
       if (battery) {
         battery.className = 'battery-3d';
-        // Força uma nova transição para o movimento de encaixe.
         void battery.offsetHeight;
         battery.classList.add('show');
         if (pickedBattery === 'compacta') battery.classList.add('is-small');
@@ -152,8 +165,8 @@
   });
   $('#garageContact')?.addEventListener('click', () => {
     const vehicle = description() === 'ESCOLHA SEU VEÍCULO' ? 'não informado' : description();
-    const size = pickedBattery ? sizeLabel[pickedBattery] : 'não selecionado';
-    whatsapp('Olá, Power Baterias! Usei a garagem virtual do site e gostaria de CONFIRMAR a bateria adequada para meu veículo.\n\nVeículo: ' + vehicle + '\nTamanho visual experimentado: ' + size + '\n\nPodem me orientar sobre compatibilidade, disponibilidade e orçamento?');
+    const product = pickedProduct || 'não selecionada';
+    whatsapp('Olá, Power Baterias! Usei a garagem virtual ILUSTRATIVA do site e gostaria de confirmar a bateria adequada ao meu veículo.\\n\\nVeículo: ' + vehicle + '\\nBateria experimentada: ' + product + '\\n\\nPodem verificar a compatibilidade real, disponibilidade e orçamento?');
   });
 
   // Catálogo: nenhuma compra ou preço no site.
