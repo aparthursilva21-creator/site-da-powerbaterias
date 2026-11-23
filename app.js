@@ -40,10 +40,12 @@
   const replay = $('#replay');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const phases = [
-    { stage: 'off', label: 'TENTANDO DAR PARTIDA...', count: '01 / 04', duration: 2800 },
-    { stage: 'deliver', label: 'A SOLUÇÃO ESTÁ CHEGANDO', count: '02 / 04', duration: 3100 },
-    { stage: 'install', label: 'ENERGIA RESTABELECIDA', count: '03 / 04', duration: 2650 },
-    { stage: 'drive', label: 'PRONTO PARA SEGUIR!', count: '04 / 04', duration: 7000 }
+    { stage: 'off', label: 'FALHA NA PARTIDA...', count: '01 / 06', duration: 2400 },
+    { stage: 'call', label: 'CHAMANDO A POWER...', count: '02 / 06', duration: 2400 },
+    { stage: 'arrive', label: 'MOTOQUEIRO A CAMINHO', count: '03 / 06', duration: 3000 },
+    { stage: 'install', label: 'INSTALANDO A BATERIA', count: '04 / 06', duration: 3700 },
+    { stage: 'depart', label: 'ATENDIMENTO CONCLUÍDO', count: '05 / 06', duration: 2500 },
+    { stage: 'drive', label: 'ENERGIA PARA SEGUIR!', count: '06 / 06', duration: 0 }
   ];
   let phaseTimer = null;
   let phaseIndex = 0;
@@ -53,15 +55,19 @@
     scene.dataset.stage = phase.stage;
     sceneMessage.textContent = phase.label;
     sceneCount.textContent = phase.count;
+    $$('.scene-timeline [data-phase]').forEach(item => {
+      item.classList.toggle('current', item.dataset.phase === phase.stage);
+    });
   };
   const nextPhase = () => {
-    phaseIndex = (phaseIndex + 1) % phases.length;
+    if (phaseIndex >= phases.length - 1) return;
+    phaseIndex++;
     applyPhase(phaseIndex);
-    phaseTimer = window.setTimeout(nextPhase, phases[phaseIndex].duration);
+    if (phaseIndex < phases.length - 1) phaseTimer = window.setTimeout(nextPhase, phases[phaseIndex].duration);
   };
   const startScene = () => {
     window.clearTimeout(phaseTimer);
-    phaseIndex = reducedMotion ? 3 : 0;
+    phaseIndex = reducedMotion ? phases.length - 1 : 0;
     applyPhase(phaseIndex);
     if (!reducedMotion) phaseTimer = window.setTimeout(nextPhase, phases[phaseIndex].duration);
   };
@@ -163,6 +169,6 @@
     const vehicle = $('#sosVehicle')?.value.trim() || 'Não informado';
     const issue = $('#sosIssue')?.value || 'Meu carro não liga';
     const where = $('#sosWhere')?.value.trim() || 'Não informado';
-    whatsapp('Olá, Power Baterias! Preciso de atendimento.\n\nVeículo: ' + vehicle + '\nSituação: ' + issue + '\nRegião: ' + where + '\n\nPoderiam me informar como podem ajudar e se há disponibilidade de atendimento?');
+    whatsapp('Olá, Power Baterias! Quero consultar o SOCORRO com visita técnica e teste de bateria divulgado por R$ 100.\n\nVeículo: ' + vehicle + '\nSituação: ' + issue + '\nRegião: ' + where + '\n\nPodem confirmar disponibilidade, área atendida e condições do serviço antes de eu solicitar?');
   });
 })();
