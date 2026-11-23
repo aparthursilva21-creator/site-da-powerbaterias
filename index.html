@@ -41,34 +41,40 @@
   <main id="conteudo">
     <section id="inicio" class="pb-hero" aria-labelledby="heroTitle" data-drive-phase="0">
       <div class="pb-glow" aria-hidden="true"></div>
-      <div class="pb-car-area" id="pbCarArea" aria-label="Carro preto de luxo em uma cena automotiva noturna. A cena simula uma sensação de movimento.">
+      <div class="pb-car-area" id="pbCarArea" aria-label="Sedã preto em cenário noturno com reflexos verdes e atmosfera cinematográfica discreta.">
         <div class="pb-car-scene">
           <div class="pb-car-layer" id="pbCarLayer">
             <img class="pb-car-image" src="assets/hero-car.webp" alt="Sedã preto em perspectiva frontal de três quartos com reflexos verdes e faróis acesos" width="850" height="659" fetchpriority="high" decoding="async">
-            <img class="pb-wheel pb-wheel-front" src="assets/wheel-front.webp" alt="" aria-hidden="true" width="67" height="170" decoding="async">
-            <img class="pb-wheel pb-wheel-rear" src="assets/wheel-rear.webp" alt="" aria-hidden="true" width="40" height="130" decoding="async">
           </div>
           <div class="pb-mist pb-mist-1" aria-hidden="true"></div>
           <div class="pb-mist pb-mist-2" aria-hidden="true"></div>
-          <div class="pb-road-motion" aria-hidden="true"></div>
+          <div class="pb-ambient-light" aria-hidden="true"></div>
           <div class="pb-lightflare" aria-hidden="true"></div>
         </div>
       </div>
       <div class="pb-hero-inner">
         <div class="pb-hero-copy">
-          <div class="pb-overline"><span aria-hidden="true"></span> POWER BATERIAS <i>•</i> SAMAMBAIA NORTE / DF</div>
-          <h1 id="heroTitle">Energia para<br><em>seguir em frente.</em></h1>
-          <p>Atendimento especializado, baterias de alta confiabilidade e toda a agilidade que você precisa para voltar à estrada, com segurança e tranquilidade.</p>
-          <div class="pb-actions">
-            <a class="pb-pill pb-pill-primary" href="#garagem"><span class="pb-bolt" aria-hidden="true">ϟ</span> Encontrar minha bateria <span class="pb-arrow" aria-hidden="true">→</span></a>
-            <a class="pb-pill pb-pill-outline" href="#sos"><svg viewBox="0 0 32 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 17V9h6l4-6h9l4 6h3v8H3Z"/><path d="M9 9h16M1 13h5M29 13h2"/><circle cx="10" cy="18" r="3"/><circle cx="24" cy="18" r="3"/></svg> Pedir socorro</a>
+          <div class="pb-overline pb-hero-enter pb-enter-1"><span aria-hidden="true"></span> POWER BATERIAS <i>•</i> SAMAMBAIA NORTE / DF</div>
+          <h1 id="heroTitle" class="pb-hero-enter pb-enter-2">Energia para<br><em>seguir em frente.</em></h1>
+          <p class="pb-hero-enter pb-enter-3">Atendimento especializado, baterias de alta confiabilidade e toda a agilidade que você precisa para voltar à estrada, com segurança e tranquilidade.</p>
+          <div class="pb-actions pb-hero-enter pb-enter-4">
+            <a class="pb-pill pb-pill-primary pb-button-v5" href="#garagem">
+              <span class="pb-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.6 1.5 4.4 13h7l-1 9.5L20 10.6h-7l.6-9.1Z"/></svg></span>
+              <span class="pb-pill-copy">Encontrar minha bateria</span>
+              <span class="pb-pill-end" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
+            </a>
+            <a class="pb-pill pb-pill-outline pb-button-v5" href="#sos">
+              <span class="pb-pill-icon" aria-hidden="true"><svg viewBox="0 0 32 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M3 17V9h6l4-6h9l4 6h3v8H3Z"/><path d="M9 9h16M1 13h5M29 13h2"/><circle cx="10" cy="18" r="3"/><circle cx="24" cy="18" r="3"/></svg></span>
+              <span class="pb-pill-copy">Pedir socorro</span>
+              <span class="pb-pill-end" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 17 10-10M8 7h9v9"/></svg></span>
+            </a>
           </div>
-          <div class="pb-proof">
+          <div class="pb-proof pb-hero-enter pb-enter-5">
             <div class="pb-proof-review"><span class="pb-google" aria-hidden="true">G</span><div><small>Avaliação no Google</small><span><strong>4,8/5</strong> <b aria-label="Cinco estrelas decorativas">★★★★★</b></span></div></div>
             <div class="pb-divider" aria-hidden="true"></div>
             <div class="pb-proof-location"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a8 8 0 0 0-8 8c0 5 8 12 8 12s8-7 8-12a8 8 0 0 0-8-8Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></svg><span>Samambaia Norte / DF</span></div>
           </div>
-          <div class="pb-progress" aria-label="Estado da animação do carro"><span id="pbProgressNumber">01 / 03</span><div class="pb-progress-bars"><i class="on"></i><i></i><i></i></div><button id="pbReplay" type="button" aria-label="Reiniciar animação do carro" title="Reiniciar animação">↻</button></div>
+          <div class="pb-progress pb-hero-enter pb-enter-6" aria-label="Etapas da iluminação da cena"><span id="pbProgressNumber">01 / 03</span><div class="pb-progress-bars"><i class="on"></i><i></i><i></i></div><button id="pbReplay" type="button" aria-label="Rever efeito de iluminação" title="Rever efeito de iluminação">↻</button></div>
         </div>
       </div>
       <span class="pb-visual-caption">CONCEITO CINEMATOGRÁFICO · CENA ILUSTRATIVA</span>
@@ -183,6 +189,12 @@
     <section id="contato" class="finale"><div class="finale-grid"></div><div class="finale-light"></div><div class="finale-content"><div class="kicker"><i></i> O PRÓXIMO DESTINO É SEU</div><h2>A ENERGIA<br>QUE MOVE <em>VOCÊ.</em></h2><p>Escolha seu caminho. A Power Baterias ajuda você a seguir.</p><a class="btn btn-green" href="https://wa.me/5561995191090?text=Ol%C3%A1%2C%20Power%20Baterias!%20Gostaria%20de%20solicitar%20um%20atendimento." target="_blank" rel="noopener noreferrer">FALAR COM A POWER <span>↗</span></a><div class="finale-bolt">ϟ</div></div></section>
   </main>
   <footer class="footer"><div class="footer-top"><a class="footer-logo" href="#inicio">ϟ POWER<span>BATERIAS</span></a><div class="footer-social"><a href="https://www.instagram.com/poweer_baterias/" target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a><a href="https://wa.me/5561995191090" target="_blank" rel="noopener noreferrer">WHATSAPP ↗</a></div></div><div class="footer-bottom"><span>© <span id="year"></span> POWER BATERIAS. TODOS OS DIREITOS RESERVADOS.</span><span>SITE EM DESENVOLVIMENTO • CENA E SIMULADOR ILUSTRATIVOS</span><a href="#inicio">VOLTAR AO TOPO ↑</a></div></footer>
-  <a class="floating-wa" href="https://wa.me/5561995191090?text=Ol%C3%A1%2C%20Power%20Baterias!" target="_blank" rel="noopener noreferrer" aria-label="Conversar pelo WhatsApp"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3.2A12.7 12.7 0 0 0 5.1 22.5L3.5 29l6.6-1.5A12.8 12.8 0 1 0 16 3.2Zm0 23.2a10.4 10.4 0 0 1-5.3-1.4l-.4-.2-3.9.9.9-3.8-.3-.5a10.4 10.4 0 1 1 9 5Zm5.7-7.9c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.7 0-.4-.2-1.6-.6-3-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8l.5-.6.3-.5c.1-.2.1-.4 0-.6l-1-2.4c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.6.1-.9.5-.3.3-1.2 1.1-1.2 2.7s1.2 3.1 1.4 3.3c.2.2 2.4 3.6 5.8 5 3.4 1.3 3.4.9 4 .8.6-.1 1.8-.8 2-1.6.2-.8.2-1.4.1-1.6-.1-.2-.3-.3-.6-.5Z"/></svg><span>WHATSAPP</span></a>
+  <a class="floating-wa pb-wa-premium" href="https://wa.me/5561995191090?text=Ol%C3%A1%2C%20Power%20Baterias!%20Gostaria%20de%20falar%20com%20um%20especialista." target="_blank" rel="noopener noreferrer" aria-label="Falar com especialista da Power Baterias no WhatsApp">
+    <span class="pb-wa-icon" aria-hidden="true">
+      <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3.2A12.7 12.7 0 0 0 5.1 22.5L3.5 29l6.6-1.5A12.8 12.8 0 1 0 16 3.2Zm0 23.2a10.4 10.4 0 0 1-5.3-1.4l-.4-.2-3.9.9.9-3.8-.3-.5a10.4 10.4 0 1 1 9 5Zm5.7-7.9c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.7 0-.4-.2-1.6-.6-3-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8l.5-.6.3-.5c.1-.2.1-.4 0-.6l-1-2.4c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.6.1-.9.5-.3.3-1.2 1.1-1.2 2.7s1.2 3.1 1.4 3.3c.2.2 2.4 3.6 5.8 5 3.4 1.3 3.4.9 4 .8.6-.1 1.8-.8 2-1.6.2-.8.2-1.4.1-1.6-.1-.2-.3-.3-.6-.5Z"/></svg>
+    </span>
+    <span class="pb-wa-text"><strong>Fale com a Power</strong><small>Atendimento via WhatsApp</small></span>
+    <span class="pb-wa-arrow" aria-hidden="true">↗</span>
+  </a>
 </body>
 </html>
