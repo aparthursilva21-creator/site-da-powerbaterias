@@ -15,16 +15,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700;800&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800;1,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="assets/power-hero.css">
-  <link rel="stylesheet" href="assets/power-garage.css">
-  <script src="app.js" defer></script>
+  <link rel="stylesheet" href="assets/site-v07.css">
   <script src="assets/power-hero.js" defer></script>
-  <script src="assets/power-garage.js" defer></script>
+  <script src="assets/site-v07.js" defer></script>
   <script>document.documentElement.classList.add('pb-js');</script>
   <noscript><style>.pb-opening{display:none!important}</style></noscript>
 </head>
-<body>
+<body class="v7">
   <div class="pb-opening" id="pbOpening" role="region" aria-label="Abertura visual da Power Baterias">
     <div class="pb-opening-atmosphere" aria-hidden="true"></div>
     <div class="pb-opening-beam" aria-hidden="true"></div>
@@ -41,15 +39,16 @@
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
   <header class="pb-header">
     <div class="pb-header-inner">
-      <a class="pb-brand" href="#inicio" aria-label="Power Baterias — início"><img src="assets/power-logo-traced.svg" alt="Heliar Power Baterias" width="290" height="86"></a>
+      <a class="pb-brand" href="index.html" aria-label="Power Baterias — início"><img src="assets/power-logo-traced.svg" alt="Heliar Power Baterias" width="290" height="86"></a>
       <div class="pb-separator" aria-hidden="true"></div>
       <nav class="pb-nav" aria-label="Navegação principal" id="pbNav">
-        <a href="#inicio" class="active" aria-current="page">Início</a>
-        <a href="#sobre">Sobre nós</a>
-        <a href="#garagem">Power Garage</a>
-        <a href="#modelos">Baterias</a>
-        <a href="#servicos">Serviços</a>
-        <a href="#localizacao">A loja</a>
+        <a href="index.html" class="active" aria-current="page">Início</a>
+        <a href="power-garage.html">Power Garage</a>
+        <a href="baterias.html">Baterias</a>
+        <a href="servicos.html">Serviços</a>
+        <a href="socorro.html">Socorro</a>
+        <a href="sobre.html">Sobre nós</a>
+        <a href="loja.html">A loja</a>
       </nav>
       <div class="pb-separator pb-separator-end" aria-hidden="true"></div>
       <a class="pb-header-wa" href="https://wa.me/5561995191090?text=Ol%C3%A1%2C%20Power%20Baterias!%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 11.5a8.6 8.6 0 0 1-12.7 7.5L3 20l1.3-5a8.6 8.6 0 1 1 16.7-3.5Z"/><path d="M8.7 8.4c.5-.6 1-.5 1.2 0l.7 1.4c.2.3.1.6-.2.9l-.4.4c.6 1.2 1.5 2.1 2.7 2.6l.6-.6c.3-.3.6-.3.9-.1l1.4.8c.5.3.5.8 0 1.2-1.7 1.7-6.5-1.2-7.1-4.5-.1-.7 0-1.4.2-2.1Z"/></svg> WhatsApp</a>
@@ -79,12 +78,12 @@
           <h1 id="heroTitle" class="pb-hero-enter pb-enter-2">Energia para<br><em>seguir em frente.</em></h1>
           <p class="pb-hero-enter pb-enter-3">Atendimento especializado, baterias de alta confiabilidade e toda a agilidade que você precisa para voltar à estrada, com segurança e tranquilidade.</p>
           <div class="pb-actions pb-hero-enter pb-enter-4">
-            <a class="pb-pill pb-pill-primary pb-button-v5" href="#garagem">
+            <a class="pb-pill pb-pill-primary pb-button-v5" href="power-garage.html">
               <span class="pb-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.6 1.5 4.4 13h7l-1 9.5L20 10.6h-7l.6-9.1Z"/></svg></span>
               <span class="pb-pill-copy">Encontrar minha bateria</span>
               <span class="pb-pill-end" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
             </a>
-            <a class="pb-pill pb-pill-outline pb-button-v5" href="#sos">
+            <a class="pb-pill pb-pill-outline pb-button-v5" href="socorro.html">
               <span class="pb-pill-icon" aria-hidden="true"><svg viewBox="0 0 32 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M3 17V9h6l4-6h9l4 6h3v8H3Z"/><path d="M9 9h16M1 13h5M29 13h2"/><circle cx="10" cy="18" r="3"/><circle cx="24" cy="18" r="3"/></svg></span>
               <span class="pb-pill-copy">Pedir socorro</span>
               <span class="pb-pill-end" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 17 10-10M8 7h9v9"/></svg></span>
@@ -100,222 +99,73 @@
       </div>
       <span class="pb-visual-caption">CONCEITO CINEMATOGRÁFICO · CENA ILUSTRATIVA</span>
     </section>
-
-    <div class="marquee" aria-hidden="true"><div class="marquee-inner">POWER BATERIAS <span>✳</span> A ENERGIA QUE MOVE VOCÊ <span>✳</span> POWER BATERIAS <span>✳</span> A ENERGIA QUE MOVE VOCÊ <span>✳</span></div></div>
-
-    <section id="experiencia" class="section intro">
-      <div class="section-serial">/ 01 — A EXPERIÊNCIA</div>
-      <div class="intro-grid"><div><div class="kicker"><i></i> SUA PRÓXIMA PARTIDA COMEÇA AQUI</div><h2>ENERGIA NÃO<br>É SÓ O QUE<br><em>MOVE O CARRO.</em></h2></div><div class="intro-side"><p>É chegar ao trabalho. Buscar quem você ama. Seguir seu caminho. Na Power Baterias, você encontra atendimento especializado para escolher sua próxima bateria com confiança.</p><a class="link-arrow" href="#garagem">VAMOS ENCONTRAR A SUA <span>↗</span></a><div class="intro-pills"><span>ESCOLHA ASSISTIDA</span><span>ATENDIMENTO HUMANO</span><span>SEM PREÇOS NO SITE</span></div></div></div>
+    <section class="v7-intro" id="experiencia">
+      <div class="v7-frame v7-split"><div><span class="v7-kicker">POWER BATERIAS / BRASÍLIA</span><h2 class="v7-title">Para você seguir<br>com <em>tranquilidade.</em></h2></div><div class="v7-aside"><p>Uma loja em Samambaia Norte com atendimento especializado em baterias automotivas e serviços relacionados. Seu carro precisa de atenção? Nossa equipe ajuda a encontrar o próximo passo.</p><a class="v7-link" href="sobre.html">Conhecer a Power <span aria-hidden="true">↗</span></a></div></div>
     </section>
 
-    <section id="garagem" class="power-garage pg-section" aria-labelledby="pgTitle">
-      <div class="pg-shell">
-        <div class="pg-heading">
-          <div>
-            <div class="pg-eyebrow"><span class="pg-led"></span> EXPERIÊNCIA INTERATIVA / POWER GARAGE <span class="pg-eyebrow-num">002</span></div>
-            <h2 id="pgTitle">SEU CARRO.<br><em>SUA PRÓXIMA ENERGIA.</em></h2>
+    <section class="v7-section v7-section-sm" id="garagem">
+      <div class="v7-frame">
+        <div class="v7-teaser">
+          <div class="v7-teaser-content">
+            <span class="v7-kicker">POWER GARAGE / EXPERIÊNCIA DIGITAL</span>
+            <h2 class="v7-title">Seu carro.<br><em>Sua próxima energia.</em></h2>
+            <p class="v7-lead">Uma nova maneira de explorar baterias está tomando forma. Entre na Garage, escolha seu veículo e consulte a aplicação com especialistas.</p>
+            <a class="v7-button" href="power-garage.html">Entrar na Power Garage <span aria-hidden="true">↗</span></a>
           </div>
-          <p>Uma nova forma de explorar baterias. Escolha seu veículo, descubra o espaço do cofre e experimente modelos antes de falar com nossos especialistas.</p>
-        </div>
-
-        <!-- BLOCO 01: SHOWROOM -->
-        <div class="pg-showroom" id="pgShowroom">
-          <div class="pg-showroom-aura" aria-hidden="true"></div>
-          <div class="pg-showroom-copy">
-            <span class="pg-step-label"><b>01</b> / SHOWROOM DIGITAL</span>
-            <h3>UMA EXPERIÊNCIA<br>QUE COMEÇA<br><em>NO MOVIMENTO.</em></h3>
-            <p>O carro preto é a porta de entrada. Escolha seu veículo para iniciar uma exploração personalizada.</p>
-            <button type="button" class="pg-button pg-button-primary" id="pgStart">ESCOLHER MEU CARRO <span aria-hidden="true">↗</span></button>
-            <span class="pg-showroom-note">CENA DE APRESENTAÇÃO • VEÍCULO ILUSTRATIVO</span>
-          </div>
-          <div class="pg-showroom-stage" aria-label="Sedã preto em cenário automotivo, acima de uma plataforma iluminada">
-            <div class="pg-stage-halo"></div>
-            <div class="pg-turntable"><div class="pg-ring pg-ring-outer"></div><div class="pg-ring pg-ring-inner"></div><div class="pg-ring-center"></div></div>
-            <img src="assets/hero-car.webp" alt="Sedã preto de apresentação, com luzes verdes de estúdio" width="850" height="659" loading="lazy" decoding="async">
-            <span class="pg-stage-chip"><span></span> POWER / SHOWROOM</span>
-            <span class="pg-stage-footnote">MODELO 3D GIRATÓRIO EM PRODUÇÃO</span>
-          </div>
-        </div>
-
-        <!-- BLOCO 02: SELETOR -->
-        <div class="pg-lab" id="pgLab">
-          <div class="pg-lab-heading">
-            <span class="pg-step-label"><b>02</b> / SELEÇÃO DO VEÍCULO</span>
-            <div class="pg-lab-title-row"><h3>QUAL É O SEU CARRO?</h3><span class="pg-process-status"><i></i> ETAPA INTERATIVA</span></div>
-            <p>Vamos começar com modelos populares. É possível explorar a apresentação visual, mas a bateria correta precisa ser confirmada tecnicamente.</p>
-          </div>
-          <form class="pg-form" id="pgVehicleForm" autocomplete="off">
-            <div class="pg-field">
-              <label for="pgBrand">01 / MARCA</label>
-              <select id="pgBrand" required><option value="">Selecione a marca</option><option value="Chevrolet">Chevrolet / GM</option><option value="Fiat">Fiat</option><option value="Volkswagen">Volkswagen</option><option value="Ford">Ford</option><option value="Honda">Honda</option><option value="Toyota">Toyota</option></select>
-            </div>
-            <div class="pg-field">
-              <label for="pgModel">02 / MODELO</label>
-              <select id="pgModel" required disabled><option value="">Escolha uma marca</option></select>
-            </div>
-            <div class="pg-field">
-              <label for="pgYear">03 / ANO</label>
-              <select id="pgYear" required><option value="">Selecione o ano</option></select>
-            </div>
-            <div class="pg-field">
-              <label for="pgEngine">04 / MOTORIZAÇÃO</label>
-              <select id="pgEngine" required><option value="">Selecione uma opção</option><option value="1.0">1.0</option><option value="1.3">1.3</option><option value="1.4">1.4</option><option value="1.5">1.5</option><option value="1.6">1.6</option><option value="1.8">1.8</option><option value="2.0">2.0</option><option value="Outra / não sei">Outra / não sei</option></select>
-            </div>
-            <button type="submit" class="pg-button pg-button-primary pg-form-submit">EXPLORAR MEU VEÍCULO <span aria-hidden="true">↗</span></button>
-          </form>
-          <div class="pg-selection-summary" id="pgSummary" role="status" aria-live="polite"><span class="pg-summary-pulse"></span> SELECIONE UM VEÍCULO PARA EXPLORAR A PRÓXIMA ETAPA</div>
-        </div>
-
-        <!-- BLOCO 03: COFRE, VISUAL ILUSTRATIVO, NÃO REFERÊNCIA MECÂNICA -->
-        <div class="pg-stage-section" id="pgEngineSection">
-          <div class="pg-block-title">
-            <div><span class="pg-step-label"><b>03</b> / VISUALIZAÇÃO DO COFRE</span><h3>POR DENTRO<br><em>DA ENERGIA.</em></h3></div>
-            <span class="pg-mini-flag">PROTÓTIPO VISUAL / SEM FOTO TÉCNICA</span>
-          </div>
-          <div class="pg-engine-layout">
-            <div class="pg-engine-screen" id="pgEngineScreen" data-state="waiting">
-              <div class="pg-engine-scan" aria-hidden="true"></div>
-              <div class="pg-engine-noise" aria-hidden="true"></div>
-              <span class="pg-engine-corner pg-engine-corner-tl"></span><span class="pg-engine-corner pg-engine-corner-tr"></span>
-              <span class="pg-engine-corner pg-engine-corner-bl"></span><span class="pg-engine-corner pg-engine-corner-br"></span>
-              <div class="pg-engine-wait" id="pgEngineWait"><span class="pg-wait-symbol">ϟ</span><strong>AGUARDANDO SELEÇÃO</strong><small>O cofre do motor aparece nesta área depois que você escolhe o veículo.</small></div>
-              <div class="pg-engine-visual" id="pgEngineVisual" aria-label="Esquema abstrato de um compartimento de bateria, usado apenas para demonstrar animações">
-                <div class="pg-engine-hood"><span>POWER / TECH VIEW</span></div>
-                <div class="pg-engine-outline">
-                  <div class="pg-engine-module pg-engine-module-a"></div><div class="pg-engine-module pg-engine-module-b"></div><div class="pg-engine-module pg-engine-module-c"></div>
-                  <div class="pg-engine-pipes"></div>
-                  <div class="pg-battery-target" aria-hidden="true"><span>ÁREA ILUSTRATIVA<br>DA BATERIA</span></div>
-                  <div class="pg-inserted-battery" id="pgInsertedBattery"><div class="pg-inserted-top"><span>+</span><span>−</span></div><strong id="pgInsertedBrand">POWER</strong><small>VISUAL CONCEITUAL</small></div>
-                </div>
-                <div class="pg-engine-scope"><i></i> FOCO NO COMPARTIMENTO</div>
-              </div>
-              <div class="pg-engine-screen-bar"><span>POWER GARAGE / ENGINE VIEW</span><span id="pgCarCaption">ESCOLHA UM CARRO</span></div>
-            </div>
-            <div class="pg-engine-info">
-              <span class="pg-small-eyebrow">LEITURA VISUAL</span>
-              <h4 id="pgVisualTitle">SEU COFRE, MAIS DE PERTO.</h4>
-              <p id="pgVisualDesc">A experiência final mostrará imagens ou modelos reais do compartimento correspondente ao carro selecionado.</p>
-              <div class="pg-spec-list"><div><span>VEÍCULO</span><strong id="pgSpecVehicle">NÃO SELECIONADO</strong></div><div><span>FONTE TÉCNICA</span><strong>AGUARDANDO VALIDAÇÃO</strong></div><div><span>COMPATIBILIDADE</span><strong>AINDA NÃO VERIFICADA</strong></div></div>
-              <div class="pg-engine-disclaimer"><span>!</span> A imagem do compartimento nesta fase é conceitual e não representa o motor de um Celta, Onix ou qualquer outro modelo específico.</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- BLOCO 04: BATERIAS -->
-        <div class="pg-products" id="pgProducts">
-          <div class="pg-block-title"><div><span class="pg-step-label"><b>04</b> / EXPERIMENTE UMA BATERIA</span><h3>ESCOLHA UMA.<br><em>VEJA O ENCAIXE.</em></h3></div><p>As embalagens abaixo são mockups visuais provisórios. Fotografias reais das versões Heliar e Moura serão adicionadas após validação do catálogo.</p></div>
-          <div class="pg-battery-grid" role="group" aria-label="Modelos usados na demonstração visual">
-            <button class="pg-product-card" type="button" data-pg-product="heliar" aria-pressed="false">
-              <span class="pg-product-top"><span>HELIAR</span><span>01 / 03</span></span>
-              <span class="pg-product-art"><span class="pg-product-battery pg-battery-heliar"><i></i><strong>HELIAR</strong><small>60Ah</small></span></span>
-              <span class="pg-product-bottom"><strong>Heliar 60Ah</strong><small>Representação ilustrativa</small><span>EXPERIMENTAR <b>↗</b></span></span>
-            </button>
-            <button class="pg-product-card" type="button" data-pg-product="moura" aria-pressed="false">
-              <span class="pg-product-top"><span>MOURA</span><span>02 / 03</span></span>
-              <span class="pg-product-art"><span class="pg-product-battery pg-battery-moura"><i></i><strong>MOURA</strong><small>60Ah</small></span></span>
-              <span class="pg-product-bottom"><strong>Moura 60Ah</strong><small>Representação ilustrativa</small><span>EXPERIMENTAR <b>↗</b></span></span>
-            </button>
-            <button class="pg-product-card" type="button" data-pg-product="heavy" aria-pressed="false">
-              <span class="pg-product-top"><span>EXEMPLO DE TAMANHO</span><span>03 / 03</span></span>
-              <span class="pg-product-art"><span class="pg-product-battery pg-battery-heavy"><i></i><strong>LINHA PESADA</strong><small>DIMENSÃO EXAGERADA</small></span></span>
-              <span class="pg-product-bottom"><strong>Bateria superdimensionada</strong><small>Apenas para demonstrar a animação</small><span>TESTAR LIMITE <b>↗</b></span></span>
-            </button>
-          </div>
-        </div>
-
-        <!-- BLOCO 05: RESULTADO E PRÓXIMO PASSO -->
-        <div class="pg-result" id="pgResult" data-result="idle" aria-live="polite">
-          <div class="pg-result-symbol" id="pgResultIcon">◎</div>
-          <div class="pg-result-copy"><span class="pg-step-label"><b>05</b> / RESULTADO DA SIMULAÇÃO</span><h3 id="pgResultTitle">PRONTO PARA TESTAR?</h3><p id="pgResultDescription">Selecione seu veículo e experimente uma das baterias acima. O resultado ainda não é uma verificação técnica real.</p></div>
-          <div class="pg-result-actions">
-            <button class="pg-button pg-button-dark" type="button" id="pgInspect" disabled>VISUALIZAR BATERIA <span aria-hidden="true">↗</span></button>
-            <button class="pg-button pg-button-primary" type="button" id="pgWhatsApp">CONFIRMAR NO WHATSAPP <span aria-hidden="true">↗</span></button>
-          </div>
-        </div>
-        <p class="pg-honesty"><strong>IMPORTANTE:</strong> nesta primeira versão, a área de instalação, as embalagens e o resultado de encaixe são ilustrativos. Encaixe visual não significa compatibilidade mecânica ou elétrica. Só exibiremos o selo “compatibilidade confirmada” após conferência de dados técnicos reais por veículo, ano, versão e bateria.</p>
-      </div>
-
-      <!-- BLOCO 06: INSPEÇÃO EM MODAL -->
-      <dialog class="pg-inspector" id="pgInspector" aria-labelledby="pgInspectorTitle">
-        <button class="pg-inspector-close" id="pgInspectorClose" type="button" aria-label="Fechar visualização">×</button>
-        <div class="pg-inspector-visual">
-          <span>POWER GARAGE / INSPECT MODE</span>
-          <div class="pg-inspector-orbit" id="pgInspectorOrbit">
-            <div class="pg-rotatable-battery" id="pgRotatableBattery">
-              <div class="pg-face pg-face-front"><strong id="pgInspectorBrandFront">HELIAR</strong><small id="pgInspectorAhFront">60Ah</small></div>
-              <div class="pg-face pg-face-back"></div><div class="pg-face pg-face-left"></div><div class="pg-face pg-face-right"></div><div class="pg-face pg-face-top"><span>＋</span><span>−</span></div><div class="pg-face pg-face-bottom"></div>
-            </div>
-          </div>
-          <div class="pg-inspector-rotate"><button type="button" id="pgRotateLeft" aria-label="Girar para a esquerda">↶</button><span>GIRO 3D CONCEITUAL</span><button type="button" id="pgRotateRight" aria-label="Girar para a direita">↷</button></div>
-        </div>
-        <div class="pg-inspector-text">
-          <span class="pg-step-label"><b>06</b> / VISUALIZAÇÃO DETALHADA</span>
-          <h3 id="pgInspectorTitle">HELIAR 60Ah</h3>
-          <p>Explore o formato de apresentação em 3D. A versão final terá o modelo do produto e informações fornecidas pelo fabricante.</p>
-          <div class="pg-spec-list"><div><span>CAPACIDADE NOMINAL</span><strong id="pgInspectorAh">60Ah (exemplo de linha)</strong></div><div><span>DIMENSÕES / POLARIDADE</span><strong>CONSULTAR FICHA OFICIAL</strong></div><div><span>TECNOLOGIA / CCA</span><strong>CONSULTAR FICHA OFICIAL</strong></div><div><span>VISUALIZAÇÃO INTERNA</span><strong>MODELO DIDÁTICO FUTURO</strong></div></div>
-          <button type="button" class="pg-button pg-button-primary" id="pgInspectorWhatsApp">CONSULTAR ESTE MODELO <span aria-hidden="true">↗</span></button>
-          <small>Sem preços. Atendimento e especificações pelo WhatsApp.</small>
-        </div>
-      </dialog>
-    </section>
-
-    <section id="modelos" class="section catalog">
-      <div class="section-serial">/ 03 — SELEÇÃO POWER</div>
-      <div class="section-heading"><div><div class="kicker"><i></i> AS MARCAS QUE VOCÊ CONHECE</div><h2>ENERGIA PARA<br><em>TODAS AS ROTAS.</em></h2></div><p>Algumas linhas de baterias presentes nos serviços divulgados pela loja. Para escolher a ideal e consultar a disponibilidade, fale diretamente com nossa equipe.</p></div>
-      <div class="catalog-grid">
-        <article class="catalog-card"><div class="catalog-card-top"><span>01 / HELIAR</span><span>↗</span></div><div class="battery-art heliar"><div class="battery-visual"><div class="bat-top"><i></i><i></i></div><div class="bat-face"><small>ENERGIA AUTOMOTIVA</small><strong>HELIAR</strong><span>60Ah</span></div></div></div><div class="catalog-card-foot"><h3>HELIAR 60Ah</h3><p>Consulte aplicação e disponibilidade.</p><button class="catalog-cta" data-product="bateria Heliar 60Ah">SOLICITAR PELO WHATSAPP <span>↗</span></button></div></article>
-        <article class="catalog-card"><div class="catalog-card-top"><span>02 / MOURA</span><span>↗</span></div><div class="battery-art moura"><div class="battery-visual"><div class="bat-top"><i></i><i></i></div><div class="bat-face"><small>ENERGIA AUTOMOTIVA</small><strong>MOURA</strong><span>60Ah</span></div></div></div><div class="catalog-card-foot"><h3>MOURA 60Ah</h3><p>Consulte aplicação e disponibilidade.</p><button class="catalog-cta" data-product="bateria Moura 60Ah">SOLICITAR PELO WHATSAPP <span>↗</span></button></div></article>
-        <article class="catalog-card"><div class="catalog-card-top"><span>03 / START-STOP</span><span>↗</span></div><div class="battery-art startstop"><div class="battery-visual"><div class="bat-top"><i></i><i></i></div><div class="bat-face"><small>TECNOLOGIA AUTOMOTIVA</small><strong>START-STOP</strong><span>50Ah</span></div></div></div><div class="catalog-card-foot"><h3>START-STOP 50Ah</h3><p>Consulte tecnologia e aplicação corretas.</p><button class="catalog-cta" data-product="bateria Start-Stop 50Ah">SOLICITAR PELO WHATSAPP <span>↗</span></button></div></article>
-      </div>
-      <p class="catalog-disclaimer">IMAGENS ILUSTRATIVAS • MODELOS E ESTOQUE SUJEITOS A CONFIRMAÇÃO • SEM PREÇOS NO SITE</p>
-    </section>
-
-    <section id="servicos" class="section services">
-      <div class="section-serial">/ 04 — O QUE FAZEMOS</div><div class="section-heading"><div><div class="kicker"><i></i> MAIS QUE UMA BATERIA</div><h2>O CUIDADO ESTÁ<br><em>EM CADA DETALHE.</em></h2></div><p>Serviços divulgados pela Power Baterias. Confirme a disponibilidade e as condições diretamente com o atendimento.</p></div>
-      <div class="service-grid"><div class="service-card"><span>01</span><div class="service-icon">⚡</div><h3>INSTALAÇÃO DE BATERIAS</h3><p>Troca e orientação para sua próxima partida.</p></div><div class="service-card"><span>02</span><div class="service-icon">◎</div><h3>TESTES DE BATERIA</h3><p>Verificações para entender melhor a situação do veículo.</p></div><div class="service-card"><span>03</span><div class="service-icon">✦</div><h3>LÂMPADAS E PALHETAS</h3><p>Outros cuidados que fazem diferença no dia a dia.</p></div><div class="service-card"><span>04</span><div class="service-icon">↻</div><h3>ÓLEO E FILTRO</h3><p>Consulte os serviços disponíveis para seu veículo.</p></div></div>
-    </section>
-
-    <section class="sos section" id="sos">
-      <div class="sos-glow"></div><div class="section-serial">/ 05 — POWER S.O.S. • DIAGNÓSTICO PROFISSIONAL</div>
-      <div class="sos-grid">
-        <div>
-          <div class="kicker"><i></i> QUANDO A PARTIDA NÃO ACONTECE</div>
-          <h2>PAROU?<br><em>CHAMA A POWER.</em></h2>
-          <p>Seu carro não ligou? Nossa equipe oferece visita técnica com avaliação profissional da bateria. Você recebe informações para decidir o próximo passo com mais segurança.</p>
-          <div class="sos-price"><span>VISITA TÉCNICA / DIAGNÓSTICO</span><strong>R$ 100<span>,00</span></strong><small>Valor do atendimento informado pela loja. Consulte a área de cobertura, disponibilidade e condições antes de solicitar.</small></div>
-          <div class="sos-alert"><span>⚡</span> A VISITA E O DESLOCAMENTO DEPENDEM DE CONFIRMAÇÃO COM A EQUIPE</div>
-        </div>
-        <form class="sos-form" id="sosForm"><span class="form-header">POWER / SOLICITAÇÃO RÁPIDA <i class="pulse-dot"></i></span>
-          <label for="sosVehicle">QUAL É SEU VEÍCULO?</label><input id="sosVehicle" placeholder="Ex.: Celta 2012, Honda Civic 2020" maxlength="90">
-          <label for="sosIssue">O QUE ACONTECEU?</label><select id="sosIssue"><option value="O carro não dá partida">O carro não dá partida</option><option value="A bateria parece descarregada">A bateria parece descarregada</option><option value="Quero consultar uma bateria nova">Quero consultar uma bateria nova</option><option value="Preciso de testes na bateria">Preciso de testes na bateria</option></select>
-          <label for="sosWhere">ONDE VOCÊ ESTÁ? (OPCIONAL)</label><input id="sosWhere" placeholder="Bairro ou região" maxlength="110">
-          <button type="submit" class="btn btn-green">SOLICITAR SOCORRO NO WHATSAPP <span>↗</span></button><small>O formulário apenas prepara sua mensagem no WhatsApp. A solicitação depende de confirmação da loja.</small>
-        </form>
-      </div>
-      <div class="diagnostic-flow"><article><b>01</b><h3>FALE COM A EQUIPE</h3><p>Informe seu veículo, situação e localização.</p></article><article><b>02</b><h3>VISITA COM EQUIPAMENTO</h3><p>Profissional realiza medições de carga, capacidade de partida e indicadores de saúde da bateria.</p></article><article><b>03</b><h3>RESULTADO E ORIENTAÇÃO</h3><p>Você recebe a avaliação do teste e orientações para decidir o que fazer. A vida útil restante não pode ser prevista com exatidão.</p></article></div>
-      <div class="sos-terms"><strong>COMO FUNCIONA O SOCORRO?</strong><p>Valor informado para a visita técnica: <b>R$ 100</b>. Atendimento no local, cobertura, horários, agendamento e eventuais condições específicas devem ser confirmados com a equipe pelo WhatsApp. A realização do teste não garante que a bateria será recuperada nem determina uma data exata de substituição. Baterias vendidas pela loja são orçadas separadamente pelo WhatsApp; nenhum preço de produto é exibido neste site.</p></div>
-    </section>
-    <section class="section story" id="sobre">
-      <div class="section-serial">/ 06 — A POWER POR TRÁS DA ENERGIA</div>
-      <div class="section-heading"><div><div class="kicker"><i></i> GENTE DE VERDADE, CUIDANDO DA SUA PARTIDA</div><h2>NOSSA HISTÓRIA.<br><em>NOSSA ENERGIA.</em></h2></div><p>A Power Baterias atende em Samambaia Norte, Brasília. Queremos mostrar o trabalho e os bastidores da loja com imagens reais, sem cenas inventadas.</p></div>
-      <div class="story-grid">
-        <div class="story-film">
-          <div class="story-film-image"><div class="film-target">▶</div><div class="film-grid"></div><div class="film-title">CONHEÇA<br>QUEM FAZ<br>A POWER.</div></div>
-          <div class="story-meta"><span>EM PRODUÇÃO</span><strong>VÍDEO COM O PROPRIETÁRIO</strong><small>Espaço reservado para o vídeo real do dono contando a história da loja.</small></div>
-        </div>
-        <div class="story-film story-film-store">
-          <div class="story-film-image"><div class="building-silhouette"><div class="building-roof"></div><div class="building-brand">ϟ POWER BATERIAS</div><div class="building-gate"><i></i><i></i><i></i></div></div><div class="film-target drone">⌖</div><div class="film-title">NOSSA LOJA<br>VISTA DE<br>OUTRO ÂNGULO.</div></div>
-          <div class="story-meta"><span>EM PRODUÇÃO</span><strong>IMAGENS DE DRONE E TOUR DA LOJA</strong><small>Reservado para imagens reais da fachada, interior, equipe e atendimento.</small></div>
+          <div class="v7-teaser-visual"><img src="assets/hero-car.webp" loading="lazy" decoding="async" width="850" height="659" alt="Sedã preto na identidade visual da Power Baterias"></div>
+          <span class="v7-teaser-badge">EXPERIÊNCIA 3D REALISTA EM DESENVOLVIMENTO</span>
         </div>
       </div>
-      <div class="story-footer"><span>FOTOS E VÍDEOS REAIS SERÃO ADICIONADOS APÓS O ENVIO DOS MATERIAIS.</span><a href="https://www.instagram.com/poweer_baterias/" target="_blank" rel="noopener noreferrer">ACOMPANHE NO INSTAGRAM ↗</a></div>
     </section>
 
-    <section id="localizacao" class="section location"><div class="section-serial">/ 07 — NOSSA CASA</div><div class="location-grid"><div><div class="kicker"><i></i> DE SAMAMBAIA PARA SUA JORNADA</div><h2>SOMOS<br><em>DAQUI.</em></h2><p>Atendimento de gente pra gente. Venha conhecer a Power Baterias ou converse com a equipe antes de sair de casa.</p><div class="review-row"><div><strong>4,8<span>/5</span></strong><div class="trust-stars">★★★★★</div></div><p>63 avaliações no Google<br><small>Dados informados em nov/2026, sujeitos a atualização.</small></p></div></div><div class="location-panel"><span>POWER BATERIAS / BRASÍLIA</span><div class="location-map"><div class="map-lines"></div><div class="map-pin">⚡</div><strong>SAMAMBAIA NORTE</strong><small>BRASÍLIA / DISTRITO FEDERAL</small></div><div class="address"><strong>VENHA NOS VISITAR</strong><p>QN 412, Conjunto C, Lotes 1 e 2, Loja 8<br>Samambaia Norte, Brasília – DF<br>CEP 72320-540</p><div class="location-links"><a href="https://www.google.com/maps/search/?api=1&amp;query=POWER+BATERIAS+QN+412+Samambaia+Norte+Bras%C3%ADlia" target="_blank" rel="noopener noreferrer">COMO CHEGAR ↗</a><a href="https://www.instagram.com/poweer_baterias/" target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a></div></div></div></div></section>
+    <section class="v7-section" id="modelos">
+      <div class="v7-frame">
+        <div class="v7-feature-head"><div><span class="v7-kicker">BATERIAS / MARCAS</span><h2 class="v7-title">As marcas certas.<br><em>A orientação que importa.</em></h2></div><a class="v7-link" href="baterias.html">Ver baterias <span aria-hidden="true">↗</span></a></div>
+        <div class="v7-feature-grid">
+          <article class="v7-feature"><span class="v7-feature-symbol" aria-hidden="true">01</span><div><h3>Heliar</h3><p>Consulte linhas e aplicação para o seu veículo com a equipe da Power.</p></div><a class="v7-link" href="baterias.html">Consultar Heliar <span aria-hidden="true">↗</span></a></article>
+          <article class="v7-feature"><span class="v7-feature-symbol" aria-hidden="true">02</span><div><h3>Moura</h3><p>Opções automotivas sujeitas à confirmação de modelo e disponibilidade.</p></div><a class="v7-link" href="baterias.html">Consultar Moura <span aria-hidden="true">↗</span></a></article>
+          <article class="v7-feature"><span class="v7-feature-symbol" aria-hidden="true">03</span><div><h3>Start-Stop</h3><p>Veículos com essa tecnologia podem exigir baterias específicas.</p></div><a class="v7-link" href="power-garage.html">Entender a aplicação <span aria-hidden="true">↗</span></a></article>
+        </div>
+      </div>
+    </section>
 
-    <section id="contato" class="finale"><div class="finale-grid"></div><div class="finale-light"></div><div class="finale-content"><div class="kicker"><i></i> O PRÓXIMO DESTINO É SEU</div><h2>A ENERGIA<br>QUE MOVE <em>VOCÊ.</em></h2><p>Escolha seu caminho. A Power Baterias ajuda você a seguir.</p><a class="btn btn-green" href="https://wa.me/5561995191090?text=Ol%C3%A1%2C%20Power%20Baterias!%20Gostaria%20de%20solicitar%20um%20atendimento." target="_blank" rel="noopener noreferrer">FALAR COM A POWER <span>↗</span></a><div class="finale-bolt">ϟ</div></div></section>
-  </main>
-  <footer class="footer"><div class="footer-top"><a class="footer-logo" href="#inicio">ϟ POWER<span>BATERIAS</span></a><div class="footer-social"><a href="https://www.instagram.com/poweer_baterias/" target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a><a href="https://wa.me/5561995191090" target="_blank" rel="noopener noreferrer">WHATSAPP ↗</a></div></div><div class="footer-bottom"><span>© <span id="year"></span> POWER BATERIAS. TODOS OS DIREITOS RESERVADOS.</span><span>SITE EM DESENVOLVIMENTO • CENA E SIMULADOR ILUSTRATIVOS</span><a href="#inicio">VOLTAR AO TOPO ↑</a></div></footer>
+    <section class="v7-section" id="servicos">
+      <div class="v7-frame">
+        <div class="v7-feature-head"><div><span class="v7-kicker">SERVIÇOS / POWER</span><h2 class="v7-title">Cuidado em cada detalhe.</h2></div><a class="v7-link" href="servicos.html">Conhecer serviços <span aria-hidden="true">↗</span></a></div>
+        <div class="v7-line-list">
+          <div class="v7-line-item"><span class="v7-num">01</span><div><h3>Instalação de baterias</h3><p>Substituição e orientação conforme o veículo.</p></div><a class="v7-link" href="servicos.html">Consultar <span aria-hidden="true">↗</span></a></div>
+          <div class="v7-line-item"><span class="v7-num">02</span><div><h3>Testes profissionais</h3><p>Avaliação de carga e indicadores de partida.</p></div><a class="v7-link" href="servicos.html">Consultar <span aria-hidden="true">↗</span></a></div>
+          <div class="v7-line-item"><span class="v7-num">03</span><div><h3>Lâmpadas, palhetas, óleo e filtro</h3><p>Serviços complementares sujeitos à disponibilidade.</p></div><a class="v7-link" href="servicos.html">Consultar <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v7-band" id="sos">
+      <div class="v7-frame v7-band-row"><div><span class="v7-kicker">POWER SOS / VISITA TÉCNICA</span><h2>Seu carro não liga? <span style="color:var(--v7-green)">Fale com a Power.</span></h2><p>Diagnóstico com valor informado de R$ 100. Consulte cobertura, disponibilidade e condições antes de solicitar.</p></div><a class="v7-button" href="socorro.html">Solicitar socorro <span aria-hidden="true">↗</span></a></div>
+    </section>
+
+    <section class="v7-section" id="sobre">
+      <div class="v7-frame v7-split">
+        <div><span class="v7-kicker">SOBRE NÓS</span><h2 class="v7-title">A Power por trás<br>da <em>energia.</em></h2><p class="v7-lead">Vamos contar a história da loja e apresentar as pessoas por trás do atendimento, com fotos e vídeos reais. Conheça o espaço dedicado à nossa trajetória.</p><div style="margin-top:26px"><a class="v7-link" href="sobre.html">Nossa história <span aria-hidden="true">↗</span></a></div></div>
+        <div class="v7-side-visual"><span class="v7-kicker">CONTEÚDO ORIGINAL</span><strong class="v7-number">POWER.</strong><span class="v7-small">Vídeo do proprietário e imagens reais da loja serão adicionados após a produção dos materiais.</span></div>
+      </div>
+    </section>
+
+    <section class="v7-section" id="localizacao">
+      <div class="v7-frame v7-split">
+        <div><span class="v7-kicker">A LOJA / SAMAMBAIA NORTE</span><h2 class="v7-title">Estamos <em>perto de você.</em></h2><p class="v7-lead">Visite nossa loja física em Brasília ou consulte o atendimento antes de sair de casa.</p><div style="margin-top:27px;display:flex;flex-wrap:wrap;gap:18px"><a class="v7-button" href="loja.html">Como chegar <span aria-hidden="true">↗</span></a><a class="v7-button secondary" href="https://wa.me/5561995191090" target="_blank" rel="noopener noreferrer">WhatsApp <span aria-hidden="true">↗</span></a></div></div>
+        <div class="v7-location"><div class="v7-location-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div><strong>Power Baterias</strong><address>QN 412, Conjunto C, Lotes 1 e 2, Loja 8<br>Samambaia Norte, Brasília – DF<br>CEP 72320-540, Brasil</address><div style="margin-top:21px"><a class="v7-link" href="https://www.google.com/maps/search/?api=1&amp;query=POWER+BATERIAS+QN+412+Samambaia+Norte+Bras%C3%ADlia">Ver no Google Maps <span aria-hidden="true">↗</span></a></div></div></div>
+      </div>
+    </section>
+
+    <section id="contato" class="v7-band">
+      <div class="v7-frame v7-band-row"><div><span class="v7-kicker">CONTATO DIRETO</span><h2>Pronto para sua próxima partida?</h2><p>A Power Baterias ajuda você a encontrar o melhor próximo passo.</p></div><a class="v7-button" href="https://wa.me/5561995191090" target="_blank" rel="noopener noreferrer">Falar com a Power <span aria-hidden="true">↗</span></a></div>
+    </section>
+</main>
+  <footer class="v7-footer"><div class="v7-frame"><div class="v7-footer-top">
+<div class="v7-footer-brand"><a href="index.html"><img src="assets/power-logo-traced.svg" width="235" height="70" alt="Power Baterias"></a><p>Atendimento especializado em baterias automotivas e serviços relacionados em Samambaia Norte, Brasília/DF.</p></div>
+<div class="v7-footer-links"><div><strong>EXPLORAR</strong><a href="index.html">Início</a><a href="power-garage.html">Power Garage</a><a href="baterias.html">Baterias</a></div><div><strong>ATENDIMENTO</strong><a href="servicos.html">Serviços</a><a href="socorro.html">Socorro</a><a href="https://wa.me/5561995191090" target="_blank" rel="noopener noreferrer">WhatsApp</a></div><div><strong>A POWER</strong><a href="sobre.html">Nossa história</a><a href="loja.html">A loja</a><a href="https://www.instagram.com/poweer_baterias/" target="_blank" rel="noopener noreferrer">Instagram</a></div></div></div>
+<div class="v7-footer-bottom"><span>© <span id="year">2026</span> Power Baterias. Todos os direitos reservados.</span><span>Samambaia Norte · Brasília/DF</span><a href="#inicio">Voltar ao topo ↑</a></div></div></footer>
   <a class="floating-wa pb-wa-premium" href="https://wa.me/5561995191090?text=Ol%C3%A1%2C%20Power%20Baterias!%20Gostaria%20de%20falar%20com%20um%20especialista." target="_blank" rel="noopener noreferrer" aria-label="Falar com especialista da Power Baterias no WhatsApp">
     <span class="pb-wa-icon" aria-hidden="true">
       <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3.2A12.7 12.7 0 0 0 5.1 22.5L3.5 29l6.6-1.5A12.8 12.8 0 1 0 16 3.2Zm0 23.2a10.4 10.4 0 0 1-5.3-1.4l-.4-.2-3.9.9.9-3.8-.3-.5a10.4 10.4 0 1 1 9 5Zm5.7-7.9c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.7 0-.4-.2-1.6-.6-3-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8l.5-.6.3-.5c.1-.2.1-.4 0-.6l-1-2.4c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.6.1-.9.5-.3.3-1.2 1.1-1.2 2.7s1.2 3.1 1.4 3.3c.2.2 2.4 3.6 5.8 5 3.4 1.3 3.4.9 4 .8.6-.1 1.8-.8 2-1.6.2-.8.2-1.4.1-1.6-.1-.2-.3-.3-.6-.5Z"/></svg>
