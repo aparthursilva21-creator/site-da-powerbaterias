@@ -25,4 +25,7 @@ Site institucional da **Power Baterias** — Samambaia Norte, Brasília-DF.
 *Os horários de funcionamento, áreas de atendimento, catálogo definitivo e dados técnicos dos veículos serão validados com a loja antes da publicação.*
 
 ## Status
-Planejamento iniciado. Em breve, arquivos de desenvolvimento e prévia navegável.
+Prévia V02 implementada no GitHub Pages com HTML, CSS e JavaScript estáticos. A animação do carro/moto é uma encenação vetorial conceitual (não é uma filmagem ou produção 3D final), e a garagem ainda não consulta base técnica de compatibilidade. O vídeo do proprietário e as imagens de drone não foram enviados e estão representados por espaços reservados.
+
+## Atendimento de socorro
+Conforme informações fornecidas pela loja, a visita técnica com teste profissional de bateria custa **R$ 100**. Cobertura, disponibilidade e demais condições precisam ser confirmadas com a equipe pelo WhatsApp. Não se apresenta preço de nenhum produto no site.
