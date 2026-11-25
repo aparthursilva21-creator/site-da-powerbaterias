@@ -109,3 +109,7 @@
 .pgx-roadmap{margin-top:0;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
 @media(max-width:850px){.pgx-roadmap{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:590px){.pgx-roadmap{grid-template-columns:1fr}}
+
+.pgx-model-upload select{height:35px;min-width:87px;max-width:110px;background:#0b160d;color:#e6f3df;border:1px solid #4e6d4b;border-radius:7px;font:700 10px 'DM Sans',Arial,sans-serif;padding:0 7px;cursor:pointer}
+.pgx-model-upload select:focus-visible{outline:2px solid #75c83c;outline-offset:2px}
+@media(max-width:500px){.pgx-model-upload label{width:100%}.pgx-model-upload select{min-width:86px}.pgx-model-upload input{flex:1 1 155px}}
