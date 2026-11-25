@@ -26,6 +26,7 @@ if (viewer) {
   let renderer, scene, camera, controls, rig, currentAsset, currentURL, animationId = 0;
   let spinning = !reduce.matches, visible = true, ready = false, lastTime = 0;
   let transition = null, token = 0;
+  let hoodPivot = null, hoodInitialX = 0, hoodMotion = null;
 
   function say(message) {
     if (status) status.textContent = message;
@@ -127,6 +128,7 @@ if (viewer) {
     new ResizeObserver(resize).observe(wrap);
 
     function cleanupAsset() {
+      hoodPivot=null;hoodMotion=null;
       if(!currentAsset)return;
       rig.remove(currentAsset);
       currentAsset.traverse(obj=>{
@@ -187,6 +189,11 @@ if (viewer) {
           if(obj.isMesh){obj.castShadow=true;obj.receiveShadow=true;}
         });
         rig.add(model);currentAsset=model;
+        // Convenção para arquivos preparados no Blender: criar o objeto Hood_Pivot
+        // com origem na dobradiça do capô, sem aplicar a abertura previamente.
+        hoodPivot=model.getObjectByName('Hood_Pivot')||null;
+        hoodInitialX=hoodPivot?hoodPivot.rotation.x:0;
+        hoodMotion=null;
         rig.rotation.set(0,-Math.PI*.13,0);
         camera.position.set(6.8,3.3,8.3);controls.target.set(0,.9,0);
         controls.update();transition=null;
@@ -216,6 +223,7 @@ if (viewer) {
     }
     function resetCamera() {
       if(!ready)return;
+      if(hoodPivot){hoodPivot.rotation.x=hoodInitialX;hoodMotion=null;}
       rig.rotation.y=-Math.PI*.13;
       moveCamera([6.8,3.3,8.3],[0,.9,0]);
       spinning=!reduce.matches;updateSpinButton();
@@ -233,10 +241,15 @@ if (viewer) {
     form?.addEventListener('submit',()=>{
       if(!form.reportValidity()||!ready)return;
       spinning=false;updateSpinButton();
-      // Primeira parte da futura sequência cinematográfica: aproximação de câmera.
-      // Não inventar capô articulado nem cofre de motor inexistente no modelo.
+      // Primeira parte cinematográfica: câmera aproxima; se o GLB já tiver
+      // Hood_Pivot, o capô se abre no mesmo clique. Sem Hood_Pivot não criamos capô falso.
       moveCamera([3.4,2.25,5.6],[0,1.03,.1],1500);
-      say('Veículo selecionado. Aproximação demonstrativa — o capô 3D será a próxima etapa.');
+      if(hoodPivot){
+        hoodMotion={start:performance.now()+280,duration:1250,from:hoodPivot.rotation.x,to:hoodInitialX-1.06};
+        say('Câmera aproximando. Capô 3D articulado abrindo…');
+      }else{
+        say('Veículo selecionado. Aproximação demonstrativa — para abrir o capô, prepare Hood_Pivot no Blender.');
+      }
     });
     upload?.addEventListener('change',()=>{
       const file=upload.files?.[0];
@@ -262,6 +275,11 @@ if (viewer) {
       const dt=clamp((timestamp-lastTime)/1000,0,.04);
       lastTime=timestamp;
       if(ready&&spinning&&!transition)rig.rotation.y+=dt*.21;
+      if(hoodMotion&&hoodPivot){
+        const k=clamp((timestamp-hoodMotion.start)/hoodMotion.duration,0,1);
+        hoodPivot.rotation.x=hoodMotion.from+(hoodMotion.to-hoodMotion.from)*cubic(k);
+        if(k>=1)hoodMotion=null;
+      }
       if(transition){
         const k=clamp((timestamp-transition.start)/transition.duration,0,1);
         const w=cubic(k);
