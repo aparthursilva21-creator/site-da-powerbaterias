@@ -19,6 +19,9 @@ if (viewer) {
   const frontBtn = document.getElementById('pgxFront');
   const hoodBtn = document.getElementById('pgxHood');
   const lightsBtn = document.getElementById('pgxLights');
+  const materialSelect=document.getElementById('pgxMaterialSelect');
+  const blackBtn=document.getElementById('pgxPaintBlack');
+  const setHeadlampBtn=document.getElementById('pgxSetHeadlamp');
   const upload = document.getElementById('pgxUpload');
   const assetType = document.getElementById('pgxAssetType');
   const form = document.getElementById('v7GarageForm');
@@ -32,6 +35,7 @@ if (viewer) {
   let hoodPivot = null, hoodInitialX = 0, hoodMotion = null;
   let currentKind = 'car';
   let headlightMaterials = [], headlightsOn = true, hoodIsOpen = false;
+  let materialTargets=[];
 
   function say(message) {
     if (status) status.textContent = message;
@@ -147,7 +151,7 @@ if (viewer) {
     new ResizeObserver(resize).observe(wrap);
 
     function cleanupAsset() {
-      hoodPivot=null;hoodMotion=null;headlightMaterials=[];hoodIsOpen=false;
+      hoodPivot=null;hoodMotion=null;headlightMaterials=[];hoodIsOpen=false;materialTargets=[];
       if(!currentAsset)return;
       rig.remove(currentAsset);
       currentAsset.traverse(obj=>{
@@ -191,6 +195,56 @@ if (viewer) {
     }
     lightsBtn?.addEventListener('click',toggleHeadlights);
     // A cor da carroceria é alterada somente quando o arquivo possui um material de pintura identificável.
+    // Controle manual para arquivos de terceiros cujos materiais não seguem
+    // nomes previsíveis. Nada disso altera o arquivo GLB salvo no GitHub.
+    function populateMaterials(root) {
+      materialTargets=[];
+      const used=new Set();
+      root.traverse(mesh=>{
+        if(!mesh.isMesh||!mesh.material)return;
+        const materials=Array.isArray(mesh.material)?mesh.material:[mesh.material];
+        for(const material of materials){
+          if(!material||used.has(material.uuid))continue;
+          used.add(material.uuid);
+          materialTargets.push({material,name:(material.name||'Material sem nome')+' — '+(mesh.name||'Peça sem nome')});
+        }
+      });
+      if(!materialSelect)return;
+      materialSelect.replaceChildren(new Option('Selecione um material…',''));
+      materialTargets.forEach((entry,index)=>materialSelect.add(new Option(entry.name,String(index))));
+      const idx=materialTargets.findIndex(entry=>/car.?paint|body.?paint|paintwork|carroceria/i.test(entry.name));
+      if(idx>=0)materialSelect.value=String(idx);
+    }
+    function chosenMaterial(){
+      if(!materialSelect||materialSelect.value==='')return null;
+      const index=Number(materialSelect.value);
+      return Number.isInteger(index)?materialTargets[index]?.material||null:null;
+    }
+    blackBtn?.addEventListener('click',()=>{
+      const mat=chosenMaterial();
+      if(!mat||!mat.color){say('Selecione primeiro um material da carroceria na lista.');return;}
+      mat.color.set('#0b1013');
+      if('metalness' in mat)mat.metalness=.7;
+      if('roughness' in mat)mat.roughness=.19;
+      mat.needsUpdate=true;
+      say('Material de teste pintado de preto. Para manter a cor no site, altere essa peça no Blender e exporte novamente.');
+    });
+    setHeadlampBtn?.addEventListener('click',()=>{
+      const mat=chosenMaterial();
+      if(!mat||!mat.isMeshStandardMaterial){say('Selecione um material compatível com iluminação emissiva.');return;}
+      mat.color.set('#f2faff');
+      mat.emissive.set('#e8f5ff');
+      mat.emissiveIntensity=2.4;
+      mat.needsUpdate=true;
+      if(!headlightMaterials.includes(mat))headlightMaterials.push(mat);
+      headlightsOn=true;
+      if(lightsBtn){
+        lightsBtn.disabled=false;
+        lightsBtn.textContent='◉ Faróis ON';
+        lightsBtn.setAttribute('aria-pressed','true');
+      }
+      say('Material aceso na prévia. Confira se selecionou realmente os faróis; o ajuste definitivo deve ser feito no Blender.');
+    });
     function optionalDarkPaint(root) {
       const edited=new Set();
       root.traverse(obj=>{
@@ -237,6 +291,7 @@ if (viewer) {
         model.position.set(-midpoint.x,(kind==='battery'?.15:.085)-box.min.y,-midpoint.z);
         optionalDarkPaint(model);
         prepareHeadlights(model);
+        populateMaterials(model);
         model.traverse(obj=>{
           if(obj.isMesh){obj.castShadow=true;obj.receiveShadow=true;}
         });
