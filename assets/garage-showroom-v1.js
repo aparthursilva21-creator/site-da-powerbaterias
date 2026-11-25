@@ -18,6 +18,7 @@ if (viewer) {
   const resetBtn = document.getElementById('pgxReset');
   const frontBtn = document.getElementById('pgxFront');
   const upload = document.getElementById('pgxUpload');
+  const assetType = document.getElementById('pgxAssetType');
   const form = document.getElementById('v7GarageForm');
   const FOLDER_MODEL = 'assets/power-garage-car.glb'; // Troque para este caminho ao colocar seu GLB no GitHub.
   const DEMO_MODEL = 'https://models.vinish.dev/realistic-cars/sport-sedan.glb';
@@ -27,6 +28,7 @@ if (viewer) {
   let spinning = !reduce.matches, visible = true, ready = false, lastTime = 0;
   let transition = null, token = 0;
   let hoodPivot = null, hoodInitialX = 0, hoodMotion = null;
+  let currentKind = 'car';
 
   function say(message) {
     if (status) status.textContent = message;
@@ -164,7 +166,7 @@ if (viewer) {
       });
     }
     const loader=new GLTFLoader();
-    async function loadModel(source, label, objectURL=false) {
+    async function loadModel(source, label, objectURL=false, kind='car') {
       const thisToken=++token;
       setUIState('loading');
       ready=false;
@@ -179,27 +181,31 @@ if (viewer) {
         const size=initial.getSize(new THREE.Vector3());
         const longest=Math.max(size.x,size.z);
         if(!Number.isFinite(longest)||longest<=0)throw Error('O arquivo 3D não contém geometria válida.');
-        const scale=4.85/longest;
+        const scale=(kind==='battery'?1.3:4.85)/longest;
         model.scale.setScalar(scale);
         const box=new THREE.Box3().setFromObject(model);
         const midpoint=box.getCenter(new THREE.Vector3());
-        model.position.set(-midpoint.x,.085-box.min.y,-midpoint.z);
+        model.position.set(-midpoint.x,(kind==='battery'?.15:.085)-box.min.y,-midpoint.z);
         optionalDarkPaint(model);
         model.traverse(obj=>{
           if(obj.isMesh){obj.castShadow=true;obj.receiveShadow=true;}
         });
         rig.add(model);currentAsset=model;
+        currentKind=kind;
         // Convenção para arquivos preparados no Blender: criar o objeto Hood_Pivot
         // com origem na dobradiça do capô, sem aplicar a abertura previamente.
-        hoodPivot=model.getObjectByName('Hood_Pivot')||null;
+        hoodPivot=kind==='car'?(model.getObjectByName('Hood_Pivot')||null):null;
         hoodInitialX=hoodPivot?hoodPivot.rotation.x:0;
         hoodMotion=null;
         rig.rotation.set(0,-Math.PI*.13,0);
-        camera.position.set(6.8,3.3,8.3);controls.target.set(0,.9,0);
+        controls.minDistance=kind==='battery'?1.65:5.4;
+        controls.maxDistance=kind==='battery'?7.2:13.2;
+        camera.position.set(...(kind==='battery'?[2.3,1.8,2.9]:[6.8,3.3,8.3]));
+        controls.target.set(0,kind==='battery'?.45:.9,0);
         controls.update();transition=null;
         spinning=!reduce.matches;updateSpinButton();
         ready=true;setUIState('loaded');
-        say('Modelo 3D carregado! Arraste para girar; use os botões para controlar.');
+        say((kind==='battery'?'Bateria':'Carro')+' 3D carregado! Arraste para girar, aproxime e examine os ângulos.');
         run();
       } catch(error) {
         if(thisToken!==token)return;
@@ -225,7 +231,7 @@ if (viewer) {
       if(!ready)return;
       if(hoodPivot){hoodPivot.rotation.x=hoodInitialX;hoodMotion=null;}
       rig.rotation.y=-Math.PI*.13;
-      moveCamera([6.8,3.3,8.3],[0,.9,0]);
+      moveCamera(currentKind==='battery'?[2.3,1.8,2.9]:[6.8,3.3,8.3],[0,currentKind==='battery'?.45:.9,0]);
       spinning=!reduce.matches;updateSpinButton();
     }
     pauseBtn?.addEventListener('click',()=>{
@@ -240,6 +246,10 @@ if (viewer) {
     });
     form?.addEventListener('submit',()=>{
       if(!form.reportValidity()||!ready)return;
+      if(currentKind==='battery'){
+        say('Você está inspecionando um GLB de bateria. Para ver a aproximação e o capô, carregue um GLB de carro.');
+        return;
+      }
       spinning=false;updateSpinButton();
       // Primeira parte cinematográfica: câmera aproxima; se o GLB já tiver
       // Hood_Pivot, o capô se abre no mesmo clique. Sem Hood_Pivot não criamos capô falso.
@@ -261,7 +271,7 @@ if (viewer) {
         say('Este arquivo é muito grande para o teste rápido. Limite: 30 MB.');upload.value='';return;
       }
       const url=URL.createObjectURL(file);
-      loadModel(url,file.name,true);
+      loadModel(url,file.name,true,assetType?.value==='battery'?'battery':'car');
       // Não faz upload para o servidor; o arquivo é aberto somente no navegador.
     });
     reduce.addEventListener?.('change',event=>{
