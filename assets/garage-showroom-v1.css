@@ -239,3 +239,41 @@
   .pgx-model-upload input{font-size:9px}
   .pgx-status{margin:6px 12px 0;font-size:9px}
 }
+
+/* Editor opcional de materiais do GLB. Oculto até clicar no título. */
+.pgx-material-editor{
+  position:relative;z-index:7;flex:0 0 auto;
+  margin:5px clamp(20px,2.6vw,44px) 0 18%;
+  border:1px solid rgba(140,171,131,.20);
+  border-radius:10px;
+  background:rgba(9,18,11,.84);
+  color:#d1e6c9;
+  backdrop-filter:blur(12px);
+  pointer-events:auto;
+}
+.pgx-material-editor summary{
+  cursor:pointer;list-style:none;display:flex;
+  align-items:center;justify-content:space-between;gap:14px;
+  padding:11px 15px;font:700 10px 'Montserrat',Arial,sans-serif;
+}
+.pgx-material-editor summary::-webkit-details-marker{display:none}
+.pgx-material-editor summary span{color:#8acc62}
+.pgx-material-editor-body{
+  padding:0 13px 8px;display:flex;align-items:center;flex-wrap:wrap;gap:8px
+}
+.pgx-material-editor-body label{font-size:9px;color:#99b097;flex:1 1 100%}
+.pgx-material-editor-body select{
+  flex:1 1 145px;min-width:130px;min-height:36px;
+  color:#eff9ea;background:#142019;border:1px solid #47644a;
+  border-radius:7px;padding:7px 9px;font:500 10px 'DM Sans',Arial,sans-serif;
+}
+.pgx-material-editor-body button{
+  color:#ebf6e4;background:#233625;border:1px solid #486749;
+  border-radius:999px;padding:9px 11px;font:700 9px 'Montserrat',Arial,sans-serif;
+  cursor:pointer;
+}
+.pgx-material-editor-body button:hover{border-color:#75c83c}
+.pgx-material-editor>p{color:#9bad96;margin:0;padding:2px 13px 12px;font:400 10px/1.65 'DM Sans',Arial,sans-serif}
+.pgx-material-editor select:focus-visible,.pgx-material-editor button:focus-visible{outline:2px solid #75c83c;outline-offset:2px}
+@media(max-width:850px){.pgx-material-editor{margin:8px 22px 0}}
+@media(max-width:550px){.pgx-material-editor{margin:6px 10px 0}.pgx-material-editor summary{font-size:9px;padding:9px}}
