@@ -17,18 +17,21 @@ if (viewer) {
   const pauseBtn = document.getElementById('pgxPause');
   const resetBtn = document.getElementById('pgxReset');
   const frontBtn = document.getElementById('pgxFront');
+  const hoodBtn = document.getElementById('pgxHood');
+  const lightsBtn = document.getElementById('pgxLights');
   const upload = document.getElementById('pgxUpload');
   const assetType = document.getElementById('pgxAssetType');
   const form = document.getElementById('v7GarageForm');
-  const FOLDER_MODEL = 'assets/power-garage-car.glb'; // Troque para este caminho ao colocar seu GLB no GitHub.
-  const DEMO_MODEL = 'https://models.vinish.dev/realistic-cars/sport-sedan.glb';
+  // O proprietário já adicionou o GLB diretamente na raiz do repositório.
+  const DEMO_MODEL = 'sport-sedan.glb';
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   const mobile = () => window.innerWidth < 800;
-  let renderer, scene, camera, controls, rig, currentAsset, currentURL, animationId = 0;
+  let renderer, scene, camera, controls, rig, currentAsset, animationId = 0;
   let spinning = !reduce.matches, visible = true, ready = false, lastTime = 0;
   let transition = null, token = 0;
   let hoodPivot = null, hoodInitialX = 0, hoodMotion = null;
   let currentKind = 'car';
+  let headlightMaterials = [], headlightsOn = true, hoodIsOpen = false;
 
   function say(message) {
     if (status) status.textContent = message;
@@ -94,18 +97,32 @@ if (viewer) {
     const side = new THREE.PointLight(0xffffff,48,14,2);
     side.position.set(4,4,2);scene.add(side);
 
-    const floor = new THREE.Mesh(new THREE.PlaneGeometry(100,100),
-      new THREE.MeshStandardMaterial({color:0x101913,roughness:.36,metalness:.13}));
-    floor.rotation.x=-Math.PI/2;floor.position.y=-.115;floor.receiveShadow=true;scene.add(floor);
-
+    // Chão redondo com bordas transparentes. O piso retangular antigo
+    // criava uma "caixa" visível ao redor do carro.
+    const groundCanvas=document.createElement('canvas');
+    groundCanvas.width=256;groundCanvas.height=256;
+    const ctx=groundCanvas.getContext('2d');
+    if(ctx){
+      const gradient=ctx.createRadialGradient(128,128,35,128,128,128);
+      gradient.addColorStop(0,'rgba(24,33,27,.66)');
+      gradient.addColorStop(.58,'rgba(18,29,21,.36)');
+      gradient.addColorStop(1,'rgba(10,18,12,0)');
+      ctx.fillStyle=gradient;ctx.fillRect(0,0,256,256);
+    }
+    const groundTex=new THREE.CanvasTexture(groundCanvas);
+    groundTex.colorSpace=THREE.SRGBColorSpace;
+    const floor=new THREE.Mesh(new THREE.PlaneGeometry(9.3,9.3),
+      new THREE.MeshBasicMaterial({map:groundTex,transparent:true,depthWrite:false,opacity:.9}));
+    floor.rotation.x=-Math.PI/2;floor.position.y=-.126;scene.add(floor);
+    // A iluminação da plataforma é discreta e não usa um retângulo de fundo.
     const base = new THREE.Mesh(new THREE.CylinderGeometry(3.65,3.7,.16,96),
-      new THREE.MeshStandardMaterial({color:0x161e18,metalness:.62,roughness:.33}));
+      new THREE.MeshStandardMaterial({color:0x111813,metalness:.72,roughness:.27}));
     base.position.y=-.03;base.receiveShadow=true;scene.add(base);
-    const ringMaterial = new THREE.MeshBasicMaterial({color:0x6faf4a,transparent:true,opacity:.57});
+    const ringMaterial = new THREE.MeshBasicMaterial({color:0x75b14b,transparent:true,opacity:.27});
     const ring = new THREE.Mesh(new THREE.TorusGeometry(3.55,.014,6,128),ringMaterial);
     ring.rotation.x=Math.PI/2;ring.position.y=.056;scene.add(ring);
     const rim=new THREE.Mesh(new THREE.TorusGeometry(3.24,.008,6,128),
-      new THREE.MeshBasicMaterial({color:0x607e63,transparent:true,opacity:.55}));
+      new THREE.MeshBasicMaterial({color:0x5f8660,transparent:true,opacity:.24}));
     rim.rotation.x=Math.PI/2;rim.position.y=.058;scene.add(rim);
 
     rig = new THREE.Group();
@@ -130,7 +147,7 @@ if (viewer) {
     new ResizeObserver(resize).observe(wrap);
 
     function cleanupAsset() {
-      hoodPivot=null;hoodMotion=null;
+      hoodPivot=null;hoodMotion=null;headlightMaterials=[];hoodIsOpen=false;
       if(!currentAsset)return;
       rig.remove(currentAsset);
       currentAsset.traverse(obj=>{
@@ -141,6 +158,38 @@ if (viewer) {
       });
       currentAsset=null;
     }
+    // Pintura e faróis: alteramos apenas componentes reconhecidos pelo nome.
+    // Nunca escurecer vidros/pneus ou instalar faróis falsos no ar.
+    function prepareHeadlights(root) {
+      headlightMaterials=[];
+      root.traverse(mesh=>{
+        if(!mesh.isMesh||!mesh.material)return;
+        const materials=Array.isArray(mesh.material)?mesh.material:[mesh.material];
+        const mapped=materials.map(source=>{
+          if(!source||!source.isMeshStandardMaterial)return source;
+          const label=(source.name+' '+mesh.name).toLowerCase();
+          if(/rear|tail|brake|stop.?light|lanterna|farol.?traseiro/.test(label))return source;
+          if(!/head.?light|headlamp|farol|low.?beam|high.?beam|day.?light|daytime|drl|front.?lamp/.test(label))return source;
+          const material=source.clone();
+          material.emissive.set('#e8f5ff');
+          material.emissiveIntensity=2.4;
+          if(material.color)material.color.set('#f2fbff');
+          material.needsUpdate=true;
+          headlightMaterials.push(material);
+          return material;
+        });
+        mesh.material=Array.isArray(mesh.material)?mapped:mapped[0];
+      });
+      if(lightsBtn){lightsBtn.disabled=headlightMaterials.length===0;lightsBtn.title=headlightMaterials.length?'Alternar iluminação dos faróis do modelo':'O GLB precisa ter malhas nomeadas Headlight / Headlamp / DRL';}
+    }
+    function toggleHeadlights(){
+      if(!headlightMaterials.length)return;
+      headlightsOn=!headlightsOn;
+      for(const mat of headlightMaterials)mat.emissiveIntensity=headlightsOn?2.4:0;
+      lightsBtn?.setAttribute('aria-pressed',String(headlightsOn));
+      if(lightsBtn)lightsBtn.textContent=headlightsOn?'◉ Faróis ON':'◌ Faróis OFF';
+    }
+    lightsBtn?.addEventListener('click',toggleHeadlights);
     // A cor da carroceria é alterada somente quando o arquivo possui um material de pintura identificável.
     function optionalDarkPaint(root) {
       const edited=new Set();
@@ -187,6 +236,7 @@ if (viewer) {
         const midpoint=box.getCenter(new THREE.Vector3());
         model.position.set(-midpoint.x,(kind==='battery'?.15:.085)-box.min.y,-midpoint.z);
         optionalDarkPaint(model);
+        prepareHeadlights(model);
         model.traverse(obj=>{
           if(obj.isMesh){obj.castShadow=true;obj.receiveShadow=true;}
         });
@@ -197,6 +247,9 @@ if (viewer) {
         hoodPivot=kind==='car'?(model.getObjectByName('Hood_Pivot')||null):null;
         hoodInitialX=hoodPivot?hoodPivot.rotation.x:0;
         hoodMotion=null;
+        hoodIsOpen=false;
+        if(hoodBtn){hoodBtn.disabled=!hoodPivot;hoodBtn.textContent='⌃ Abrir capô';hoodBtn.title=hoodPivot?'Abrir o capô articulado':'Este modelo ainda não possui Hood_Pivot no Blender';}
+        if(lightsBtn){lightsBtn.textContent='◉ Faróis ON';lightsBtn.setAttribute('aria-pressed','true');headlightsOn=true;}
         rig.rotation.set(0,-Math.PI*.13,0);
         controls.minDistance=kind==='battery'?1.65:5.4;
         controls.maxDistance=kind==='battery'?7.2:13.2;
@@ -205,7 +258,10 @@ if (viewer) {
         controls.update();transition=null;
         spinning=!reduce.matches;updateSpinButton();
         ready=true;setUIState('loaded');
-        say((kind==='battery'?'Bateria':'Carro')+' 3D carregado! Arraste para girar, aproxime e examine os ângulos.');
+        if(hoodBtn)hoodBtn.disabled=!hoodPivot;
+        if(lightsBtn)lightsBtn.disabled=headlightMaterials.length===0;
+        const lightNote=headlightMaterials.length?' Faróis identificados e ligados.':' Faróis reais dependem de materiais identificados no GLB.';
+        say((kind==='battery'?'Bateria':'Carro')+' 3D local carregado! Arraste para girar e aproxime.'+(kind==='car'?lightNote:''));
         run();
       } catch(error) {
         if(thisToken!==token)return;
@@ -229,7 +285,8 @@ if (viewer) {
     }
     function resetCamera() {
       if(!ready)return;
-      if(hoodPivot){hoodPivot.rotation.x=hoodInitialX;hoodMotion=null;}
+      if(hoodPivot){hoodPivot.rotation.x=hoodInitialX;hoodMotion=null;hoodIsOpen=false;}
+      if(hoodBtn)hoodBtn.textContent='⌃ Abrir capô';
       rig.rotation.y=-Math.PI*.13;
       moveCamera(currentKind==='battery'?[2.3,1.8,2.9]:[6.8,3.3,8.3],[0,currentKind==='battery'?.45:.9,0]);
       spinning=!reduce.matches;updateSpinButton();
@@ -239,6 +296,16 @@ if (viewer) {
       updateSpinButton();run();
     });
     resetBtn?.addEventListener('click',resetCamera);
+    hoodBtn?.addEventListener('click',()=>{
+      if(!hoodPivot)return;
+      spinning=false;updateSpinButton();
+      hoodIsOpen=!hoodIsOpen;
+      hoodMotion={start:performance.now(),duration:1250,from:hoodPivot.rotation.x,to:hoodInitialX+(hoodIsOpen?-1.06:0)};
+      if(hoodBtn)hoodBtn.textContent=hoodIsOpen?'⌄ Fechar capô':'⌃ Abrir capô';
+      if(hoodIsOpen)moveCamera([3.3,2.45,5.1],[0,1.15,.1],1250);
+      else moveCamera([6.8,3.3,8.3],[0,.9,0],1250);
+      say(hoodIsOpen?'Abrindo peça real Hood_Pivot.':'Fechando o capô.');
+    });
     frontBtn?.addEventListener('click',()=>{
       spinning=false;updateSpinButton();
       // Orienta o carro para enquadramento de inspeção frontal.
@@ -255,6 +322,8 @@ if (viewer) {
       // Hood_Pivot, o capô se abre no mesmo clique. Sem Hood_Pivot não criamos capô falso.
       moveCamera([3.4,2.25,5.6],[0,1.03,.1],1500);
       if(hoodPivot){
+        hoodIsOpen=true;
+        if(hoodBtn)hoodBtn.textContent='⌄ Fechar capô';
         hoodMotion={start:performance.now()+280,duration:1250,from:hoodPivot.rotation.x,to:hoodInitialX-1.06};
         say('Câmera aproximando. Capô 3D articulado abrindo…');
       }else{
@@ -316,7 +385,7 @@ if (viewer) {
     }
     document.addEventListener('visibilitychange',()=>{if(!document.hidden)run();});
     setUIState('loading');updateSpinButton();run();
-    loadModel(DEMO_MODEL,'Sport Sedan (vinish.dev)');
+    loadModel(DEMO_MODEL,'sport-sedan.glb (seu GitHub)');
   }catch(e){
     console.error('Falha ao iniciar o visualizador 3D:',e);
     setUIState('fallback');
