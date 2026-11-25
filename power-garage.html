@@ -68,6 +68,16 @@
           <input id="pgxUpload" type="file" accept=".glb,model/gltf-binary" aria-label="Selecionar arquivo GLB no meu computador">
           <small>Abre só no seu navegador, sem enviar à loja.</small>
         </div>
+        <details class="pgx-material-editor" id="pgxMaterialEditor">
+          <summary>Ajustar pintura e faróis do modelo <span aria-hidden="true">↗</span></summary>
+          <div class="pgx-material-editor-body">
+            <label for="pgxMaterialSelect">Peça / material do arquivo 3D</label>
+            <select id="pgxMaterialSelect" aria-label="Material do modelo que será alterado"><option value="">Carregando materiais…</option></select>
+            <button type="button" id="pgxPaintBlack">Aplicar preto brilhante</button>
+            <button type="button" id="pgxSetHeadlamp">Acender material como farol</button>
+          </div>
+          <p>Prévia de teste: escolha apenas a peça correspondente à lataria ou ao farol. Se o arquivo compartilhar materiais entre peças, várias delas podem mudar juntas. Para salvar definitivamente, edite o GLB no Blender.</p>
+        </details>
         <div class="pgx-status" id="pgxModelStatus" role="status" aria-live="polite">Preparando visualização tridimensional…</div>
       </div>
     </div>
