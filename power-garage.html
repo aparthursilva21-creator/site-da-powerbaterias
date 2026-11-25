@@ -5,9 +5,11 @@
 <title>Power Garage | Power Baterias — Samambaia Norte</title>
 <meta name="description" content="Conheça a Power Garage, nossa experiência automotiva em desenvolvimento, e consulte a aplicação correta da bateria para seu carro.">
 <link rel="icon" href="assets/bolt.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://models.vinish.dev" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;1,800;1,900&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/power-hero.css"><link rel="stylesheet" href="assets/site-v07.css"><link rel="stylesheet" href="assets/product-photos.css"><script src="assets/site-v07.js" defer></script>
+<link rel="stylesheet" href="assets/power-hero.css"><link rel="stylesheet" href="assets/site-v07.css"><link rel="stylesheet" href="assets/garage-showroom-v1.css"><script src="assets/site-v07.js" defer></script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.172.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/"}}</script>
+<script type="module" src="assets/garage-showroom-v1.js"></script>
 </head><body class="v7"><a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 <header class="pb-header"><div class="pb-header-inner">
 <a class="pb-brand" href="index.html" aria-label="Power Baterias — página inicial"><img src="assets/power-logo-traced.svg" alt="Heliar Power Baterias" width="290" height="86"></a>
@@ -17,17 +19,75 @@
 <a class="pb-header-wa" href="https://wa.me/5561995191090?text=Ol%C3%A1%2C%20Power%20Baterias!" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 11.5a8.6 8.6 0 0 1-12.7 7.5L3 20l1.3-5a8.6 8.6 0 1 1 16.7-3.5Z"/><path d="M8.7 8.4c.5-.6 1-.5 1.2 0l.7 1.4c.2.3.1.6-.2.9l-.4.4c.6 1.2 1.5 2.1 2.7 2.6l.6-.6.9-.1 1.4.8c.5.3.5.8 0 1.2-1.7 1.7-6.5-1.2-7.1-4.5-.1-.7 0-1.4.2-2.1Z"/></svg> WhatsApp</a>
 <button id="pbMenu" class="pb-menu" type="button" aria-controls="pbNav" aria-expanded="false" aria-label="Abrir menu"><span></span><span></span><span></span></button>
 </div></header>
-<main id="conteudo"><section class="v7-page-hero"><div class="v7-frame"><span class="v7-kicker">POWER GARAGE / CONFIGURADOR AUTOMOTIVO</span><h1 class="v7-title">Seu carro.<br><em>Sua próxima energia.</em></h1><p class="v7-lead">Uma experiência automotiva mais inteligente está sendo construída. Por enquanto, escolha seu veículo e consulte nossos especialistas sobre a bateria adequada. Sem recomendações inventadas.</p><a href="#selecionar" class="v7-button">Selecionar meu veículo <span>↗</span></a></div></section><section class="v7-section v7-section-sm"><div class="v7-frame v7-page-hero-grid"><div><span class="v7-kicker">SHOWROOM DIGITAL / PRÉVIA</span><h2 class="v7-title">O visual que você conhece.<br>Uma experiência <em>em evolução.</em></h2><p class="v7-lead">A versão final terá carro 3D com rotação real, transição de câmera, cofre específico e inspeção da bateria. Não vamos usar desenhos genéricos fingindo que são o motor do seu veículo.</p><div class="v7-notice"><strong aria-hidden="true">!</strong><span>Prévia fotográfica: a rotação 3D verdadeira ainda não está disponível. Nenhuma informação de compatibilidade é calculada nesta etapa.</span></div></div><div class="v7-garage-scene"><img src="assets/hero-car.webp" width="850" height="659" alt="Sedã preto de apresentação no ambiente automotivo da Power Baterias"><span class="v7-garage-caption">PRÉVIA VISUAL · SEM GIRO 3D NESTA ETAPA</span></div></div></section><section class="v7-section" id="selecionar"><div class="v7-frame v7-split"><div><span class="v7-kicker">SELEÇÃO DE VEÍCULO</span><h2 class="v7-title">Vamos começar<br>pelo <em>seu carro.</em></h2><p class="v7-lead">Informe a marca, o modelo, o ano e, se souber, a versão. Essa seleção prepara o atendimento. A equipe confirma as especificações antes de recomendar qualquer bateria.</p><div class="v7-pillset"><span>Chevrolet</span><span>Fiat</span><span>Volkswagen</span><span>Ford</span><span>Honda</span><span>Toyota</span></div></div><div class="v7-page-card"><form id="v7GarageForm" class="v7-form"><div class="v7-form-field"><label for="v7GarageBrand">MARCA</label><select required id="v7GarageBrand"><option value="">Selecione</option><option value="Chevrolet">Chevrolet / GM</option><option value="Fiat">Fiat</option><option value="Volkswagen">Volkswagen</option><option value="Ford">Ford</option><option value="Honda">Honda</option><option value="Toyota">Toyota</option></select></div><div class="v7-form-field"><label for="v7GarageModel">MODELO</label><select required disabled id="v7GarageModel"><option value="">Escolha a marca</option></select></div><div class="v7-form-field"><label for="v7GarageYear">ANO-MODELO</label><input required id="v7GarageYear" inputmode="numeric" type="number" min="1980" max="2027" placeholder="Ex.: 2012"></div><div class="v7-form-field"><label for="v7GarageVersion">VERSÃO / MOTOR (SE SOUBER)</label><input id="v7GarageVersion" maxlength="100" placeholder="Ex.: 1.0 / Flex"></div><button class="v7-button v7-form-wide" type="submit">Preparar consulta <span>↗</span></button></form><div id="v7GarageResult" class="v7-garage-result" role="status" aria-live="polite"><strong id="v7GarageSummary"></strong><p>Seleção registrada somente nesta página. Ainda não possuímos uma base técnica automatizada e validada para afirmar quais produtos são compatíveis.</p><button id="v7GarageWhatsapp" type="button" class="v7-button">Confirmar no WhatsApp <span>↗</span></button></div></div></div></section><section class="v7-section v7-section-sm" id="garage-baterias">
-  <div class="v7-frame">
-    <span class="v7-kicker">POWER GARAGE / CATÁLOGO VISUAL</span>
-    <h2 class="v7-title">Conheça as baterias da experiência.</h2>
-    <p class="v7-lead">As imagens abaixo são fotografias reais de referência, não modelos 3D nem recomendações técnicas. Quando o sistema de compatibilidade estiver validado, os produtos corretos serão exibidos para cada veículo.</p>
-    <div class="pb-garage-product-preview">
-      <article class="pb-garage-product"><div class="pb-garage-product-photo"><img src="assets/bateria-heliar-original.webp" width="240" height="211" loading="lazy" alt="Bateria Heliar em carcaça cinza e etiqueta verde"></div><div><strong>Heliar</strong><small>Imagem fornecida para o projeto. Referência exata pendente de confirmação.</small><a href="baterias.html">Conhecer bateria ↗</a></div></article>
-      <article class="pb-garage-product"><div class="pb-garage-product-photo"><img src="https://acdn-us.mitiendanube.com/stores/007/239/898/products/2709-bateria-automotiva-moura-m60gd-60ah-1-ebc933956bdd465bf717751422148439-1024-1024.webp" width="1024" height="1024" loading="lazy" alt="Bateria Moura preta, imagem real de referência"></div><div><strong>Moura</strong><small>Foto de produto de referência. Aplicação e disponibilidade sob consulta.</small><a href="baterias.html">Conhecer bateria ↗</a></div></article>
+<main id="conteudo" class="pgx-page">
+  <section class="pgx-showroom" aria-labelledby="pgxTitle">
+    <div class="pgx-showroom-grid">
+      <div class="pgx-content">
+        <div class="pgx-eyebrow">Power Garage / Experiência 3D</div>
+        <h1 id="pgxTitle">A energia certa começa pelo <em>seu carro.</em></h1>
+        <p class="pgx-lead">Gire o veículo em 360°, explore o showroom e selecione seu carro. Estamos construindo a próxima etapa: a câmera entrando no cofre e a bateria 3D sendo instalada.</p>
+        <div class="pgx-form" id="selecionar">
+          <div class="pgx-form-heading"><strong>Escolha seu veículo</strong><small>01 / SELEÇÃO</small></div>
+          <form class="v7-form" id="v7GarageForm" autocomplete="off">
+            <div class="v7-form-field"><label for="v7GarageBrand">MARCA</label><select id="v7GarageBrand" required><option value="">Selecione a marca</option><option value="Chevrolet">Chevrolet / GM</option><option value="Fiat">Fiat</option><option value="Volkswagen">Volkswagen</option><option value="Ford">Ford</option><option value="Honda">Honda</option><option value="Toyota">Toyota</option></select></div>
+            <div class="v7-form-field"><label for="v7GarageModel">MODELO</label><select id="v7GarageModel" disabled required><option value="">Escolha a marca</option></select></div>
+            <div class="v7-form-field"><label for="v7GarageYear">ANO-MODELO</label><input id="v7GarageYear" type="number" inputmode="numeric" min="1980" max="2027" required placeholder="Ex.: 2012"></div>
+            <div class="v7-form-field"><label for="v7GarageVersion">MOTOR / VERSÃO (SE SOUBER)</label><input id="v7GarageVersion" type="text" maxlength="100" placeholder="Ex.: 1.0 Flex"></div>
+            <button type="submit" class="v7-button v7-form-wide">Consultar baterias <span aria-hidden="true">↗</span></button>
+          </form>
+          <div class="v7-garage-result" id="v7GarageResult" role="status" aria-live="polite">
+            <strong id="v7GarageSummary"></strong>
+            <p>Veículo selecionado! A câmera faz uma aproximação demonstrativa. As recomendações técnicas ainda precisam de dados validados de ano, versão e bateria.</p>
+            <button type="button" class="v7-button" id="v7GarageWhatsapp">Confirmar aplicação com a Power <span aria-hidden="true">↗</span></button>
+          </div>
+          <p class="pgx-tip"><strong>Importante:</strong> o sedã do showroom é ilustrativo. A seleção do veículo não muda esse modelo e não confirma a bateria correta automaticamente.</p>
+        </div>
+      </div>
+      <div class="pgx-viewer" id="pgxViewer" data-pgx-state="loading" aria-label="Showroom interativo de um carro esportivo 3D">
+        <div class="pgx-canvas-wrap" id="pgxCanvasWrap">
+          <div class="pgx-stage-label"><i aria-hidden="true"></i> CARRO 3D / SHOWROOM POWER</div>
+          <div class="pgx-poster" aria-hidden="true"><img src="assets/hero-car.webp" width="850" height="659" alt="" decoding="async"></div>
+          <canvas id="pgxCanvas" class="pgx-canvas" aria-label="Visualização 3D interativa"></canvas>
+          <div class="pgx-loading" aria-live="polite"><i aria-hidden="true"></i> CARREGANDO MODELO 3D...</div>
+          <div class="pgx-controls" aria-label="Controles de visualização">
+            <button id="pgxPause" type="button" aria-pressed="false" disabled>Ⅱ Pausar</button>
+            <span class="pgx-control-separator" aria-hidden="true"></span>
+            <button id="pgxFront" type="button" disabled>◎ Frente</button>
+            <button id="pgxReset" type="button" disabled>↺ Centralizar</button>
+          </div>
+          <div class="pgx-stage-foot">
+            <span>Arraste para girar · Scroll para aproximar</span>
+            <span>Modelo demonstrativo: <a href="https://vinish.dev/free-3d-models/realistic-cars" target="_blank" rel="noopener noreferrer">vinish.dev (CC BY 4.0)</a></span>
+          </div>
+        </div>
+        <div class="pgx-model-upload">
+          <label for="pgxUpload">TESTAR MEU ARQUIVO .GLB</label>
+          <input id="pgxUpload" type="file" accept=".glb,model/gltf-binary" aria-label="Selecionar arquivo GLB no meu computador">
+          <small>Abre só no seu navegador, sem enviar à loja.</small>
+        </div>
+        <div class="pgx-status" id="pgxModelStatus" role="status" aria-live="polite">Preparando visualização tridimensional…</div>
+      </div>
     </div>
-  </div>
-</section><section class="v7-section v7-section-sm"><div class="v7-frame"><span class="v7-kicker">PRÓXIMAS ETAPAS</span><h2 class="v7-title">O que vem na Power Garage.</h2><div class="v7-steps"><div class="v7-step"><b>01</b><h3>Carro em 3D real</h3><p>Um modelo de qualidade, com rotação de verdade e materiais automotivos realistas.</p></div><div class="v7-step"><b>02</b><h3>Cofre específico</h3><p>Fotos ou modelos do compartimento do veículo selecionado, com origem documentada.</p></div><div class="v7-step"><b>03</b><h3>Compatibilidade validada</h3><p>Opções Heliar e Moura baseadas em catálogo técnico, não apenas na amperagem.</p></div></div></div></section><div class="v7-frame"><div class="v7-contact-strip"><div><strong>Quer saber qual bateria utilizar?</strong><p>Nossa equipe pode conferir aplicação, disponibilidade e orçamento.</p></div><a class="v7-button" href="https://wa.me/5561995191090" target="_blank" rel="noopener noreferrer">Falar com a Power <span aria-hidden="true">↗</span></a></div></div></main>
+  </section>
+  <section class="pgx-bottom" aria-labelledby="pgxNextTitle">
+    <div class="pgx-bottom-inner">
+      <div>
+        <span class="v7-kicker">PRÓXIMA FASE / OFICINA DIGITAL</span>
+        <h2 class="v7-title" id="pgxNextTitle">O próximo movimento é <em>abrir o capô.</em></h2>
+        <p class="v7-lead">Para animar o capô e aproximar a câmera do motor, precisamos de uma peça articulada e um cofre 3D realista. Depois entra a visualização das baterias Heliar e Moura, com modelos específicos.</p>
+        <a class="pgx-info-link" href="https://vinish.dev/free-3d-models/realistic-cars" target="_blank" rel="noopener noreferrer">Conhecer os modelos 3D disponíveis ↗</a>
+      </div>
+      <div>
+        <div class="v7-steps" style="margin-top:0;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px">
+          <div class="v7-step"><b>01</b><h3>Carro 360°</h3><p>Rotação real e controle de câmera, em teste.</p></div>
+          <div class="v7-step"><b>02</b><h3>Capô e motor</h3><p>Preparação no Blender e animação de abertura.</p></div>
+          <div class="v7-step"><b>03</b><h3>Bateria 3D</h3><p>Modelos exatos de Heliar e Moura, com inspeção interna futura.</p></div>
+        </div>
+        <p class="pgx-assurance">Nenhum preço de bateria é exibido. No futuro, o sistema distinguirá: recomendada, cabe fisicamente mas não é indicada, incompatível e dados insuficientes — sempre com base em critérios técnicos conferidos.</p>
+      </div>
+    </div>
+  </section>
+</main>
 <footer class="v7-footer"><div class="v7-frame">
 <div class="v7-footer-top">
   <div class="v7-footer-brand"><a href="index.html"><img src="assets/power-logo-traced.svg" width="235" height="70" alt="Power Baterias"></a><p>Atendimento especializado em baterias automotivas e serviços relacionados, em Samambaia Norte, Brasília/DF.</p></div>
