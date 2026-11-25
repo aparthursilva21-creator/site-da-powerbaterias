@@ -25,7 +25,7 @@
       <div class="pgx-content">
         <div class="pgx-eyebrow">Power Garage / Experiência 3D</div>
         <h1 id="pgxTitle">A energia certa começa pelo <em>seu carro.</em></h1>
-        <p class="pgx-lead">Gire o veículo em 360°, explore o showroom e selecione seu carro. Estamos construindo a próxima etapa: a câmera entrando no cofre e a bateria 3D sendo instalada.</p>
+        <p class="pgx-lead">Um carro de verdade em 3D, girando sobre uma plataforma integrada ao site. Selecione seu veículo para iniciar a experiência. A abertura real do capô depende de preparar o modelo no Blender.</p>
         <div class="pgx-form" id="selecionar">
           <div class="pgx-form-heading"><strong>Escolha seu veículo</strong><small>01 / SELEÇÃO</small></div>
           <form class="v7-form" id="v7GarageForm" autocomplete="off">
@@ -45,7 +45,7 @@
       </div>
       <div class="pgx-viewer" id="pgxViewer" data-pgx-state="loading" aria-label="Showroom interativo de um carro esportivo 3D">
         <div class="pgx-canvas-wrap" id="pgxCanvasWrap">
-          <div class="pgx-stage-label"><i aria-hidden="true"></i> CARRO 3D / SHOWROOM POWER</div>
+          <div class="pgx-stage-label"><i aria-hidden="true"></i> SHOWROOM 3D · CARRO INTEGRADO</div>
           <div class="pgx-poster" aria-hidden="true"><img src="assets/hero-car.webp" width="850" height="659" alt="" decoding="async"></div>
           <canvas id="pgxCanvas" class="pgx-canvas" aria-label="Visualização 3D interativa"></canvas>
           <div class="pgx-loading" aria-live="polite"><i aria-hidden="true"></i> CARREGANDO MODELO 3D...</div>
@@ -53,6 +53,8 @@
             <button id="pgxPause" type="button" aria-pressed="false" disabled>Ⅱ Pausar</button>
             <span class="pgx-control-separator" aria-hidden="true"></span>
             <button id="pgxFront" type="button" disabled>◎ Frente</button>
+            <button id="pgxHood" type="button" disabled title="Requer peça Hood_Pivot no arquivo 3D">⌃ Abrir capô</button>
+            <button id="pgxLights" type="button" disabled title="Requer malhas identificáveis de faróis no arquivo 3D" aria-pressed="true">◉ Faróis ON</button>
             <button id="pgxReset" type="button" disabled>↺ Centralizar</button>
           </div>
           <div class="pgx-stage-foot">
