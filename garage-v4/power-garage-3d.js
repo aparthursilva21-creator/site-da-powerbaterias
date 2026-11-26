@@ -13,7 +13,7 @@ import { BAY_PARTS } from './engine-parts.js';
 import { Tweens, ease, evaluateFit, clamp, lerp } from './garage-logic.js';
 
 const GREEN = 0x75c83c;
-const BG = 0x080d09;
+const BG = 0x050505;
 const HOOD_OPEN = 1.25;            // rad (~72°)
 const TRAY_TOP = 0.42;             // altura do suporte da bateria
 const RIM_H = 0.035;               // altura da borda do suporte
@@ -144,7 +144,7 @@ export class PowerGarage3D {
   _buildEnvironment() {
     // Estúdio escuro com softboxes brancas e faixas verdes — é o que a pintura preta "reflete".
     const env = new THREE.Scene();
-    const room = new THREE.Mesh(new THREE.BoxGeometry(24, 12, 24), new THREE.MeshBasicMaterial({ color: 0x030403, side: THREE.BackSide }));
+    const room = new THREE.Mesh(new THREE.BoxGeometry(24, 12, 24), new THREE.MeshBasicMaterial({ color: 0x050505, side: THREE.BackSide }));
     room.position.y = 5; env.add(room);
     const panel = (w, h, d, x, y, z, color, k) => {
       const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), new THREE.MeshBasicMaterial({ color: new THREE.Color(color).multiplyScalar(k) }));
@@ -153,10 +153,11 @@ export class PowerGarage3D {
     panel(10, 0.2, 2.5, 0, 10.6, 0, 0xffffff, 2.4);        // softbox de teto
     panel(0.2, 3, 8, -11.5, 5, 0, 0xffffff, 1.7);        // lateral esquerda
     panel(0.2, 3, 8, 11.5, 5, 0, 0xffffff, 1.7);         // lateral direita
-    panel(12, 0.25, 0.25, 0, 8.5, -7, GREEN, 0.75);         // faixa verde atrás/acima
-    panel(12, 0.25, 0.25, 0, 8.5, 7, GREEN, 0.55);          // faixa verde na frente
-    panel(0.25, 0.25, 14, -6, 7.5, 0, GREEN, 0.55);
-    panel(0.25, 0.25, 14, 6, 7.5, 0, GREEN, 0.55);
+    // Estúdio neutro: reflexos brancos suaves, sem faixas verdes no fundo.
+    panel(12, 0.25, 0.25, 0, 8.5, -7, 0xc3c9c5, 0.34);
+    panel(12, 0.25, 0.25, 0, 8.5, 7, 0xc3c9c5, 0.24);
+    panel(0.25, 0.25, 14, -6, 7.5, 0xc6ccc8, 0.23);
+    panel(0.25, 0.25, 14, 6, 7.5, 0xc6ccc8, 0.23);
     const pm = new THREE.PMREMGenerator(this.renderer);
     this.envTex = pm.fromScene(env, 0.035).texture;
     this.scene.environment = this.envTex;
@@ -166,8 +167,9 @@ export class PowerGarage3D {
   _buildLights() {
     const key = new THREE.DirectionalLight(0xffffff, 1.25);
     key.position.set(3, 7, 5); this.scene.add(key);
-    const rim1 = new THREE.PointLight(0x54783f, 3.8, 11, 2); rim1.position.set(-4.5, 2.6, -3.5); this.scene.add(rim1);
-    const rim2 = new THREE.PointLight(0x54783f, 2.8, 11, 2); rim2.position.set(4.5, 2.2, -4); this.scene.add(rim2);
+    // Luzes brancas: realçam a pintura preta sem pintar o fundo de verde.
+    const rim1 = new THREE.PointLight(0xbfcac3, 2.4, 11, 2); rim1.position.set(-4.5, 2.6, -3.5); this.scene.add(rim1);
+    const rim2 = new THREE.PointLight(0x909995, 1.8, 11, 2); rim2.position.set(4.5, 2.2, -4); this.scene.add(rim2);
     this.bayLight = new THREE.PointLight(0xffffff, 0, 3.2, 2);       // acende no modo cofre
     this.bayLight.position.set(0.2, 1.15, 1.55);
     this.flashLight = new THREE.PointLight(GREEN, 0, 1.8, 2);        // feedback do encaixe
@@ -179,22 +181,19 @@ export class PowerGarage3D {
     const stage = new THREE.Group(); this.scene.add(stage);
     // base fixa
     const base = new THREE.Mesh(new THREE.CylinderGeometry(3.15, 3.3, 0.3, 96),
-      new THREE.MeshStandardMaterial({ color: 0x060906, roughness: 0.55, metalness: 0.8 }));
+      new THREE.MeshStandardMaterial({ color: 0x070707, roughness: 0.55, metalness: 0.8 }));
     base.position.y = -0.15; stage.add(base);
     const top = new THREE.Mesh(new THREE.CylinderGeometry(3.0, 3.0, 0.02, 96),
-      new THREE.MeshStandardMaterial({ color: 0x0a0e0a, roughness: 0.22, metalness: 0.85, envMapIntensity: 1.2 }));
+      new THREE.MeshStandardMaterial({ color: 0x0b0b0b, roughness: 0.29, metalness: 0.75, envMapIntensity: 0.85 }));
     top.position.y = -0.01; stage.add(top);
-    const rimMat = new THREE.MeshBasicMaterial({ color: GREEN, transparent: true, opacity: 0.54, toneMapped: true });
+    const rimMat = new THREE.MeshBasicMaterial({ color: GREEN, transparent: true, opacity: 0.26, toneMapped: true });
     const rim = new THREE.Mesh(new THREE.TorusGeometry(3.12, 0.022, 12, 160), rimMat);
     rim.rotation.x = Math.PI / 2; rim.position.y = 0.005; stage.add(rim);
-    // brilho verde sob a plataforma
-    const glow = new THREE.Mesh(new THREE.PlaneGeometry(10, 10), new THREE.MeshBasicMaterial({
-      map: this._radialTex('rgba(117,200,60,0.07)', 'rgba(117,200,60,0)'), transparent: true, depthWrite: false }));
-    glow.rotation.x = -Math.PI / 2; glow.position.y = -0.28; stage.add(glow);
+    // Sem plano de brilho verde sob a plataforma: fundo preto sólido.
 
     // parte giratória (marcações + carro)
     this.turntable = new THREE.Group(); this.scene.add(this.turntable);
-    const lineMat = new THREE.MeshBasicMaterial({ color: GREEN, transparent: true, opacity: 0.15 });
+    const lineMat = new THREE.MeshBasicMaterial({ color: GREEN, transparent: true, opacity: 0.075 });
     for (const [r0, r1] of [[2.55, 2.565], [1.95, 1.96]]) {
       const ring = new THREE.Mesh(new THREE.RingGeometry(r0, r1, 128), lineMat);
       ring.rotation.x = -Math.PI / 2; ring.position.y = 0.012; this.turntable.add(ring);
