@@ -15,8 +15,6 @@ html,body,body.v7,body.v7 main,body.v7 #conteudo{
   background-color:var(--power-black);
   color:#f4f7f1;
 }
-body.v7 .pb-header,
-body.v7 .pb-header-inner,
 body.v7 .v7-footer,
 body.v7 .v7-intro,
 body.v7 .v7-section,
@@ -28,14 +26,16 @@ body.v7 .v7-products-collection,
 body.v7 .pb-products-collection,
 body.v7 .pgx-bottom,
 body.v7 .pgx-showroom,
-body.v7 main.garage,
-body.v7 main.garage .stage,
-body.v7 main.garage .stage .viewport,
 body.v7 main.garage .stage .loading,
 body.v7 main.garage .stage .webgl-fail{
   background:var(--power-black)!important;
 }
-body.v7 .pb-header{border-bottom:1px solid rgba(220,230,220,.09)}
+/* Cabeçalho premium: conservar o leve verde da identidade original. */
+body.v7 .pb-header{
+  background:linear-gradient(180deg,#090e0a 0%,#080c09 100%)!important;
+  border-bottom:1px solid rgba(149,184,140,.13);
+}
+body.v7 .pb-header-inner{background:transparent!important}
 body.v7 .v7-footer{border-top:1px solid rgba(220,230,220,.10)}
 /* Remover overlay verde de blocos editoriais. */
 body.v7 .v7-teaser,
@@ -71,23 +71,29 @@ body.v7 main.garage select{background:#0d0d0d!important}
 body.v7 .v7-button:not(.secondary){background:#75c83c!important;box-shadow:0 7px 24px rgba(0,0,0,.22)}
 /* O hero aprovado mantém a arte do carro, porém o fundo da seção é preto. */
 body.v7 .pb-hero{background-color:var(--power-black)!important}
-/* Garage: cena integrada, sem caixa, sem véu esverdeado. */
+/* Garage: a atmosfera ocupa TODO o fundo abaixo do cabeçalho.
+   O canvas é transparente; ele não desenha um segundo retângulo preto. */
 body.v7 main.garage{
-  --bg:#050505;
-  --bg2:#050505;
+  --bg:#080c09;
+  --bg2:#080c09;
   --green:#75c83c;
+  background:radial-gradient(ellipse 90% 95% at 73% 45%,rgba(45,64,45,.12) 0%,transparent 80%),#080c09!important;
   min-height:calc(100svh - 88px);
 }
+body.v7 main.garage .stage,
 body.v7 main.garage .stage .viewport{
   border:0!important;
   border-radius:0!important;
   box-shadow:none!important;
-  background:var(--power-black)!important;
+  background:transparent!important;
   isolation:isolate;
 }
 body.v7 main.garage .stage .vignette{
   background:transparent!important;
   opacity:0!important;
+}
+body.v7 main.garage .stage .viewport canvas{
+  background:transparent!important;
 }
 /* Preservar telas informativas, sem degradê verde */
 body.v7 main.garage .garage-build-state{background:#0b0b0b}
