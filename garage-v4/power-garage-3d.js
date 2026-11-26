@@ -789,6 +789,7 @@ export class PowerGarage3D {
       const cameraDistance = this.camera.position.distanceTo(this.controls.target);
       const invalid = !Number.isFinite(center.x) || !Number.isFinite(center.y)
         || Math.abs(center.x) > 0.72 || Math.abs(center.y) > 0.82
+        || center.z > 1 || center.z < -1
         || cameraDistance < 4.0 || cameraDistance > 15.5 || targetOffset > 0.8;
       this._offscreenFrames = invalid ? (this._offscreenFrames || 0) + 1 : 0;
       if (this._offscreenFrames > 8) {
