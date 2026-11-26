@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Power Garage | Power Baterias</title>
+<meta name="description" content="Escolha seu veículo e veja, em 3D, qual bateria encaixa no cofre do motor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/garage.css">
+
+<!-- Three.js (versão fixa). Para hospedar por conta própria, baixe os arquivos e troque as URLs abaixo. -->
+<script type="importmap">
+{ "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+
+<!-- ============ HEADER: substitua pelo cabeçalho real do seu site ============ -->
+<header class="site-header">
+  <a class="brand" href="index.html" aria-label="Power Baterias — início">
+    <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6z" fill="currentColor"/></svg>
+    <span><b>POWER</b> BATERIAS</span>
+  </a>
+  <nav aria-label="Principal">
+    <a href="index.html">INÍCIO</a>
+    <a href="power-garage.html" aria-current="page">POWER GARAGE</a>
+    <a href="#">BATERIAS</a><a href="#">SERVIÇOS</a><a href="#">SOCORRO</a><a href="#">SOBRE NÓS</a><a href="#">A LOJA</a>
+  </nav>
+  <a class="btn-outline" href="#" id="hdrWpp">WhatsApp</a>
+</header>
+<!-- ======================================================================== -->
+
+<main class="garage">
+  <section class="panel" aria-labelledby="gTitle">
+    <p class="eyebrow"><i></i> POWER GARAGE / EXPERIÊNCIA 3D</p>
+    <h1 id="gTitle">A energia certa começa <span class="g">pelo seu carro.</span></h1>
+    <p class="lead">Escolha o seu veículo: o carro para de girar, o capô abre e você vê o cofre do motor. Depois escolha uma bateria para ver, ao vivo, se ela encaixa.</p>
+
+    <!-- Passo 1 -->
+    <form id="vehicleForm" class="card" novalidate>
+      <div class="card-h"><b>Escolha seu veículo</b><small>01 / SELEÇÃO</small></div>
+      <div class="grid2">
+        <label>MARCA<select id="brand" required><option value="">Selecione a marca</option></select></label>
+        <label>MODELO<select id="model" required disabled><option value="">Escolha a marca</option></select></label>
+        <label>ANO-MODELO<input id="year" inputmode="numeric" maxlength="4" placeholder="Ex.: 2012"></label>
+        <label>MOTOR / VERSÃO (SE SOUBER)<input id="engine" list="engineList" placeholder="Ex.: 1.0 Flex"><datalist id="engineList"></datalist></label>
+      </div>
+      <button class="btn-primary" id="goBtn" type="submit"><span>Consultar baterias</span><i aria-hidden="true">↗</i></button>
+      <p class="note"><b>Importante:</b> o sedã do showroom é ilustrativo e o motor é um modelo genérico. As medidas e capacidades são EXEMPLOS FICTÍCIOS. Esta tela demonstra a animação, não recomenda baterias reais. A aplicação real precisa de dados técnicos verificados.</p>
+    </form>
+
+    <!-- Passo 2 -->
+    <div id="batteryStep" class="card" hidden>
+      <div class="card-h"><b id="vehName">—</b><small>02 / BATERIAS</small></div>
+      <p class="note" style="margin-top:0">A recomendada já cai no cofre. Clique em qualquer outra para ver o que acontece.</p>
+      <h2 class="list-h">Recomendada para este veículo</h2>
+      <ul id="listRec" class="bat-list"></ul>
+      <h2 class="list-h muted">Outras baterias — teste a animação</h2>
+      <ul id="listOther" class="bat-list"></ul>
+      <button class="btn-ghost" id="backBtn" type="button">← Trocar veículo</button>
+    </div>
+  </section>
+
+  <section class="stage" aria-label="Showroom 3D">
+    <p class="eyebrow small"><i></i> SHOWROOM 3D · CARRO INTEGRADO</p>
+    <div class="viewport" id="viewport">
+      <div class="vignette" aria-hidden="true"></div>
+      <div class="loading" id="loading"><div class="bar"><i id="loadBar"></i></div><span id="loadTxt">Carregando o carro em 3D…</span></div>
+      <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+        <div class="ico" id="toastIco"></div>
+        <div><b id="toastTitle"></b><p id="toastMsg"></p><a id="toastCta" class="cta" hidden target="_blank" rel="noopener">Pedir esta bateria no WhatsApp ↗</a></div>
+      </div>
+      <div class="webgl-fail" id="webglFail" hidden>A visualização 3D não pôde ser iniciada neste navegador (atualize-o ou ative a aceleração de hardware). Você ainda pode escolher o veículo e ver quais baterias servem.</div>
+    </div>
+    <div class="chips" role="toolbar" aria-label="Controles do carro">
+      <button id="cSpin" type="button"><span>⏸</span> Pausar</button>
+      <button id="cFront" type="button"><span>◉</span> Frente</button>
+      <button id="cHood" type="button"><span>⌃</span> Abrir capô</button>
+      <button id="cLights" type="button" aria-pressed="true"><span>●</span> Faróis ON</button>
+      <button id="cCenter" type="button"><span>↺</span> Centralizar</button>
+    </div>
+    <div class="foot"><span>Arraste para girar · Scroll para aproximar</span>
+      <span>“Sport Sedan” por <a href="https://vinish.dev/free-3d-models/" target="_blank" rel="noopener">vinish.dev</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> · cofre do motor e animações: Power Baterias</span></div>
+  </section>
+</main>
+
+<noscript><p style="padding:24px;color:#fff">Ative o JavaScript para ver a experiência 3D.</p></noscript>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
