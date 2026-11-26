@@ -13,7 +13,7 @@ import { BAY_PARTS } from './engine-parts.js';
 import { Tweens, ease, evaluateFit, clamp, lerp } from './garage-logic.js';
 
 const GREEN = 0x75c83c;
-const BG = 0x050505;
+const BG = 0x000000;
 const HOOD_OPEN = 1.25;            // rad (~72°)
 const TRAY_TOP = 0.42;             // altura do suporte da bateria
 const RIM_H = 0.035;               // altura da borda do suporte
@@ -147,7 +147,7 @@ export class PowerGarage3D {
   _buildEnvironment() {
     // Estúdio escuro com softboxes brancas e faixas verdes — é o que a pintura preta "reflete".
     const env = new THREE.Scene();
-    const room = new THREE.Mesh(new THREE.BoxGeometry(24, 12, 24), new THREE.MeshBasicMaterial({ color: 0x050505, side: THREE.BackSide }));
+    const room = new THREE.Mesh(new THREE.BoxGeometry(24, 12, 24), new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.BackSide }));
     room.position.y = 5; env.add(room);
     const panel = (w, h, d, x, y, z, color, k) => {
       const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), new THREE.MeshBasicMaterial({ color: new THREE.Color(color).multiplyScalar(k) }));
@@ -157,10 +157,10 @@ export class PowerGarage3D {
     panel(0.2, 3, 8, -11.5, 5, 0, 0xffffff, 1.7);        // lateral esquerda
     panel(0.2, 3, 8, 11.5, 5, 0, 0xffffff, 1.7);         // lateral direita
     // Estúdio neutro: reflexos brancos suaves, sem faixas verdes no fundo.
-    panel(12, 0.25, 0.25, 0, 8.5, -7, 0xc3c9c5, 0.34);
-    panel(12, 0.25, 0.25, 0, 8.5, 7, 0xc3c9c5, 0.24);
-    panel(0.25, 0.25, 14, -6, 7.5, 0xc6ccc8, 0.23);
-    panel(0.25, 0.25, 14, 6, 7.5, 0xc6ccc8, 0.23);
+    panel(12, 0.25, 0.25, 0, 8.5, -7, 0xc4c4c4, 0.34);
+    panel(12, 0.25, 0.25, 0, 8.5, 7, 0xc4c4c4, 0.24);
+    panel(0.25, 0.25, 14, -6, 7.5, 0xc6c6c6, 0.23);
+    panel(0.25, 0.25, 14, 6, 7.5, 0xc6c6c6, 0.23);
     const pm = new THREE.PMREMGenerator(this.renderer);
     this.envTex = pm.fromScene(env, 0.035).texture;
     this.scene.environment = this.envTex;
@@ -171,8 +171,8 @@ export class PowerGarage3D {
     const key = new THREE.DirectionalLight(0xffffff, 1.25);
     key.position.set(3, 7, 5); this.scene.add(key);
     // Luzes brancas: realçam a pintura preta sem pintar o fundo de verde.
-    const rim1 = new THREE.PointLight(0xbfcac3, 2.4, 11, 2); rim1.position.set(-4.5, 2.6, -3.5); this.scene.add(rim1);
-    const rim2 = new THREE.PointLight(0x909995, 1.8, 11, 2); rim2.position.set(4.5, 2.2, -4); this.scene.add(rim2);
+    const rim1 = new THREE.PointLight(0xc4c4c4, 2.4, 11, 2); rim1.position.set(-4.5, 2.6, -3.5); this.scene.add(rim1);
+    const rim2 = new THREE.PointLight(0x969696, 1.8, 11, 2); rim2.position.set(4.5, 2.2, -4); this.scene.add(rim2);
     this.bayLight = new THREE.PointLight(0xffffff, 0, 3.2, 2);       // acende no modo cofre
     this.bayLight.position.set(0.2, 1.15, 1.55);
     this.flashLight = new THREE.PointLight(GREEN, 0, 1.8, 2);        // feedback do encaixe
@@ -189,14 +189,14 @@ export class PowerGarage3D {
     const top = new THREE.Mesh(new THREE.CylinderGeometry(3.0, 3.0, 0.02, 96),
       new THREE.MeshStandardMaterial({ color: 0x0b0b0b, roughness: 0.29, metalness: 0.75, envMapIntensity: 0.85 }));
     top.position.y = -0.01; stage.add(top);
-    const rimMat = new THREE.MeshBasicMaterial({ color: 0x505650, transparent: true, opacity: 0.33, toneMapped: true });
+    const rimMat = new THREE.MeshBasicMaterial({ color: 0x4d4d4d, transparent: true, opacity: 0.33, toneMapped: true });
     const rim = new THREE.Mesh(new THREE.TorusGeometry(3.12, 0.022, 12, 160), rimMat);
     rim.rotation.x = Math.PI / 2; rim.position.y = 0.005; stage.add(rim);
     // Sem plano de brilho verde sob a plataforma: fundo preto sólido.
 
     // parte giratória (marcações + carro)
     this.turntable = new THREE.Group(); this.scene.add(this.turntable);
-    const lineMat = new THREE.MeshBasicMaterial({ color: 0x394039, transparent: true, opacity: 0.19 });
+    const lineMat = new THREE.MeshBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.19 });
     for (const [r0, r1] of [[2.55, 2.565], [1.95, 1.96]]) {
       const ring = new THREE.Mesh(new THREE.RingGeometry(r0, r1, 128), lineMat);
       ring.rotation.x = -Math.PI / 2; ring.position.y = 0.012; this.turntable.add(ring);
