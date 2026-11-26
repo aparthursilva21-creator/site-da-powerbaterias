@@ -1,7 +1,10 @@
 import { VEHICLES, BATTERIES } from './catalog.js';
 import { rankBatteries, evaluateFit } from './garage-logic.js';
 
-// Opcional: número do WhatsApp da loja (somente dígitos, com DDI+DDD). Vazio = esconde o botão.
+// Versão com capô 3D separado, confirmado por SHA do arquivo enviado ao GitHub.
+const GARAGE_BUILD = 'garage05-hood-2b97c31';
+const HOOD_MODEL_URL = 'assets/sport-sedan-hood.glb?rev=2b97c31';
+// Número de atendimento (DDI + DDD, sem formatação).
 const WHATSAPP_NUMBER = '5561995191090';
 
 const $ = (id) => document.getElementById(id);
@@ -9,6 +12,11 @@ const brand = $('brand'), model = $('model'), year = $('year'), engine = $('engi
 const stepBat = $('batteryStep'), goBtn = $('goBtn');
 let current = null;      // { name, bay }
 let toastTimer;
+const buildState = document.getElementById('garageBuildState');
+function setBuildState(message, state='loading'){
+  if(buildState){buildState.textContent=message;buildState.dataset.state=state;}
+}
+setBuildState('V05 • Preparando o carro com capô articulado…');
 
 /* ---------- formulário ---------- */
 for (const b of Object.keys(VEHICLES)) brand.add(new Option(b, b));
@@ -38,15 +46,11 @@ let garage = new FallbackGarage();
 window.garage = garage;
 (async () => {
   try {
-    const { PowerGarage3D } = await import('./power-garage-3d.js');
-    // O arquivo de capô será carregado automaticamente quando estiver publicado.
-    // Enquanto isso, a versão original do carro continua disponível sem fingir abertura.
-    const hoodPath = 'assets/sport-sedan-hood.glb';
-    let modelUrl = 'sport-sedan.glb';
-    try {
-      const response = await fetch(hoodPath, {method:'HEAD',cache:'no-store'});
-      if(response.ok)modelUrl = hoodPath;
-    } catch (_) {}
+    const { PowerGarage3D } = await import('./power-garage-3d.js?rev=garage05-hood-2b97c31');
+    // Carregamento DIRETO. O arquivo articulado está confirmado em assets/ na main.
+    // Não usar HEAD nem trocar silenciosamente para o modelo sem capô.
+    const modelUrl = HOOD_MODEL_URL;
+    setBuildState('V05 • Lendo sport-sedan-hood.glb…');
     const g3d = new PowerGarage3D({
       container: $('viewport'),
       glbUrl: modelUrl,
@@ -57,6 +61,11 @@ window.garage = garage;
     });
     await g3d.ready;
     garage = g3d; window.garage = g3d;
+    setBuildState(g3d.hood
+      ? 'V05 • Capô 3D detectado: animação disponível'
+      : 'V05 • Arquivo carregado, mas a peça Hood não foi identificada',
+      g3d.hood ? 'ready' : 'warning');
+    console.info('[Power Garage]', GARAGE_BUILD, 'GLB:', modelUrl, 'Hood:', !!g3d.hood);
     if(!g3d.hood){
       $('cHood').disabled = true;
       const message = document.getElementById('garageAssetNotice');
@@ -67,8 +76,11 @@ window.garage = garage;
     }       // no console: garage.setHeadlights(false), etc.
     $('loading').classList.add('done'); syncSpin();
   } catch (e) {
-    console.error('[Power Garage] 3D indisponível — usando modo texto.', e);
+    console.error('[Power Garage] Falha no carregamento do modelo articulado:', e);
+    setBuildState('V05 • Erro ao carregar o carro 3D. Confira a conexão e recarregue a página.', 'error');
+    $('loadTxt').textContent='Não foi possível carregar o carro articulado.';
     $('loading').classList.add('done'); $('webglFail').hidden = false;
+    $('webglFail').textContent='Não foi possível carregar sport-sedan-hood.glb. O arquivo existe no GitHub. Verifique a conexão ou a aba Console (F12) e atualize a página.';
   }
 })();
 
