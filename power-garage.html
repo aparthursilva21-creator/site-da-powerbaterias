@@ -7,9 +7,9 @@
 <link rel="icon" href="assets/bolt.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://models.vinish.dev" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;1,800;1,900&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/power-hero.css"><link rel="stylesheet" href="assets/site-v07.css"><link rel="stylesheet" href="assets/garage-showroom-v1.css"><script src="assets/site-v07.js" defer></script>
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.172.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/"}}</script>
-<script type="module" src="assets/garage-showroom-v1.js"></script>
+<link rel="stylesheet" href="assets/power-hero.css"><link rel="stylesheet" href="assets/site-v07.css"><link rel="stylesheet" href="garage-v4/garage.css"><script src="assets/site-v07.js" defer></script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module" src="garage-v4/main.js"></script>
 </head><body class="v7"><a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 <header class="pb-header"><div class="pb-header-inner">
 <a class="pb-brand" href="index.html" aria-label="Power Baterias — página inicial"><img src="assets/power-logo-traced.svg" alt="Heliar Power Baterias" width="290" height="86"></a>
@@ -19,93 +19,63 @@
 <a class="pb-header-wa" href="https://wa.me/5561995191090?text=Ol%C3%A1%2C%20Power%20Baterias!" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 11.5a8.6 8.6 0 0 1-12.7 7.5L3 20l1.3-5a8.6 8.6 0 1 1 16.7-3.5Z"/><path d="M8.7 8.4c.5-.6 1-.5 1.2 0l.7 1.4c.2.3.1.6-.2.9l-.4.4c.6 1.2 1.5 2.1 2.7 2.6l.6-.6.9-.1 1.4.8c.5.3.5.8 0 1.2-1.7 1.7-6.5-1.2-7.1-4.5-.1-.7 0-1.4.2-2.1Z"/></svg> WhatsApp</a>
 <button id="pbMenu" class="pb-menu" type="button" aria-controls="pbNav" aria-expanded="false" aria-label="Abrir menu"><span></span><span></span><span></span></button>
 </div></header>
-<main id="conteudo" class="pgx-page">
-  <section class="pgx-showroom" aria-labelledby="pgxTitle">
-    <div class="pgx-showroom-grid">
-      <div class="pgx-content">
-        <div class="pgx-eyebrow">Power Garage / Experiência 3D</div>
-        <h1 id="pgxTitle">A energia certa começa pelo <em>seu carro.</em></h1>
-        <p class="pgx-lead">Um carro de verdade em 3D, girando sobre uma plataforma integrada ao site. Selecione seu veículo para iniciar a experiência. A abertura real do capô depende de preparar o modelo no Blender.</p>
-        <div class="pgx-form" id="selecionar">
-          <div class="pgx-form-heading"><strong>Escolha seu veículo</strong><small>01 / SELEÇÃO</small></div>
-          <form class="v7-form" id="v7GarageForm" autocomplete="off">
-            <div class="v7-form-field"><label for="v7GarageBrand">MARCA</label><select id="v7GarageBrand" required><option value="">Selecione a marca</option><option value="Chevrolet">Chevrolet / GM</option><option value="Fiat">Fiat</option><option value="Volkswagen">Volkswagen</option><option value="Ford">Ford</option><option value="Honda">Honda</option><option value="Toyota">Toyota</option></select></div>
-            <div class="v7-form-field"><label for="v7GarageModel">MODELO</label><select id="v7GarageModel" disabled required><option value="">Escolha a marca</option></select></div>
-            <div class="v7-form-field"><label for="v7GarageYear">ANO-MODELO</label><input id="v7GarageYear" type="number" inputmode="numeric" min="1980" max="2027" required placeholder="Ex.: 2012"></div>
-            <div class="v7-form-field"><label for="v7GarageVersion">MOTOR / VERSÃO (SE SOUBER)</label><input id="v7GarageVersion" type="text" maxlength="100" placeholder="Ex.: 1.0 Flex"></div>
-            <button type="submit" class="v7-button v7-form-wide">Consultar baterias <span aria-hidden="true">↗</span></button>
-          </form>
-          <div class="v7-garage-result" id="v7GarageResult" role="status" aria-live="polite">
-            <strong id="v7GarageSummary"></strong>
-            <p>Veículo selecionado! A câmera faz uma aproximação demonstrativa. As recomendações técnicas ainda precisam de dados validados de ano, versão e bateria.</p>
-            <button type="button" class="v7-button" id="v7GarageWhatsapp">Confirmar aplicação com a Power <span aria-hidden="true">↗</span></button>
-          </div>
-          <p class="pgx-tip"><strong>Importante:</strong> o sedã do showroom é ilustrativo. A seleção do veículo não muda esse modelo e não confirma a bateria correta automaticamente.</p>
-        </div>
+<main id="conteudo" class="garage">
+  <section class="panel" aria-labelledby="gTitle">
+    <p class="eyebrow"><i></i> POWER GARAGE / EXPERIÊNCIA 3D</p>
+    <h1 id="gTitle">A energia certa começa <span class="g">pelo seu carro.</span></h1>
+    <p class="lead">Veja o carro girando em 360°. Escolha o seu veículo para iniciar a animação de aproximação, abertura do capô e simulação de encaixe das baterias.</p>
+
+    <!-- Passo 1 -->
+    <form id="vehicleForm" class="card" novalidate>
+      <div class="card-h"><b>Escolha seu veículo</b><small>01 / SELEÇÃO</small></div>
+      <div class="grid2">
+        <label>MARCA<select id="brand" required><option value="">Selecione a marca</option></select></label>
+        <label>MODELO<select id="model" required disabled><option value="">Escolha a marca</option></select></label>
+        <label>ANO-MODELO<input id="year" inputmode="numeric" maxlength="4" placeholder="Ex.: 2012"></label>
+        <label>MOTOR / VERSÃO (SE SOUBER)<input id="engine" list="engineList" placeholder="Ex.: 1.0 Flex"><datalist id="engineList"></datalist></label>
       </div>
-      <div class="pgx-viewer" id="pgxViewer" data-pgx-state="loading" aria-label="Showroom interativo de um carro esportivo 3D">
-        <div class="pgx-canvas-wrap" id="pgxCanvasWrap">
-          <div class="pgx-stage-label"><i aria-hidden="true"></i> SHOWROOM 3D · CARRO INTEGRADO</div>
-          <div class="pgx-poster" aria-hidden="true"><img src="assets/hero-car.webp" width="850" height="659" alt="" decoding="async"></div>
-          <canvas id="pgxCanvas" class="pgx-canvas" aria-label="Visualização 3D interativa"></canvas>
-          <div class="pgx-loading" aria-live="polite"><i aria-hidden="true"></i> CARREGANDO MODELO 3D...</div>
-          <div class="pgx-controls" aria-label="Controles de visualização">
-            <button id="pgxPause" type="button" aria-pressed="false" disabled>Ⅱ Pausar</button>
-            <span class="pgx-control-separator" aria-hidden="true"></span>
-            <button id="pgxFront" type="button" disabled>◎ Frente</button>
-            <button id="pgxHood" type="button" disabled title="Requer peça Hood_Pivot no arquivo 3D">⌃ Abrir capô</button>
-            <button id="pgxLights" type="button" disabled title="Requer malhas identificáveis de faróis no arquivo 3D" aria-pressed="true">◉ Faróis ON</button>
-            <button id="pgxReset" type="button" disabled>↺ Centralizar</button>
-          </div>
-          <div class="pgx-stage-foot">
-            <span>Arraste para girar · Scroll para aproximar</span>
-            <span>“Sport Sedan” por <a href="https://vinish.dev/free-3d-models/realistic-cars" target="_blank" rel="noopener noreferrer">vinish.dev</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a> · pintura ajustável no visualizador</span>
-          </div>
-        </div>
-        <div class="pgx-model-upload">
-          <label for="pgxUpload">TESTAR MEU ARQUIVO .GLB</label>
-          <select id="pgxAssetType" aria-label="Tipo de modelo 3D"><option value="car">Carro</option><option value="battery">Bateria</option></select>
-          <input id="pgxUpload" type="file" accept=".glb,model/gltf-binary" aria-label="Selecionar arquivo GLB no meu computador">
-          <small>Abre só no seu navegador, sem enviar à loja.</small>
-        </div>
-        <details class="pgx-material-editor" id="pgxMaterialEditor">
-          <summary>Ajustar pintura e faróis do modelo <span aria-hidden="true">↗</span></summary>
-          <div class="pgx-material-editor-body">
-            <label for="pgxMaterialSelect">Peça / material do arquivo 3D</label>
-            <select id="pgxMaterialSelect" aria-label="Material do modelo que será alterado"><option value="">Carregando materiais…</option></select>
-            <button type="button" id="pgxPaintBlack">Aplicar preto brilhante</button>
-            <button type="button" id="pgxSetHeadlamp">Acender material como farol</button>
-          </div>
-          <p>Prévia de teste: escolha apenas a peça correspondente à lataria ou ao farol. Se o arquivo compartilhar materiais entre peças, várias delas podem mudar juntas. Para salvar definitivamente, edite o GLB no Blender.</p>
-        </details>
-        <div class="pgx-status" id="pgxModelStatus" role="status" aria-live="polite">Preparando visualização tridimensional…</div>
-      </div>
+      <button class="btn-primary" id="goBtn" type="submit"><span>Consultar baterias</span><i aria-hidden="true">↗</i></button>
+      <p class="note"><b>Protótipo visual:</b> o motor e as medidas de veículos e baterias ainda são exemplos ilustrativos. Não utilizamos essa simulação para afirmar compatibilidade real. Confirme qualquer aplicação com a Power.</p>
+    </form>
+    <p class="garage-asset-notice" id="garageAssetNotice" hidden>Para ativar o capô articulado na versão publicada, envie o arquivo <strong>sport-sedan-hood.glb</strong> para a pasta <strong>assets/</strong> do repositório. Até lá, o site continuará exibindo o carro original sem simular uma abertura falsa.</p>
+
+    <!-- Passo 2 -->
+    <div id="batteryStep" class="card" hidden>
+      <div class="card-h"><b id="vehName">—</b><small>02 / BATERIAS</small></div>
+      <p class="note" style="margin-top:0">Clique em uma bateria de teste para ver a animação. Nenhuma indicação comercial é emitida automaticamente.</p>
+      <h2 class="list-h">Exemplos dentro da faixa simulada</h2>
+      <ul id="listRec" class="bat-list"></ul>
+      <h2 class="list-h muted">Outros exemplos — veja o encaixe</h2>
+      <ul id="listOther" class="bat-list"></ul>
+      <button class="btn-ghost" id="backBtn" type="button">← Trocar veículo</button>
     </div>
   </section>
-  <section class="pgx-bottom" aria-labelledby="pgxNextTitle">
-    <div class="pgx-bottom-inner">
-      <div>
-        <span class="v7-kicker">PRÓXIMA FASE / OFICINA DIGITAL</span>
-        <h2 class="v7-title" id="pgxNextTitle">O próximo movimento é <em>abrir o capô.</em></h2>
-        <p class="v7-lead">Para animar o capô e aproximar a câmera do motor, precisamos de uma peça articulada e um cofre 3D realista. Depois entra a visualização das baterias Heliar e Moura, com modelos específicos.</p>
-        <a class="pgx-info-link" href="https://vinish.dev/free-3d-models/realistic-cars" target="_blank" rel="noopener noreferrer">Conhecer os modelos 3D disponíveis ↗</a>
-        <a class="pgx-info-link" href="https://github.com/aparthursilva21-creator/site-da-powerbaterias/blob/main/COMECAR_POWER_GARAGE_3D.md" target="_blank" rel="noopener noreferrer" style="margin-left:18px">Tutorial completo para baixar e usar GLB ↗</a>
-        <a class="pgx-info-link" href="https://github.com/aparthursilva21-creator/site-da-powerbaterias/blob/main/GUIA_BLENDER_CAPO_FAROIS.md" target="_blank" rel="noopener noreferrer">Aprender a abrir o capô no Blender ↗</a>
+
+  <section class="stage" aria-label="Showroom 3D">
+    <p class="eyebrow small"><i></i> SHOWROOM 3D · CARRO INTEGRADO</p>
+    <div class="viewport" id="viewport">
+      <div class="vignette" aria-hidden="true"></div>
+      <div class="loading" id="loading"><div class="bar"><i id="loadBar"></i></div><span id="loadTxt">Carregando o carro em 3D…</span></div>
+      <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+        <div class="ico" id="toastIco"></div>
+        <div><b id="toastTitle"></b><p id="toastMsg"></p><a id="toastCta" class="cta" hidden target="_blank" rel="noopener">Pedir esta bateria no WhatsApp ↗</a></div>
       </div>
-      <div>
-        <div class="v7-steps pgx-roadmap">
-          <div class="v7-step"><b>01</b><h3>Carro 360°</h3><p>Rotação real e controle de câmera, em teste.</p></div>
-          <div class="v7-step"><b>02</b><h3>Capô e motor</h3><p>Preparação no Blender e animação de abertura.</p></div>
-          <div class="v7-step"><b>03</b><h3>Bateria 3D</h3><p>Modelos exatos de Heliar e Moura, com inspeção interna futura.</p></div>
-        </div>
-        <p class="pgx-assurance">Nenhum preço de bateria é exibido. No futuro, o sistema distinguirá: recomendada, cabe fisicamente mas não é indicada, incompatível e dados insuficientes — sempre com base em critérios técnicos conferidos.</p>
-      </div>
+      <div class="webgl-fail" id="webglFail" hidden>A visualização 3D não pôde ser iniciada neste navegador (atualize-o ou ative a aceleração de hardware). Você ainda pode escolher o veículo e ver quais baterias servem.</div>
     </div>
+    <div class="chips" role="toolbar" aria-label="Controles do carro">
+      <button id="cSpin" type="button"><span>⏸</span> Pausar</button>
+      <button id="cFront" type="button"><span>◉</span> Frente</button>
+      <button id="cHood" type="button"><span>⌃</span> Abrir capô</button>
+      <button id="cLights" type="button" aria-pressed="true"><span>●</span> Faróis ON</button>
+      <button id="cCenter" type="button"><span>↺</span> Centralizar</button>
+    </div>
+    <div class="foot"><span>Arraste para girar · Scroll para aproximar · Bruma e iluminação suavizadas</span>
+      <span>“Sport Sedan” por <a href="https://vinish.dev/free-3d-models/" target="_blank" rel="noopener">vinish.dev</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> · cofre do motor e animações: Power Baterias</span></div>
   </section>
 </main>
 <footer class="v7-footer"><div class="v7-frame">
 <div class="v7-footer-top">
   <div class="v7-footer-brand"><a href="index.html"><img src="assets/power-logo-traced.svg" width="235" height="70" alt="Power Baterias"></a><p>Atendimento especializado em baterias automotivas e serviços relacionados, em Samambaia Norte, Brasília/DF.</p></div>
   <div class="v7-footer-links"><div><strong>EXPLORAR</strong><a href="index.html">Início</a><a href="power-garage.html">Power Garage</a><a href="baterias.html">Baterias</a></div><div><strong>ATENDIMENTO</strong><a href="servicos.html">Serviços</a><a href="socorro.html">Socorro</a><a href="https://wa.me/5561995191090" target="_blank" rel="noopener noreferrer">WhatsApp</a></div><div><strong>A POWER</strong><a href="sobre.html">Nossa história</a><a href="loja.html">Como chegar</a><a href="https://www.instagram.com/poweer_baterias/" target="_blank" rel="noopener noreferrer">Instagram</a></div></div>
-</div><div class="v7-footer-bottom"><span>© <span id="year">2026</span> Power Baterias. Todos os direitos reservados.</span><span>Samambaia Norte · Brasília/DF</span><a href="index.html">Voltar ao início ↗</a></div>
+</div><div class="v7-footer-bottom"><span>© <span id="footerYear">2026</span> Power Baterias. Todos os direitos reservados.</span><span>Samambaia Norte · Brasília/DF</span><a href="index.html">Voltar ao início ↗</a></div>
 </div></footer><a class="floating-wa pb-wa-premium v7-floating-wa" href="https://wa.me/5561995191090?text=Ol%C3%A1%2C%20Power%20Baterias!" target="_blank" rel="noopener noreferrer" aria-label="Falar com a Power Baterias no WhatsApp"><span class="pb-wa-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3.2A12.7 12.7 0 0 0 5.1 22.5L3.5 29l6.6-1.5A12.8 12.8 0 1 0 16 3.2Zm0 23.2a10.4 10.4 0 0 1-5.3-1.4l-.4-.2-3.9.9.9-3.8-.3-.5a10.4 10.4 0 1 1 9 5Zm5.7-7.9c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.7 0-.4-.2-1.6-.6-3-1.9-1.1-1-1.9-2.1-2.1-2.6-.2-.4 0-.6.2-.8l.5-.6.3-.5c.1-.2.1-.4 0-.6l-1-2.4c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.6.1-.9.5-.3.3-1.2 1.1-1.2 2.7s1.2 3.1 1.4 3.3c.2.2 2.4 3.6 5.8 5 3.4 1.3 3.4.9 4 .8.6-.1 1.8-.8 2-1.6.2-.8.2-1.4.1-1.6-.1-.2-.3-.3-.6-.5Z"/></svg></span><span class="pb-wa-text"><strong>Fale com a Power</strong><small>Atendimento via WhatsApp</small></span><span class="pb-wa-arrow" aria-hidden="true">↗</span></a></body></html>
