@@ -30,10 +30,10 @@ body.v7 main.garage .stage .loading,
 body.v7 main.garage .stage .webgl-fail{
   background:var(--power-black)!important;
 }
-/* Cabeçalho premium: conservar o leve verde da identidade original. */
+/* Preto sólido também no cabeçalho: verde reservado a logo e botões. */
 body.v7 .pb-header{
-  background:linear-gradient(180deg,#090e0a 0%,#080c09 100%)!important;
-  border-bottom:1px solid rgba(149,184,140,.13);
+  background:#050505!important;
+  border-bottom:1px solid rgba(255,255,255,.085);
 }
 body.v7 .pb-header-inner{background:transparent!important}
 body.v7 .v7-footer{border-top:1px solid rgba(220,230,220,.10)}
@@ -71,13 +71,13 @@ body.v7 main.garage select{background:#0d0d0d!important}
 body.v7 .v7-button:not(.secondary){background:#75c83c!important;box-shadow:0 7px 24px rgba(0,0,0,.22)}
 /* O hero aprovado mantém a arte do carro, porém o fundo da seção é preto. */
 body.v7 .pb-hero{background-color:var(--power-black)!important}
-/* Garage: a atmosfera ocupa TODO o fundo abaixo do cabeçalho.
-   O canvas é transparente; ele não desenha um segundo retângulo preto. */
+/* Garage: o canvas transparente e a página usam EXATAMENTE o mesmo
+   preto sólido. Não adicionar gradientes/radiais atrás do automóvel. */
 body.v7 main.garage{
-  --bg:#080c09;
-  --bg2:#080c09;
+  --bg:#050505;
+  --bg2:#050505;
   --green:#75c83c;
-  background:radial-gradient(ellipse 90% 95% at 73% 45%,rgba(45,64,45,.12) 0%,transparent 80%),#080c09!important;
+  background:#050505!important;
   min-height:calc(100svh - 88px);
 }
 body.v7 main.garage .stage,
