@@ -3,7 +3,7 @@ import { rankBatteries, evaluateFit } from './garage-logic.js';
 
 // Versão com capô 3D separado, confirmado por SHA do arquivo enviado ao GitHub.
 const GARAGE_BUILD = 'garage06-stage-fix';
-const HOOD_MODEL_URL = 'assets/sport-sedan-hood.glb?rev=2b97c31';
+const HOOD_MODEL_URL = 'assets/sport-sedan-hood.glb?rev=garage06-stage-fix';
 // Número de atendimento (DDI + DDD, sem formatação).
 const WHATSAPP_NUMBER = '5561995191090';
 
