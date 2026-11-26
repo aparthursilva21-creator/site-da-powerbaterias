@@ -1,0 +1,61 @@
+/* Power Garage V13 — integração do pacote 3D em cima do layout aprovado */
+body.v7 main.garage{
+  background:#000!important;
+  --green:#75c83c;
+  --text:#f4f7f1;
+  --mut:#b4bdb0;
+}
+body.v7 main.garage .stage,
+body.v7 main.garage .viewport{
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+body.v7 main.garage .viewport canvas{
+  width:100%;height:100%;display:block;background:transparent!important
+}
+body.v7 main.garage .loading[hidden],
+body.v7 main.garage .toast[hidden],
+body.v7 main.garage .webgl-fail[hidden],
+body.v7 main.garage .card[hidden]{display:none!important}
+body.v7 main.garage .loading{background:#000!important}
+body.v7 main.garage .loading .bar{width:220px;height:4px}
+body.v7 main.garage .loading .bar i{display:block;height:100%;width:8%;background:#75c83c}
+body.v7 main.garage .bat{
+  display:grid;grid-template-columns:minmax(0,1fr) auto auto;
+  align-items:center;gap:10px;background:#0a0a0a;
+  min-height:64px;padding:12px 13px;
+}
+body.v7 main.garage .bat b{font-size:14px;color:#eff4ed}
+body.v7 main.garage .bat span{font-size:10px;color:#a1ada0;white-space:nowrap}
+body.v7 main.garage .bat em{font:800 9px/1.4 'Montserrat',Arial,sans-serif;white-space:normal;text-align:right;color:#d5ded2}
+body.v7 main.garage .bat.ok{border-left:3px solid #75c83c}
+body.v7 main.garage .bat.warn{border-left:3px solid #ffbd45}
+body.v7 main.garage .bat.nofit{border-left:3px solid #ff6868}
+body.v7 main.garage .bat:focus-visible,
+body.v7 main.garage .chips button:focus-visible{outline:2px solid #75c83c;outline-offset:2px}
+body.v7 main.garage .toast .cta[hidden]{display:none!important}
+body.v7 main.garage .toast .cta{display:inline-flex;margin-top:9px;color:#bcf094}
+body.v7 main.garage .toast.bad{border-color:#ff6666}
+body.v7 main.garage .toast.bad .ico{background:#ff6666}
+body.v7 main.garage .toast.warn{border-color:#e1a84d}
+body.v7 main.garage .toast.warn .ico{background:#e1a84d}
+body.v7 main.garage .toast.ok{border-color:#75c83c}
+body.v7 main.garage .toast.ok .ico{background:#75c83c}
+body.v7 main.garage .chips{background:#090909;border-color:#343434}
+body.v7 main.garage .foot{max-width:100%;line-height:1.65}
+body.v7 main.garage .garage-build-state{
+  background:#080808;
+  border-color:#363636;
+}
+@media(max-width:1100px){
+  body.v7 main.garage .bat{grid-template-columns:minmax(0,1fr) auto}
+  body.v7 main.garage .bat em{grid-column:1/-1;text-align:left}
+}
+@media(max-width:550px){
+  body.v7 main.garage .viewport{height:clamp(310px,84vw,480px);min-height:310px}
+  body.v7 main.garage .bat{grid-template-columns:1fr}
+  body.v7 main.garage .bat span{white-space:normal}
+  body.v7 main.garage .bat em{grid-column:auto}
+}
