@@ -114,8 +114,14 @@ export class PowerGarage3D {
     this.car = gltf.scene;
     this.turntable.add(this.car);
     this._prepareCar();
+    // Assenta a tampa na posição fechada logo no primeiro frame.
+    this._setHood(0);
     this._buildBay();
     this._buildTray(null);
+    // O motor ilustrativo nunca deve atravessar o capô fechado na vitrine.
+    this.bayRoot.visible = false;
+    this.tray.visible = false;
+    this._offscreenFrames = 0;
 
     // Observadores
     this._ro = new ResizeObserver(() => this._resize());
@@ -428,6 +434,7 @@ export class PowerGarage3D {
     const e = 0.006;
     gl(L + 2 * t, e, 0, W / 2 + t / 2); gl(L + 2 * t, e, 0, -W / 2 - t / 2); gl(e, W, L / 2 + t / 2, 0); gl(e, W, -L / 2 - t / 2, 0);
     this.tray = g; this.car.add(g);
+    this.tray.visible = this.state === 'engine';
     this.flashLight.position.set(this.trayPos.x, 0.75, this.trayPos.z);
   }
 
@@ -639,12 +646,17 @@ export class PowerGarage3D {
   }
 
   _setHood(a) {
-    // Movimento sem overshoot e com pequena correção de assentamento ao fechar.
+    // Compensação mínima e reversível da peça Hood importada.
+    // A geometria fina só se corrige de forma definitiva no GLB/Blender.
     this.hoodAngle = clamp(a, 0, HOOD_OPEN);
     if (!this.hood) return;
+    const t = this.hoodAngle / HOOD_OPEN;
     this.hood.rotation.x = this.hoodBaseRotation - this.hoodAngle;
     this.hood.position.copy(this.hoodBasePosition);
-    this.hood.position.y -= 0.007 * (1 - this.hoodAngle / HOOD_OPEN);
+    // Ao fechar, recua alguns milímetros da grade/farol e assenta a borda.
+    // O deslocamento diminui quando o capô abre para preservar a dobradiça.
+    this.hood.position.y += lerp(-0.018, -0.008, t);
+    this.hood.position.z += lerp(-0.032, -0.010, t);
   }
 
   /* ---------------------------------------------------- sequências (API) */
@@ -667,6 +679,10 @@ export class PowerGarage3D {
     const a = this._alignYaw(1.4);
     const f = this._fly(this._approachPose(), 1.5);
     if (!(await Promise.all([a, f])).every(Boolean) || my !== this.seq) return false;
+    // Mostrar motor somente quando a tampa começar a abrir evita vazamentos
+    // de geometria preta através da lataria durante o giro.
+    this.bayRoot.visible = true;
+    if (this.tray) this.tray.visible = true;
     const hoodOk = await this.tweens.add({ dur: 1.25, ease: ease.inOut, update: (k) => this._setHood(HOOD_OPEN * k) });
     if (!hoodOk || my !== this.seq) return false;
     this.tweens.add({ dur: 1.1, ease: ease.out, update: (k) => (this.bayLight.intensity = 1.6 * k) });
@@ -690,6 +706,9 @@ export class PowerGarage3D {
     this._fly(this._approachPose(), 0.9);
     const ok = await this.tweens.add({ dur: 1.0, ease: ease.inOut, update: (k) => this._setHood(HOOD_OPEN * (1 - k)) });
     if (!ok || my !== this.seq) return false;
+    this._setHood(0);
+    this.bayRoot.visible = false;
+    if (this.tray) this.tray.visible = false;
     if (!(await this._fly(this._showroomPose(), 1.5)) || my !== this.seq) return false;
     this._setLimits('showroom'); this.controls.enabled = true; this.controls.update();
     this.vehicle = null;
@@ -715,6 +734,7 @@ export class PowerGarage3D {
     await Promise.all([a, f]);
     if (my !== this.seq) return;
     this._setLimits('showroom'); this.controls.enabled = true;
+    if (!this.reduced) this.spinTarget = 1;
   }
 
   /** Volta à câmera padrão e retoma o giro (botão "Centralizar"). */
@@ -760,6 +780,26 @@ export class PowerGarage3D {
     }
 
     this.controls.update();
+    // Proteção do enquadramento: após um gesto/voo de câmera o centro da
+    // plataforma nunca deve abandonar a área visível enquanto o carro gira.
+    // O giro 360° pertence ao carro; não dependemos de mover a câmera.
+    if (this.state === 'showroom' && !this.tweens.busy && !this.userHold) {
+      const center = new THREE.Vector3(0, 0.2, 0).project(this.camera);
+      const targetOffset = this.controls.target.distanceTo(V(0, 0.62, 0));
+      const cameraDistance = this.camera.position.distanceTo(this.controls.target);
+      const invalid = !Number.isFinite(center.x) || !Number.isFinite(center.y)
+        || Math.abs(center.x) > 0.72 || Math.abs(center.y) > 0.82
+        || cameraDistance < 4.0 || cameraDistance > 15.5 || targetOffset > 0.8;
+      this._offscreenFrames = invalid ? (this._offscreenFrames || 0) + 1 : 0;
+      if (this._offscreenFrames > 8) {
+        const pose = this._fitPose(this._showroomPose());
+        this.camera.position.copy(pose.pos);
+        this.controls.target.copy(pose.target);
+        this.controls.update();
+        this._offscreenFrames = 0;
+        console.warn('[PowerGarage] Câmera reenquadrada após perder o centro da plataforma.');
+      }
+    }
     // tremor de impacto
     let sx = 0, sy = 0;
     if (this.shake.t > 0) { this.shake.t -= dt; const a = this.shake.amp * (this.shake.t / 0.28); sx = (Math.random() - 0.5) * a; sy = (Math.random() - 0.5) * a; }
