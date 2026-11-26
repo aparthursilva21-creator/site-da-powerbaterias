@@ -78,3 +78,19 @@ body.v7 .garage-attribution a{color:#9fa99e;text-decoration:underline;text-under
 @media(max-width:550px){
   body.v7 main.garage .viewport{height:clamp(325px,92vw,440px);min-height:325px}
 }
+
+/* V15 · cenário cinematográfico no render 3D, sem caixa ou fundo verde sólido */
+body.v7 main.garage{background:#000!important}
+body.v7 main.garage .stage,
+body.v7 main.garage .viewport{background:transparent!important;border:0!important;box-shadow:none!important}
+body.v7 main.garage .viewport{isolation:isolate;overflow:hidden}
+body.v7 main.garage .viewport::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 47% 41% at 64% 55%,rgba(57,105,40,.065),transparent 85%);
+}
+body.v7 main.garage .viewport canvas{z-index:1}
+body.v7 main.garage .viewport .vignette{pointer-events:none;opacity:0!important}
+body.v7 main.garage .viewport .loading{z-index:5}
+@media(prefers-reduced-motion:reduce){
+  body.v7 main.garage .viewport::before{background:none}
+}
