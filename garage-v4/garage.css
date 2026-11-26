@@ -102,39 +102,31 @@ h1 .g{color:var(--green)}
 .garage .garage-build-state[data-state="warning"]:before,.garage .garage-build-state[data-state="error"]:before{background:#e3a34e}
 @media(max-width:530px){.garage .garage-build-state{font-size:9px;padding:7px 9px}}
 
-/* POWER GARAGE V06 — cenário sem moldura e fundo unificado */
-body.v7,body.v7 .pb-header,body.v7 main.garage,body.v7 footer.v7-footer{
-  background:#080d09;
-}
-body.v7 .pb-header{border-bottom:1px solid rgba(175,202,166,.09)}
+/* POWER GARAGE V10 — integração real entre canvas e página.
+   O header é gerenciado pelo tema global: não mudar sua aparência aqui. */
 body.v7 main.garage{
-  background:#080d09;
+  background:radial-gradient(ellipse 90% 95% at 73% 45%,rgba(45,64,45,.12),transparent 80%),#080c09;
   min-height:calc(100svh - 88px);
 }
-body.v7 .garage .stage,
-body.v7 .garage .stage .viewport{
-  background:#080d09;
+body.v7 main.garage .stage,
+body.v7 main.garage .stage .viewport{
+  background:transparent;
   border:0;
   border-radius:0;
   box-shadow:none;
 }
-body.v7 .garage .stage .viewport{isolation:isolate}
-body.v7 .garage .stage .vignette{
-  /* As bordas do canvas desaparecem gradualmente no mesmo tom da página. */
-  background:
-    linear-gradient(to right,#080d09 0%,transparent 14%,transparent 87%,#080d09 100%),
-    linear-gradient(to bottom,#080d09 0%,transparent 13%,transparent 83%,#080d09 100%);
-  opacity:1;
+body.v7 main.garage .stage .viewport{isolation:isolate}
+body.v7 main.garage .stage .vignette{
+  background:transparent;
+  opacity:0;
 }
-body.v7 .garage .stage .viewport canvas{
-  display:block;width:100%;height:100%;border:0;
+body.v7 main.garage .stage .viewport canvas{
+  display:block;
+  width:100%;
+  height:100%;
+  border:0;
   background:transparent;
 }
 @media(max-width:980px){
   body.v7 main.garage{min-height:auto}
-  body.v7 .garage .stage .vignette{
-    background:
-      linear-gradient(to right,#080d09 0%,transparent 9%,transparent 92%,#080d09 100%),
-      linear-gradient(to bottom,#080d09 0%,transparent 10%,transparent 89%,#080d09 100%);
-  }
 }
