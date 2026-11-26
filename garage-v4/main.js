@@ -61,6 +61,9 @@ window.garage = garage;
       $('cHood').disabled = true;
       const message = document.getElementById('garageAssetNotice');
       if(message)message.hidden=false;
+    } else {
+      const message=document.getElementById('garageAssetNotice');
+      if(message)message.hidden=true;
     }       // no console: garage.setHeadlights(false), etc.
     $('loading').classList.add('done'); syncSpin();
   } catch (e) {
@@ -84,6 +87,8 @@ form.addEventListener('submit', async (e) => {
   let ok = true;
   for (const el of [brand, model]) { if (!el.value) { el.classList.add('invalid'); ok = false; } }
   if (!ok) return;
+  if(year.value && !/^(19|20)\d{2}$/.test(year.value.trim())) { year.classList.add('invalid'); return; }
+  year.classList.remove('invalid');
   const v = VEHICLES[brand.value][model.value];
   current = { name: `${brand.value} ${model.value}${year.value ? ' ' + year.value : ''}${engine.value ? ' · ' + engine.value : ''}`, bay: v.bay };
   goBtn.disabled = true; hideToast();
@@ -125,7 +130,7 @@ function showFeedback(r) {
   t.className = 'toast ' + r.status;
   $('toastIco').textContent = r.status === 'ok' ? '✓' : r.status === 'warn' ? '!' : '✕';
   $('toastTitle').textContent = r.title + ' · SIMULAÇÃO';
-  $('toastMsg').textContent = r.message;
+  $('toastMsg').textContent = r.message + ' Resultado visual de demonstração; confirme a aplicação com a loja.';
   const cta = $('toastCta');
   if (WHATSAPP_NUMBER && r.status !== 'nofit') {
     cta.hidden = false;
@@ -148,4 +153,5 @@ $('cLights').addEventListener('click', (e) => {
   e.currentTarget.setAttribute('aria-pressed', String(on));
   e.currentTarget.lastChild.textContent = on ? ' Faróis ON' : ' Faróis OFF';
 });
-if (WHATSAPP_NUMBER) $('hdrWpp').href = `https://wa.me/${WHATSAPP_NUMBER}`;
+const headerWpp = $('hdrWpp');
+if (WHATSAPP_NUMBER && headerWpp) headerWpp.href = `https://wa.me/${WHATSAPP_NUMBER}`;
