@@ -13,7 +13,7 @@ import { BAY_PARTS } from './engine-parts.js';
 import { Tweens, ease, evaluateFit, clamp, lerp } from './garage-logic.js';
 
 const GREEN = 0x75c83c;
-const BG = 0x080c09;
+const BG = 0x050505;
 const HOOD_OPEN = 1.25;            // rad (~72°)
 const TRAY_TOP = 0.42;             // altura do suporte da bateria
 const RIM_H = 0.035;               // altura da borda do suporte
@@ -189,14 +189,14 @@ export class PowerGarage3D {
     const top = new THREE.Mesh(new THREE.CylinderGeometry(3.0, 3.0, 0.02, 96),
       new THREE.MeshStandardMaterial({ color: 0x0b0b0b, roughness: 0.29, metalness: 0.75, envMapIntensity: 0.85 }));
     top.position.y = -0.01; stage.add(top);
-    const rimMat = new THREE.MeshBasicMaterial({ color: GREEN, transparent: true, opacity: 0.26, toneMapped: true });
+    const rimMat = new THREE.MeshBasicMaterial({ color: 0x505650, transparent: true, opacity: 0.33, toneMapped: true });
     const rim = new THREE.Mesh(new THREE.TorusGeometry(3.12, 0.022, 12, 160), rimMat);
     rim.rotation.x = Math.PI / 2; rim.position.y = 0.005; stage.add(rim);
     // Sem plano de brilho verde sob a plataforma: fundo preto sólido.
 
     // parte giratória (marcações + carro)
     this.turntable = new THREE.Group(); this.scene.add(this.turntable);
-    const lineMat = new THREE.MeshBasicMaterial({ color: GREEN, transparent: true, opacity: 0.075 });
+    const lineMat = new THREE.MeshBasicMaterial({ color: 0x394039, transparent: true, opacity: 0.19 });
     for (const [r0, r1] of [[2.55, 2.565], [1.95, 1.96]]) {
       const ring = new THREE.Mesh(new THREE.RingGeometry(r0, r1, 128), lineMat);
       ring.rotation.x = -Math.PI / 2; ring.position.y = 0.012; this.turntable.add(ring);
