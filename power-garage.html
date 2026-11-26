@@ -7,9 +7,9 @@
 <link rel="icon" href="assets/bolt.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://models.vinish.dev" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;1,800;1,900&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/power-hero.css"><link rel="stylesheet" href="assets/site-v07.css"><link rel="stylesheet" href="garage-v4/garage.css?rev=black12-pure"><script src="assets/site-v07.js" defer></script>
+<link rel="stylesheet" href="assets/power-hero.css"><link rel="stylesheet" href="assets/site-v07.css"><link rel="stylesheet" href="garage-v4/garage.css?rev=black12-pure"><link rel="stylesheet" href="garage-v5/garage.css?rev=garage13-zip"><script src="assets/site-v07.js" defer></script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script type="module" src="garage-v4/main.js?rev=black12-pure"></script>
+<script type="module" src="garage-v5/main.js?rev=garage13-zip"></script>
 <link rel="stylesheet" href="assets/theme-black-v09.css?rev=black12-pure">
 </head><body class="v7"><a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 <header class="pb-header"><div class="pb-header-inner">
@@ -36,17 +36,17 @@
         <label>MOTOR / VERSÃO (SE SOUBER)<input id="engine" list="engineList" placeholder="Ex.: 1.0 Flex"><datalist id="engineList"></datalist></label>
       </div>
       <button class="btn-primary" id="goBtn" type="submit"><span>Consultar baterias</span><i aria-hidden="true">↗</i></button>
-      <p class="note"><b>Protótipo visual:</b> o motor e as medidas de veículos e baterias ainda são exemplos ilustrativos. Não utilizamos essa simulação para afirmar compatibilidade real. Confirme qualquer aplicação com a Power.</p>
+      <p class="note"><b>Experiência 3D demonstrativa:</b> motor genérico, baterias modeladas digitalmente e dimensões fictícias para teste de animação. Os resultados de encaixe NÃO confirmam compatibilidade com veículos reais. Nosso atendimento verifica a bateria correta.</p>
     </form>
-    <p class="garage-asset-notice" id="garageAssetNotice" hidden>Para ativar o capô articulado na versão publicada, envie o arquivo <strong>sport-sedan-hood.glb</strong> para a pasta <strong>assets/</strong> do repositório. Até lá, o site continuará exibindo o carro original sem simular uma abertura falsa.</p>
+
 
     <!-- Passo 2 -->
     <div id="batteryStep" class="card" hidden>
       <div class="card-h"><b id="vehName">—</b><small>02 / BATERIAS</small></div>
-      <p class="note" style="margin-top:0">Clique em uma bateria de teste para ver a animação. Nenhuma indicação comercial é emitida automaticamente.</p>
-      <h2 class="list-h">Exemplos dentro da faixa simulada</h2>
+      <p class="note" style="margin-top:0">A bateria da faixa de exemplo aparece automaticamente no motor. Experimente as outras para visualizar encaixes fictícios. Os resultados não são recomendações técnicas reais.</p>
+      <h2 class="list-h">Encaixe ilustrativo dentro da faixa do teste</h2>
       <ul id="listRec" class="bat-list"></ul>
-      <h2 class="list-h muted">Outros exemplos — veja o encaixe</h2>
+      <h2 class="list-h muted">Outras baterias do simulador</h2>
       <ul id="listOther" class="bat-list"></ul>
       <button class="btn-ghost" id="backBtn" type="button">← Trocar veículo</button>
     </div>
@@ -54,10 +54,10 @@
 
   <section class="stage" aria-label="Showroom 3D">
     <p class="eyebrow small"><i></i> SHOWROOM 3D · CARRO INTEGRADO</p>
-    <div class="garage-build-state" id="garageBuildState" data-state="loading" role="status" aria-live="polite">V12 • Preparando o carro com capô articulado…</div>
+    <div class="garage-build-state" id="garageBuildState" data-state="loading" role="status" aria-live="polite">V13 • Carregando carro, cofre e bateria em 3D…</div>
     <div class="viewport" id="viewport">
       <div class="vignette" aria-hidden="true"></div>
-      <div class="loading" id="loading"><div class="bar"><i id="loadBar"></i></div><span id="loadTxt">Carregando o carro em 3D com capô articulado…</span></div>
+      <div class="loading" id="loading"><div class="bar"><i id="loadBar"></i></div><span id="loadTxt">Carregando carro e cofre 3D articulado…</span></div>
       <div class="toast" id="toast" role="status" aria-live="polite" hidden>
         <div class="ico" id="toastIco"></div>
         <div><b id="toastTitle"></b><p id="toastMsg"></p><a id="toastCta" class="cta" hidden target="_blank" rel="noopener">Pedir esta bateria no WhatsApp ↗</a></div>
