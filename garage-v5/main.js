@@ -35,10 +35,12 @@ scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 120);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true; controls.dampingFactor = 0.07; controls.enablePan = false;
-controls.minDistance = 2.6; controls.maxDistance = 11; controls.maxPolarAngle = Math.PI * 0.49; controls.minPolarAngle = 0.25;
+controls.minDistance = 2.6; controls.maxDistance = 19; controls.maxPolarAngle = Math.PI * 0.49; controls.minPolarAngle = 0.25;
+// A apresentação gira automaticamente. Não exigir arrastar ou usar botões.
+controls.enableRotate = false; controls.enableZoom = false;
 controls.rotateSpeed = 0.7;
 
-const VIEW = { pos: new THREE.Vector3(5.4, 1.9, 5.6), tgt: new THREE.Vector3(0, 0.72, 0.1) };
+const VIEW = { pos: new THREE.Vector3(7.5, 2.55, 7.85), tgt: new THREE.Vector3(0, 0.72, 0.1) };
 const OPEN_VIEW = { pos: new THREE.Vector3(2.3, 3.05, 4.5), tgt: new THREE.Vector3(0, 0.62, 1.5) };
 const BAT_VIEW = { pos: new THREE.Vector3(1.9, 2.3, 3.7), tgt: new THREE.Vector3(0.3, 0.6, 1.6) };
 let needsResize = true;
@@ -48,7 +50,7 @@ function resize() {
   camera.aspect = w / h; camera.updateProjectionMatrix(); needsResize = false;
 }
 new ResizeObserver(() => (needsResize = true)).observe(viewport);
-function distFactor() { return camera.aspect < 1 ? 1 + (1 - camera.aspect) * 0.9 : 1; }  // enquadra em telas altas (celular)
+function distFactor() { return Math.max(1, 1.42 / Math.max(0.5, camera.aspect)); } // garante folga para a plataforma, inclusive no celular
 function placeCamera(v) { camera.position.copy(v.pos.clone().sub(v.tgt).multiplyScalar(distFactor()).add(v.tgt)); controls.target.copy(v.tgt); controls.update(); }
 
 // ───────────── Luzes ─────────────
@@ -65,9 +67,11 @@ bayLight.position.set(1.0, 3.4, 3.4); bayLight.target.position.set(0, 0.5, 1.5);
 const turntable = new THREE.Group(); scene.add(turntable);
 const disc = new THREE.Mesh(new THREE.CylinderGeometry(3.25, 3.25, 0.06, 96), new THREE.MeshStandardMaterial({ color: 0x080808, metalness: 0.7, roughness: 0.35 }));
 disc.position.y = -0.031; disc.receiveShadow = true; turntable.add(disc);
-const ring = new THREE.Mesh(new THREE.TorusGeometry(3.1, 0.028, 12, 160), new THREE.MeshBasicMaterial({ color: 0x454545, toneMapped: true }));
+const ring = new THREE.Mesh(new THREE.TorusGeometry(3.1, 0.022, 12, 160), new THREE.MeshStandardMaterial({ color: 0x284321, emissive: 0x75c83c, emissiveIntensity: 0.3, metalness: 0.35, roughness: 0.4 }));
 ring.rotation.x = Math.PI / 2; ring.position.y = 0.012; turntable.add(ring);
-const tickMat = new THREE.MeshBasicMaterial({ color: GREEN, toneMapped: false });
+const ringHalo = new THREE.Mesh(new THREE.TorusGeometry(3.10, 0.055, 8, 160), new THREE.MeshBasicMaterial({ color: 0x75c83c, transparent: true, opacity: 0.075, depthWrite: false }));
+ringHalo.rotation.x = Math.PI / 2; ringHalo.position.y = 0.011; turntable.add(ringHalo);
+const tickMat = new THREE.MeshBasicMaterial({ color: 0x3d6733, transparent: true, opacity: 0.50, toneMapped: true });
 for (let i = 0; i < 72; i++) { const a = (i / 72) * Math.PI * 2, L = i % 6 === 0 ? 0.16 : 0.06;
   const t = new THREE.Mesh(new THREE.BoxGeometry(0.018, 0.004, L), tickMat); t.position.set(Math.sin(a) * 2.9, 0.003, Math.cos(a) * 2.9); t.rotation.y = a; turntable.add(t); }
 const shadowFloor = new THREE.Mesh(new THREE.CircleGeometry(4.2, 64), new THREE.ShadowMaterial({ opacity: 0.45 }));
@@ -101,7 +105,7 @@ new GLTFLoader().load('assets/sport-sedan-hood.glb', (gltf) => {
   const build = $('garageBuildState');
   if (build) { build.dataset.state = hood ? 'ready' : 'warning'; build.textContent = hood ? 'V13 · Capô, motor e baterias 3D disponíveis' : 'V13 · Modelo sem peça Hood'; }
   $('cHood').disabled = !hood;
-  placeCamera(VIEW); needsResize = true;
+  resize(); placeCamera(VIEW); needsResize = false;
 }, (e) => { if (e.total) $('loadBar').style.width = Math.round((e.loaded / e.total) * 100) + '%'; },
 (err) => { console.error('[Power Garage V13] Erro no GLB:', err); $('loading').hidden = true; $('webglFail').hidden = false; $('goBtn').disabled = true; $('cHood').disabled = true; const build=$('garageBuildState'); if(build){build.dataset.state='error'; build.textContent='V13 · Falha ao carregar o modelo 3D';} });
 
@@ -135,7 +139,7 @@ async function openHood() {
 async function closeHood() {
   if (!S.open || S.busy) return; setBusy(true); tw.cancelAll(); hideToast(); removeBattery();
   await Promise.all([tw.add({ dur: 1.5, ease: ease.inOut, update: (k) => setHood(1 - k) }), camTween(VIEW, 1.7)]);
-  S.open = false; S.spinOn = !S.userPaused; setBusy(false); syncHoodBtn();
+  S.open = false; S.spinOn = !reduceMotion; setBusy(false); syncHoodBtn();
 }
 function syncHoodBtn() { $('cHood').innerHTML = S.open ? '<span>⌄</span> Fechar capô' : '<span>⌃</span> Abrir capô'; }
 
@@ -195,7 +199,7 @@ const clock = new THREE.Clock();
 renderer.setAnimationLoop(() => {
   const dt = Math.min(clock.getDelta(), 0.05);
   if (document.hidden) return;
-  if (needsResize) resize();
+  if (needsResize) { resize(); if (car && !S.open && !S.busy) placeCamera(VIEW); }
   tw.tick(dt);
   S.spin += ((S.spinOn ? SPIN : 0) - S.spin) * Math.min(1, dt * 3.5);       // acelera/freia suave
   if (Math.abs(S.spin) > 1e-4) turntable.rotation.y += S.spin * dt;
