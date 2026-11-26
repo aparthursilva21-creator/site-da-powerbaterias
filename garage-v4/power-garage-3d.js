@@ -13,7 +13,7 @@ import { BAY_PARTS } from './engine-parts.js';
 import { Tweens, ease, evaluateFit, clamp, lerp } from './garage-logic.js';
 
 const GREEN = 0x75c83c;
-const BG = 0x050505;
+const BG = 0x080c09;
 const HOOD_OPEN = 1.25;            // rad (~72°)
 const TRAY_TOP = 0.42;             // altura do suporte da bateria
 const RIM_H = 0.035;               // altura da borda do suporte
@@ -61,18 +61,21 @@ export class PowerGarage3D {
     const c = this.container;
     const w = Math.max(c.clientWidth, 2), h = Math.max(c.clientHeight, 2);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: !this.o.bloom, powerPreference: 'high-performance' });
+    const renderer = new THREE.WebGLRenderer({ antialias: !this.o.bloom, alpha: true, powerPreference: 'high-performance' });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.setSize(w, h);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 0.97;
+    // Canvas transparente: a atmosfera deve vir da página inteira, não de um
+    // retângulo preto renderizado separadamente atrás do carro.
+    renderer.setClearColor(BG, 0);
     renderer.domElement.style.cssText = 'display:block;width:100%;height:100%;touch-action:none;outline:none';
     renderer.domElement.setAttribute('aria-label', 'Carro em 3D. Arraste para girar, role para aproximar.');
     c.appendChild(renderer.domElement);
     this.renderer = renderer;
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(BG);
+    scene.background = null;
     scene.fog = new THREE.Fog(BG, 16, 36);
     this.scene = scene;
 
