@@ -59,3 +59,22 @@ body.v7 main.garage .garage-build-state{
   body.v7 main.garage .bat span{white-space:normal}
   body.v7 main.garage .bat em{grid-column:auto}
 }
+
+/* V14 — carro e plataforma inteiros, visual limpo no showroom */
+body.v7 main.garage .stage{padding-top:clamp(10px,2.3vw,30px)}
+body.v7 main.garage .viewport{overflow:hidden;background:transparent!important}
+body.v7 main.garage .garage-internal-controls[hidden]{display:none!important}
+body.v7 main.garage .garage-build-state[hidden]{display:none!important}
+body.v7 .garage-attribution{
+  margin:14px 0 0;
+  color:#7f867e;
+  font:500 10px/1.6 'DM Sans',Arial,sans-serif;
+}
+body.v7 .garage-attribution a{color:#9fa99e;text-decoration:underline;text-underline-offset:2px}
+@media(max-width:980px){
+  body.v7 main.garage .stage{padding-top:0}
+  body.v7 main.garage .viewport{height:clamp(345px,66vw,600px);min-height:345px}
+}
+@media(max-width:550px){
+  body.v7 main.garage .viewport{height:clamp(325px,92vw,440px);min-height:325px}
+}
