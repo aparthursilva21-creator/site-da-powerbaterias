@@ -7,9 +7,9 @@
 <link rel="icon" href="assets/bolt.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://models.vinish.dev" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;1,800;1,900&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/power-hero.css"><link rel="stylesheet" href="assets/site-v07.css"><link rel="stylesheet" href="garage-v4/garage.css?rev=black12-pure"><link rel="stylesheet" href="garage-v5/garage.css?rev=garage13-zip"><script src="assets/site-v07.js" defer></script>
+<link rel="stylesheet" href="assets/power-hero.css"><link rel="stylesheet" href="assets/site-v07.css"><link rel="stylesheet" href="garage-v4/garage.css?rev=black12-pure"><link rel="stylesheet" href="garage-v5/garage.css?rev=garage14-stage"><script src="assets/site-v07.js" defer></script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script type="module" src="garage-v5/main.js?rev=garage13-zip"></script>
+<script type="module" src="garage-v5/main.js?rev=garage14-stage"></script>
 <link rel="stylesheet" href="assets/theme-black-v09.css?rev=black12-pure">
 </head><body class="v7"><a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 <header class="pb-header"><div class="pb-header-inner">
@@ -36,25 +36,22 @@
         <label>MOTOR / VERSÃO (SE SOUBER)<input id="engine" list="engineList" placeholder="Ex.: 1.0 Flex"><datalist id="engineList"></datalist></label>
       </div>
       <button class="btn-primary" id="goBtn" type="submit"><span>Consultar baterias</span><i aria-hidden="true">↗</i></button>
-      <p class="note"><b>Experiência 3D demonstrativa:</b> motor genérico, baterias modeladas digitalmente e dimensões fictícias para teste de animação. Os resultados de encaixe NÃO confirmam compatibilidade com veículos reais. Nosso atendimento verifica a bateria correta.</p>
     </form>
 
 
     <!-- Passo 2 -->
     <div id="batteryStep" class="card" hidden>
       <div class="card-h"><b id="vehName">—</b><small>02 / BATERIAS</small></div>
-      <p class="note" style="margin-top:0">A bateria da faixa de exemplo aparece automaticamente no motor. Experimente as outras para visualizar encaixes fictícios. Os resultados não são recomendações técnicas reais.</p>
-      <h2 class="list-h">Encaixe ilustrativo dentro da faixa do teste</h2>
+      <p class="note" style="margin-top:0">Veja as baterias em 3D e experimente o encaixe. A compatibilidade real precisa ser confirmada com nossa equipe.</p>
+      <h2 class="list-h">Baterias para experimentar</h2>
       <ul id="listRec" class="bat-list"></ul>
-      <h2 class="list-h muted">Outras baterias do simulador</h2>
+      <h2 class="list-h muted">Outros modelos</h2>
       <ul id="listOther" class="bat-list"></ul>
       <button class="btn-ghost" id="backBtn" type="button">← Trocar veículo</button>
     </div>
   </section>
 
   <section class="stage" aria-label="Showroom 3D">
-    <p class="eyebrow small"><i></i> SHOWROOM 3D · CARRO INTEGRADO</p>
-    <div class="garage-build-state" id="garageBuildState" data-state="loading" role="status" aria-live="polite">V13 • Carregando carro, cofre e bateria em 3D…</div>
     <div class="viewport" id="viewport">
       <div class="vignette" aria-hidden="true"></div>
       <div class="loading" id="loading"><div class="bar"><i id="loadBar"></i></div><span id="loadTxt">Carregando carro e cofre 3D articulado…</span></div>
@@ -64,20 +61,18 @@
       </div>
       <div class="webgl-fail" id="webglFail" hidden>A visualização 3D não pôde ser iniciada. Confira o arquivo do capô e a conexão.</div>
     </div>
-    <div class="chips" role="toolbar" aria-label="Controles do carro">
+    <div class="garage-internal-controls" hidden aria-hidden="true">
       <button id="cSpin" type="button"><span>⏸</span> Pausar</button>
       <button id="cFront" type="button"><span>◉</span> Frente</button>
       <button id="cHood" type="button"><span>⌃</span> Abrir capô</button>
       <button id="cLights" type="button" aria-pressed="true"><span>●</span> Faróis ON</button>
       <button id="cCenter" type="button"><span>↺</span> Centralizar</button>
     </div>
-    <div class="foot"><span>Arraste para girar · Scroll para aproximar · Bruma e iluminação suavizadas</span>
-      <span>“Sport Sedan” por <a href="https://vinish.dev/free-3d-models/" target="_blank" rel="noopener">vinish.dev</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> · cofre do motor e animações: Power Baterias</span></div>
   </section>
 </main>
 <footer class="v7-footer"><div class="v7-frame">
 <div class="v7-footer-top">
   <div class="v7-footer-brand"><a href="index.html"><img src="assets/power-logo-traced.svg" width="235" height="70" alt="Power Baterias"></a><p>Atendimento especializado em baterias automotivas e serviços relacionados, em Samambaia Norte, Brasília/DF.</p></div>
   <div class="v7-footer-links"><div><strong>EXPLORAR</strong><a href="index.html">Início</a><a href="power-garage.html">Power Garage</a><a href="baterias.html">Baterias</a></div><div><strong>ATENDIMENTO</strong><a href="servicos.html">Serviços</a><a href="socorro.html">Socorro</a><a href="https://wa.me/5561995191090" target="_blank" rel="noopener noreferrer">WhatsApp</a></div><div><strong>A POWER</strong><a href="sobre.html">Nossa história</a><a href="loja.html">Como chegar</a><a href="https://www.instagram.com/poweer_baterias/" target="_blank" rel="noopener noreferrer">Instagram</a></div></div>
-</div><div class="v7-footer-bottom"><span>© <span id="footerYear">2026</span> Power Baterias. Todos os direitos reservados.</span><span>Samambaia Norte · Brasília/DF</span><a href="index.html">Voltar ao início ↗</a></div>
+</div><div class="v7-footer-bottom"><span>© <span id="footerYear">2026</span> Power Baterias. Todos os direitos reservados.</span><span>Samambaia Norte · Brasília/DF</span><a href="index.html">Voltar ao início ↗</a></div><p class="garage-attribution">Modelo 3D “Sport Sedan”: <a href="https://vinish.dev/free-3d-models/" target="_blank" rel="noopener noreferrer">vinish.dev</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a> · adaptado para Power Garage.</p>
 </div></footer><a class="floating-wa pb-wa-premium v7-floating-wa" href="https://wa.me/5561995191090?text=Ol%C3%A1%2C%20Power%20Baterias!" target="_blank" rel="noopener noreferrer" aria-label="Falar com a Power Baterias no WhatsApp"><span class="pb-wa-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3.2A12.7 12.7 0 0 0 5.1 22.5L3.5 29l6.6-1.5A12.8 12.8 0 1 0 16 3.2Zm0 23.2a10.4 10.4 0 0 1-5.3-1.4l-.4-.2-3.9.9.9-3.8-.3-.5a10.4 10.4 0 1 1 9 5Zm5.7-7.9c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.7 0-.4-.2-1.6-.6-3-1.9-1.1-1-1.9-2.1-2.1-2.6-.2-.4 0-.6.2-.8l.5-.6.3-.5c.1-.2.1-.4 0-.6l-1-2.4c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.6.1-.9.5-.3.3-1.2 1.1-1.2 2.7s1.2 3.1 1.4 3.3c.2.2 2.4 3.6 5.8 5 3.4 1.3 3.4.9 4 .8.6-.1 1.8-.8 2-1.6.2-.8.2-1.4.1-1.6-.1-.2-.3-.3-.6-.5Z"/></svg></span><span class="pb-wa-text"><strong>Fale com a Power</strong><small>Atendimento via WhatsApp</small></span><span class="pb-wa-arrow" aria-hidden="true">↗</span></a></body></html>
