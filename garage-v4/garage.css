@@ -1,4 +1,4 @@
-.garage{--bg:#080d09;--bg2:#0d140e;--line:rgba(202,220,195,.13);--green:#75c83c;--green2:#5c9f33;--text:#f4f7f2;--mut:#a9b8a7;--warn:#ffb020;--bad:#ff6565;--r:18px}
+.garage{--bg:#050505;--bg2:#050505;--line:rgba(202,220,195,.13);--green:#75c83c;--green2:#5c9f33;--text:#f4f7f2;--mut:#a9b8a7;--warn:#ffb020;--bad:#ff6565;--r:18px}
 *{box-sizing:border-box}
 .garage{color:var(--text);font-family:"Plus Jakarta Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;-webkit-font-smoothing:antialiased}
 .garage a{color:inherit}
@@ -12,7 +12,7 @@
 
 
 
-.garage{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(18px,2.5vw,44px);padding:clamp(22px,3vw,45px) clamp(22px,5vw,84px) 74px;align-items:start;background:radial-gradient(1000px 600px at 74% 38%,rgba(54,75,51,.05),transparent 65%),#080d09}
+.garage{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(18px,2.5vw,44px);padding:clamp(22px,3vw,45px) clamp(22px,5vw,84px) 74px;align-items:start;background:#050505}
 @media (max-width:980px){.garage{grid-template-columns:1fr}.stage{order:-1}}
 .eyebrow{display:flex;align-items:center;gap:10px;margin:0 0 18px;font-size:11px;font-weight:800;letter-spacing:.18em;color:#e8efe6}
 .eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 9px rgba(117,200,60,.28)}
@@ -49,10 +49,10 @@ h1 .g{color:var(--green)}
 .bat .tag{margin-left:auto;font-size:9px;font-weight:800;letter-spacing:.1em;padding:5px 9px;border-radius:999px;background:rgba(125,255,46,.14);color:var(--green)}
 
 .stage{min-width:0;position:relative;isolation:isolate}
-.viewport{position:relative;aspect-ratio:auto;height:min(72svh,660px);min-height:480px;border-radius:0;overflow:hidden;border:0;background:#080d09}
+.viewport{position:relative;aspect-ratio:auto;height:min(72svh,660px);min-height:480px;border-radius:0;overflow:hidden;border:0;background:#050505}
 @media (max-width:980px){.viewport{aspect-ratio:4/3;min-height:300px}}
-.vignette{position:absolute;inset:0;pointer-events:none;z-index:2;background:radial-gradient(ellipse at 54% 52%,transparent 43%,rgba(8,13,9,.35) 72%,#080d09 100%)}
-.loading{position:absolute;inset:0;z-index:5;display:grid;place-content:center;gap:14px;justify-items:center;background:#080d09;font-size:12px;color:var(--mut);transition:opacity .5s}
+.vignette{position:absolute;inset:0;pointer-events:none;z-index:2;background:transparent}
+.loading{position:absolute;inset:0;z-index:5;display:grid;place-content:center;gap:14px;justify-items:center;background:#050505;font-size:12px;color:var(--mut);transition:opacity .5s}
 .loading.done{opacity:0;pointer-events:none}
 .loading .bar{width:220px;height:4px;border-radius:4px;background:rgba(255,255,255,.1);overflow:hidden}.loading .bar i{display:block;height:100%;width:0;background:var(--green);transition:width .2s}
 .toast{position:absolute;z-index:6;left:50%;top:16px;transform:translateX(-50%);width:min(92%,460px);display:flex;gap:14px;padding:14px 16px;border-radius:16px;backdrop-filter:blur(10px);background:rgba(8,14,8,.89);border:1px solid rgba(117,200,60,.60);box-shadow:0 10px 40px rgba(0,0,0,.5);animation:pop .35s cubic-bezier(.2,1.2,.3,1)}
@@ -64,7 +64,7 @@ h1 .g{color:var(--green)}
 .toast .cta{display:inline-block;margin-top:10px;font-size:12px;font-weight:800;color:var(--green);text-decoration:none}
 @keyframes pop{from{opacity:0;transform:translate(-50%,-10px) scale(.96)}to{opacity:1;transform:translate(-50%,0) scale(1)}}
 @keyframes shake{25%{margin-left:-6px}50%{margin-left:6px}75%{margin-left:-3px}}
-.webgl-fail{position:absolute;inset:0;z-index:7;display:grid;place-content:center;text-align:center;padding:24px;background:#080d09;color:var(--mut)}
+.webgl-fail{position:absolute;inset:0;z-index:7;display:grid;place-content:center;text-align:center;padding:24px;background:#050505;color:var(--mut)}
 .webgl-fail[hidden]{display:none}
 .chips{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin:16px auto 0;width:fit-content;max-width:100%;padding:6px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02)}
 .chips button{background:none;border:0;border-radius:999px;padding:10px 16px;font-size:12px;font-weight:800;cursor:pointer;color:#e8efe6;display:flex;gap:7px;align-items:center}
@@ -75,7 +75,7 @@ h1 .g{color:var(--green)}
 .foot a{color:#d7e6d0}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 /* Garage V04 final composition */
-.garage .stage .viewport{box-shadow:none;border:none;border-radius:0;background:#080d09}
+.garage .stage .viewport{box-shadow:none;border:none;border-radius:0;background:transparent}
 .garage .stage .viewport canvas{display:block;max-width:100%}
 .garage .stage .chips{border-color:rgba(164,194,154,.18);background:rgba(10,18,12,.64);backdrop-filter:blur(10px)}
 .garage .stage .foot{font-size:9px;line-height:1.65}
@@ -105,7 +105,7 @@ h1 .g{color:var(--green)}
 /* POWER GARAGE V10 — integração real entre canvas e página.
    O header é gerenciado pelo tema global: não mudar sua aparência aqui. */
 body.v7 main.garage{
-  background:radial-gradient(ellipse 90% 95% at 73% 45%,rgba(45,64,45,.12),transparent 80%),#080c09;
+  background:#050505;
   min-height:calc(100svh - 88px);
 }
 body.v7 main.garage .stage,
