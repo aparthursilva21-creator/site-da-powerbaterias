@@ -20,7 +20,7 @@ try {
 } catch (e) { $('webglFail').hidden = false; $('loading').hidden = true; throw e; }
 renderer.setClearColor(0x000000, 0);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
-renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 0.94;
 renderer.localClippingEnabled = true; renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.domElement.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none';
 viewport.prepend(renderer.domElement);
@@ -55,27 +55,102 @@ function placeCamera(v) { camera.position.copy(v.pos.clone().sub(v.tgt).multiply
 
 // ───────────── Luzes ─────────────
 scene.add(new THREE.HemisphereLight(0xc2c2c2, 0x000000, 0.48));
-const key = new THREE.DirectionalLight(0xffffff, 2.2); key.position.set(4, 7, 5); key.castShadow = true;
+const key = new THREE.DirectionalLight(0xffffff, 1.4); key.position.set(4, 7, 5); key.castShadow = true;
 key.shadow.mapSize.set(2048, 2048); key.shadow.bias = -0.0004; key.shadow.normalBias = 0.02;
 Object.assign(key.shadow.camera, { left: -5, right: 5, top: 5, bottom: -5, near: 1, far: 20 }); scene.add(key);
-const rimA = new THREE.DirectionalLight(0xd4d4d4, 0.98); rimA.position.set(-6, 3, -4); scene.add(rimA);
-const rimB = new THREE.DirectionalLight(0x999999, 0.64); rimB.position.set(6, 2, -5); scene.add(rimB);
+const rimA = new THREE.DirectionalLight(0x89b17b, 0.95); rimA.position.set(-6, 3, -4); scene.add(rimA);
+const rimB = new THREE.DirectionalLight(0xa2b1a0, 0.6); rimB.position.set(6, 2, -5); scene.add(rimB);
+const studioGreen = new THREE.PointLight(0x75c83c, 4.0, 11, 2); studioGreen.position.set(-2.9, 1.8, -3.1); scene.add(studioGreen);
+const studioFill = new THREE.PointLight(0xb7c4b5, 2.3, 10, 2); studioFill.position.set(3.1, 2.1, 1.3); scene.add(studioFill);
 const bayLight = new THREE.SpotLight(0xfff2e0, 0, 9, 0.75, 0.7, 1.6);   // acende quando o capô abre
 bayLight.position.set(1.0, 3.4, 3.4); bayLight.target.position.set(0, 0.5, 1.5); scene.add(bayLight, bayLight.target);
 
 // ───────────── Plataforma + carro (giram juntos num "prato giratório") ─────────────
 const turntable = new THREE.Group(); scene.add(turntable);
-const disc = new THREE.Mesh(new THREE.CylinderGeometry(3.25, 3.25, 0.06, 96), new THREE.MeshStandardMaterial({ color: 0x080808, metalness: 0.7, roughness: 0.35 }));
+const disc = new THREE.Mesh(new THREE.CylinderGeometry(3.25, 3.25, 0.06, 96), new THREE.MeshStandardMaterial({ color: 0x0a0c0a, metalness: 0.35, roughness: 0.62 }));
 disc.position.y = -0.031; disc.receiveShadow = true; turntable.add(disc);
-const ring = new THREE.Mesh(new THREE.TorusGeometry(3.1, 0.022, 12, 160), new THREE.MeshStandardMaterial({ color: 0x284321, emissive: 0x75c83c, emissiveIntensity: 0.3, metalness: 0.35, roughness: 0.4 }));
+const ring = new THREE.Mesh(new THREE.TorusGeometry(3.1, 0.018, 12, 160), new THREE.MeshStandardMaterial({ color: 0x579b39, emissive: 0x75c83c, emissiveIntensity: 0.52, metalness: 0.36, roughness: 0.34 }));
 ring.rotation.x = Math.PI / 2; ring.position.y = 0.012; turntable.add(ring);
-const ringHalo = new THREE.Mesh(new THREE.TorusGeometry(3.10, 0.055, 8, 160), new THREE.MeshBasicMaterial({ color: 0x75c83c, transparent: true, opacity: 0.075, depthWrite: false }));
+const ringHalo = new THREE.Mesh(new THREE.TorusGeometry(3.10, 0.052, 8, 160), new THREE.MeshBasicMaterial({ color: 0x75c83c, transparent: true, opacity: 0.11, depthWrite: false }));
 ringHalo.rotation.x = Math.PI / 2; ringHalo.position.y = 0.011; turntable.add(ringHalo);
 const tickMat = new THREE.MeshBasicMaterial({ color: 0x3d6733, transparent: true, opacity: 0.50, toneMapped: true });
 for (let i = 0; i < 72; i++) { const a = (i / 72) * Math.PI * 2, L = i % 6 === 0 ? 0.16 : 0.06;
   const t = new THREE.Mesh(new THREE.BoxGeometry(0.018, 0.004, L), tickMat); t.position.set(Math.sin(a) * 2.9, 0.003, Math.cos(a) * 2.9); t.rotation.y = a; turntable.add(t); }
-const shadowFloor = new THREE.Mesh(new THREE.CircleGeometry(4.2, 64), new THREE.ShadowMaterial({ opacity: 0.45 }));
+const shadowFloor = new THREE.Mesh(new THREE.CircleGeometry(4.2, 64), new THREE.ShadowMaterial({ opacity: 0.32 }));
 shadowFloor.rotation.x = -Math.PI / 2; shadowFloor.position.y = 0.004; shadowFloor.receiveShadow = true; scene.add(shadowFloor);
+
+
+// Camada cinematográfica 3D — materiais procedurais, sem imagens achatadas.
+// O piso é uma malha real e não muda o fundo preto do restante da página.
+function makeFloorTexture() {
+  const canvas = document.createElement('canvas');
+  canvas.width = canvas.height = 512;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#171a18'; ctx.fillRect(0, 0, 512, 512);
+  // Variação de asfalto/concreto úmido com granulação determinística.
+  let seed = 20261126;
+  const rand = () => { seed = (1664525 * seed + 1013904223) >>> 0; return seed / 4294967296; };
+  for (let i=0; i<26000; i++) {
+    const v=Math.floor(17 + rand()*33);
+    ctx.fillStyle='rgba('+v+','+(v+2)+','+v+','+(0.04+rand()*0.14)+')';
+    ctx.fillRect(rand()*512,rand()*512,1+rand()*2,1+rand()*2);
+  }
+  for(let i=0;i<110;i++){
+    ctx.strokeStyle='rgba(160,180,165,'+(0.006+rand()*0.018)+')';
+    ctx.lineWidth=.25+rand()*.7; ctx.beginPath();
+    const x=rand()*512,y=rand()*512;ctx.moveTo(x,y);ctx.lineTo(x+rand()*30,y+rand()*7);ctx.stroke();
+  }
+  const tex=new THREE.CanvasTexture(canvas);
+  tex.colorSpace=THREE.SRGBColorSpace;
+  tex.wrapS=tex.wrapT=THREE.RepeatWrapping;
+  tex.repeat.set(2,2);tex.anisotropy=Math.min(renderer.capabilities.getMaxAnisotropy(),8);
+  return tex;
+}
+const floor = new THREE.Mesh(
+  new THREE.PlaneGeometry(24,24),
+  new THREE.MeshStandardMaterial({map:makeFloorTexture(),color:0x444844,metalness:0.38,roughness:0.32,envMapIntensity:0.72})
+);
+floor.rotation.x=-Math.PI/2;floor.position.y=-0.16;floor.receiveShadow=true;scene.add(floor);
+// Reflexos verdes suaves sob a borda, desenhados no plano horizontal.
+function radialTexture(inner,mid) {
+  const c=document.createElement('canvas');c.width=c.height=256;
+  const g=c.getContext('2d');
+  const gr=g.createRadialGradient(128,128,0,128,128,127);
+  gr.addColorStop(0,inner);gr.addColorStop(.38,mid);gr.addColorStop(1,'rgba(0,0,0,0)');
+  g.fillStyle=gr;g.fillRect(0,0,256,256);
+  const tex=new THREE.CanvasTexture(c);tex.colorSpace=THREE.SRGBColorSpace;return tex;
+}
+const underglow = new THREE.Mesh(
+  new THREE.PlaneGeometry(8.7,7.4),
+  new THREE.MeshBasicMaterial({map:radialTexture('rgba(117,200,60,0.24)','rgba(117,200,60,0.09)'),transparent:true,opacity:.7,depthWrite:false,blending:THREE.AdditiveBlending})
+);
+underglow.rotation.x=-Math.PI/2;underglow.position.y=-.147;scene.add(underglow);
+const mistTexture=radialTexture('rgba(199,216,197,0.36)','rgba(157,188,154,0.12)');
+const cinematicSmoke=new THREE.Group();
+turntable.add(cinematicSmoke);
+const smoke=[];
+for(let i=0;i<18;i++){
+  const mat=new THREE.SpriteMaterial({map:mistTexture,color:0xb4c1b5,transparent:true,opacity:0,depthWrite:false});
+  const sprite=new THREE.Sprite(mat);
+  const phase=i/18;
+  sprite.userData={phase,side:(i%2===0?1:-1),lane:i%3};
+  sprite.position.set((i%5-2)*.32,.12,-2.05);
+  cinematicSmoke.add(sprite);smoke.push(sprite);
+}
+const smokeClock=new THREE.Clock();
+function updateCinematicSmoke(delta) {
+  if(reduceMotion){smoke.forEach(x=>x.material.opacity=0);return;}
+  const time=smokeClock.getElapsedTime();
+  for(const s of smoke){
+    const d=s.userData;
+    const age=(time*.085+d.phase)%1;
+    const drift=Math.sin(time*.48+d.phase*17)*.14;
+    s.position.set(d.side*(.36+age*.68)+drift,.18+age*.95,-2.05-age*.7);
+    const size=.78+age*1.55+d.lane*.08;
+    s.scale.set(size,size*.58,1);
+    s.material.opacity=.105*Math.sin(Math.PI*age);
+  }
+}
 
 const bay = buildEngineBay(); bay.visible = false; turntable.add(bay);
 const headlamps = [];
@@ -203,6 +278,8 @@ renderer.setAnimationLoop(() => {
   tw.tick(dt);
   S.spin += ((S.spinOn ? SPIN : 0) - S.spin) * Math.min(1, dt * 3.5);       // acelera/freia suave
   if (Math.abs(S.spin) > 1e-4) turntable.rotation.y += S.spin * dt;
+  updateCinematicSmoke(dt);
+  ring.material.emissiveIntensity = 0.46 + Math.sin(clock.elapsedTime*1.15)*0.075;
   updateBayClip(bay); controls.update(); renderer.render(scene, camera);
 });
 
