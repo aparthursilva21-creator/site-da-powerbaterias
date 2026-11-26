@@ -3,13 +3,13 @@
    O verde fica reservado a marcas, botões, ícones e estados.
    Mantém fotos de produtos e imagem do hero sem filtros adicionais. */
 :root{
-  --power-black:#050505;
-  --power-panel:#0a0a0a;
-  --v7-bg:#050505;
-  --v7-black:#050505;
-  --v7-panel:#0a0a0a;
+  --power-black:#000000;
+  --power-panel:#080808;
+  --v7-bg:#000000;
+  --v7-black:#000000;
+  --v7-panel:#080808;
   --v7-green:#75c83c;
-  --pb-black:#050505;
+  --pb-black:#000000;
 }
 html,body,body.v7,body.v7 main,body.v7 #conteudo{
   background-color:var(--power-black);
@@ -32,7 +32,7 @@ body.v7 main.garage .stage .webgl-fail{
 }
 /* Preto sólido também no cabeçalho: verde reservado a logo e botões. */
 body.v7 .pb-header{
-  background:#050505!important;
+  background:#000000!important;
   border-bottom:1px solid rgba(255,255,255,.085);
 }
 body.v7 .pb-header-inner{background:transparent!important}
@@ -74,10 +74,10 @@ body.v7 .pb-hero{background-color:var(--power-black)!important}
 /* Garage: o canvas transparente e a página usam EXATAMENTE o mesmo
    preto sólido. Não adicionar gradientes/radiais atrás do automóvel. */
 body.v7 main.garage{
-  --bg:#050505;
-  --bg2:#050505;
+  --bg:#000000;
+  --bg2:#000000;
   --green:#75c83c;
-  background:#050505!important;
+  background:#000000!important;
   min-height:calc(100svh - 88px);
 }
 body.v7 main.garage .stage,
@@ -96,11 +96,11 @@ body.v7 main.garage .stage .viewport canvas{
   background:transparent!important;
 }
 /* Preservar telas informativas, sem degradê verde */
-body.v7 main.garage .garage-build-state{background:#0b0b0b}
-body.v7 main.garage .chips{background:#090909}
-body.v7 main.garage .bat{background:#0b0b0b}
-body.v7 main.garage .toast{background:#090909}
+body.v7 main.garage .garage-build-state{background:#080808}
+body.v7 main.garage .chips{background:#080808}
+body.v7 main.garage .bat{background:#080808}
+body.v7 main.garage .toast{background:#080808}
 @media(max-width:850px){
   body.v7 main.garage{min-height:0}
-  body.v7 .pb-nav.open{background:#050505!important}
+  body.v7 .pb-nav.open{background:#000000!important}
 }
