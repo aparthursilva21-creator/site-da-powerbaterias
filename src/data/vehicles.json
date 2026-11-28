@@ -1,0 +1,342 @@
+[
+  {
+    "type": "Carro",
+    "brand": "Chevrolet",
+    "model": "Onix",
+    "year": "2024",
+    "engine": "1.0",
+    "version": null,
+    "applicationIds": [
+      "onix24-manual"
+    ]
+  },
+  {
+    "type": "Carro",
+    "brand": "Chevrolet",
+    "model": "Onix",
+    "year": "2024",
+    "engine": "1.0 Turbo",
+    "version": "Manual",
+    "applicationIds": [
+      "onix24-manual"
+    ]
+  },
+  {
+    "type": "Carro",
+    "brand": "Chevrolet",
+    "model": "Onix",
+    "year": "2024",
+    "engine": "1.0 Turbo",
+    "version": "Automático",
+    "applicationIds": [
+      "onix24-automatico"
+    ]
+  },
+  {
+    "type": "SUV",
+    "brand": "Chevrolet",
+    "model": "Tracker",
+    "year": "2023",
+    "engine": "1.0 Turbo",
+    "version": "LT automático",
+    "applicationIds": [
+      "tracker-lt23-com-start-stop",
+      "tracker23-sem-start-stop",
+      "tracker23-com-start-stop",
+      "tracker23-sem-info"
+    ],
+    "startStopRelevant": true
+  },
+  {
+    "type": "SUV",
+    "brand": "Chevrolet",
+    "model": "Tracker",
+    "year": "2023",
+    "engine": "1.0 Turbo",
+    "version": "Versão a confirmar",
+    "applicationIds": [
+      "tracker23-sem-start-stop",
+      "tracker23-com-start-stop",
+      "tracker23-sem-info"
+    ],
+    "startStopRelevant": true
+  },
+  {
+    "type": "SUV",
+    "brand": "Chevrolet",
+    "model": "Tracker",
+    "year": "2023",
+    "engine": "1.2 Turbo",
+    "version": null,
+    "applicationIds": [
+      "tracker23-sem-start-stop",
+      "tracker23-com-start-stop",
+      "tracker23-sem-info"
+    ],
+    "startStopRelevant": true
+  },
+  {
+    "type": "SUV",
+    "brand": "Chevrolet",
+    "model": "Tracker",
+    "year": "2024",
+    "engine": "1.0 Turbo",
+    "version": "Automático",
+    "applicationIds": [
+      "tracker24"
+    ]
+  },
+  {
+    "type": "SUV",
+    "brand": "Chevrolet",
+    "model": "Tracker",
+    "year": "2024",
+    "engine": "1.2 Turbo",
+    "version": "Automático",
+    "applicationIds": [
+      "tracker24"
+    ]
+  },
+  {
+    "type": "Moto",
+    "brand": "Honda",
+    "model": "CG 160 Fan",
+    "year": "2023",
+    "engine": "162,7 cm³",
+    "version": null,
+    "applicationIds": [
+      "honda-cg160-23-24"
+    ]
+  },
+  {
+    "type": "Moto",
+    "brand": "Honda",
+    "model": "CG 160 Titan",
+    "year": "2023",
+    "engine": "162,7 cm³",
+    "version": null,
+    "applicationIds": [
+      "honda-cg160-23-24"
+    ]
+  },
+  {
+    "type": "Moto",
+    "brand": "Honda",
+    "model": "CG 160 Fan",
+    "year": "2024",
+    "engine": "162,7 cm³",
+    "version": null,
+    "applicationIds": [
+      "honda-cg160-23-24"
+    ]
+  },
+  {
+    "type": "Moto",
+    "brand": "Honda",
+    "model": "CG 160 Titan",
+    "year": "2024",
+    "engine": "162,7 cm³",
+    "version": null,
+    "applicationIds": [
+      "honda-cg160-23-24"
+    ]
+  },
+  {
+    "type": "Moto",
+    "brand": "Honda",
+    "model": "CG 160 Fan",
+    "year": "2025",
+    "engine": "162,7 cm³",
+    "version": null,
+    "applicationIds": [
+      "honda-cg160-25-26"
+    ]
+  },
+  {
+    "type": "Moto",
+    "brand": "Honda",
+    "model": "CG 160 Titan",
+    "year": "2025",
+    "engine": "162,7 cm³",
+    "version": null,
+    "applicationIds": [
+      "honda-cg160-25-26"
+    ]
+  },
+  {
+    "type": "Moto",
+    "brand": "Honda",
+    "model": "CG 160 Fan",
+    "year": "2026",
+    "engine": "162,7 cm³",
+    "version": null,
+    "applicationIds": [
+      "honda-cg160-25-26"
+    ]
+  },
+  {
+    "type": "Moto",
+    "brand": "Honda",
+    "model": "CG 160 Titan",
+    "year": "2026",
+    "engine": "162,7 cm³",
+    "version": null,
+    "applicationIds": [
+      "honda-cg160-25-26"
+    ]
+  },
+  {
+    "type": "Carro",
+    "brand": "Volkswagen",
+    "model": "Gol",
+    "year": "2000",
+    "engine": null,
+    "version": null,
+    "applicationIds": [
+      "gol-00-11"
+    ]
+  },
+  {
+    "type": "Carro",
+    "brand": "Volkswagen",
+    "model": "Gol",
+    "year": "2001",
+    "engine": null,
+    "version": null,
+    "applicationIds": [
+      "gol-00-11"
+    ]
+  },
+  {
+    "type": "Carro",
+    "brand": "Volkswagen",
+    "model": "Gol",
+    "year": "2002",
+    "engine": null,
+    "version": null,
+    "applicationIds": [
+      "gol-00-11"
+    ]
+  },
+  {
+    "type": "Carro",
+    "brand": "Volkswagen",
+    "model": "Gol",
+    "year": "2003",
+    "engine": null,
+    "version": null,
+    "applicationIds": [
+      "gol-00-11"
+    ]
+  },
+  {
+    "type": "Carro",
+    "brand": "Volkswagen",
+    "model": "Gol",
+    "year": "2004",
+    "engine": null,
+    "version": null,
+    "applicationIds": [
+      "gol-00-11"
+    ]
+  },
+  {
+    "type": "Carro",
+    "brand": "Volkswagen",
+    "model": "Gol",
+    "year": "2005",
+    "engine": null,
+    "version": null,
+    "applicationIds": [
+      "gol-00-11"
+    ]
+  },
+  {
+    "type": "Carro",
+    "brand": "Volkswagen",
+    "model": "Gol",
+    "year": "2006",
+    "engine": null,
+    "version": null,
+    "applicationIds": [
+      "gol-00-11"
+    ]
+  },
+  {
+    "type": "Carro",
+    "brand": "Volkswagen",
+    "model": "Gol",
+    "year": "2007",
+    "engine": null,
+    "version": null,
+    "applicationIds": [
+      "gol-00-11"
+    ]
+  },
+  {
+    "type": "Carro",
+    "brand": "Volkswagen",
+    "model": "Gol",
+    "year": "2008",
+    "engine": null,
+    "version": null,
+    "applicationIds": [
+      "gol-00-11"
+    ]
+  },
+  {
+    "type": "Carro",
+    "brand": "Volkswagen",
+    "model": "Gol",
+    "year": "2009",
+    "engine": null,
+    "version": null,
+    "applicationIds": [
+      "gol-00-11"
+    ]
+  },
+  {
+    "type": "Carro",
+    "brand": "Volkswagen",
+    "model": "Gol",
+    "year": "2010",
+    "engine": null,
+    "version": null,
+    "applicationIds": [
+      "gol-00-11"
+    ]
+  },
+  {
+    "type": "Carro",
+    "brand": "Volkswagen",
+    "model": "Gol",
+    "year": "2011",
+    "engine": null,
+    "version": null,
+    "applicationIds": [
+      "gol-00-11"
+    ]
+  },
+  {
+    "type": "Carro",
+    "brand": "Fiat",
+    "model": "Palio",
+    "year": "2013",
+    "engine": null,
+    "version": null,
+    "applicationIds": [
+      "palio-13-14"
+    ]
+  },
+  {
+    "type": "Carro",
+    "brand": "Fiat",
+    "model": "Palio",
+    "year": "2014",
+    "engine": null,
+    "version": null,
+    "applicationIds": [
+      "palio-13-14"
+    ]
+  }
+]

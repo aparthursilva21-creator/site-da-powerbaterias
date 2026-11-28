@@ -1,0 +1,42 @@
+name: Build e publicação no GitHub Pages
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: power-baterias-pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+        env:
+          POWER_SITE_URL: ${{ vars.POWER_SITE_URL }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+  publish:
+    if: github.ref == 'refs/heads/main'
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publicar versão validada
+        id: deployment
+        uses: actions/deploy-pages@v4

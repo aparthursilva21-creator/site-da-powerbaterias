@@ -1,0 +1,26 @@
+.battery-section{background:#0b0d0c;border-block:1px solid #242824}
+.battery-layout{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(2rem,7vw,6rem);align-items:center}
+.battery-explainer h2{margin-bottom:1rem}
+.battery-explainer>p:not(.kicker){max-width:50ch;color:var(--muted,#a1a1aa)}
+.battery-parts{margin-block:1.75rem;border-top:1px solid #343a32}
+.battery-parts details{border-bottom:1px solid #343a32}
+.battery-parts summary{min-height:47px;padding:.75rem .15rem;color:#f0f0f0;cursor:pointer;font-weight:700}
+.battery-parts summary::marker{color:var(--accent)}
+.battery-parts details p{margin:0;padding:0 0 .9rem;color:var(--muted,#a1a1aa)}
+.battery-reference a{color:var(--green,#78cf3e);text-underline-offset:3px}
+.battery-visual{min-width:0}.battery-figure{margin:0}
+.battery-stage{position:relative;isolation:isolate;width:100%;aspect-ratio:1.65;overflow:hidden;background:radial-gradient(ellipse at 62% 50%,#273427,#131714 57%,#0a0c0b);border:1px solid #272d26;border-radius:8px}
+.battery-stage .battery-poster,.battery-stage .battery-canvas{position:absolute;inset:0;width:100%;height:100%}
+.battery-stage .battery-poster{object-fit:cover;object-position:78% center;color:#cbcec9}
+.battery-stage .battery-canvas{z-index:1;pointer-events:none}
+.battery-canvas canvas{display:block;width:100%;height:100%}
+.battery-stage--loaded .battery-poster{visibility:hidden}
+.battery-figure figcaption{margin-top:.6rem;color:var(--muted,#a1a1aa);font-size:.875rem}
+.battery-controls{margin-top:1rem}
+.battery-interaction{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+.battery-interaction[hidden]{display:none}
+.battery-interaction input{flex:1;min-width:90px;height:32px;accent-color:var(--accent)}
+.battery-interaction button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+.battery-status:empty{display:none}
+.battery-status:not(:empty){margin:.65rem 0 0;color:#c6c9c5}
+@media (max-width:850px){.battery-layout{grid-template-columns:1fr;gap:1.8rem}.battery-visual{max-width:680px}.battery-explainer h2 br{display:none}}

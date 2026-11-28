@@ -1,0 +1,198 @@
+[
+  {
+    "id": "onix24-manual",
+    "sources": [
+      {
+        "label": "Chevrolet · Manual do Onix 2024, seção Especificações",
+        "url": "https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2024/chevrolet/Onix/pt/om_ng-chevrolet_Onix_my24-pt_BR.pdf#page=224"
+      },
+      {
+        "label": "Moura Fácil · Guia de baterias para Onix",
+        "url": "https://mourafacil.moura.com.br/veiculos/bateria-onix"
+      }
+    ],
+    "checkedAt": "2026-11-26",
+    "requirements": {
+      "voltage": 12,
+      "capacityAh": 50,
+      "technology": "SLI"
+    },
+    "candidates": [
+      "moura-m50ed"
+    ],
+    "note": "A Moura cita a M50ED para o Onix sem distinguir as versões. Confirme fixação, polaridade e corrente de partida."
+  },
+  {
+    "id": "onix24-automatico",
+    "sources": [
+      {
+        "label": "Chevrolet · Manual do Onix 2024, seção Especificações",
+        "url": "https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2024/chevrolet/Onix/pt/om_ng-chevrolet_Onix_my24-pt_BR.pdf#page=224"
+      }
+    ],
+    "checkedAt": "2026-11-26",
+    "requirements": {
+      "voltage": 12,
+      "capacityAh": 70,
+      "technology": "SLI"
+    },
+    "candidates": [],
+    "note": "A especificação do automático difere da versão manual. Confirme a aplicação exata com a equipe."
+  },
+  {
+    "id": "tracker23-sem-start-stop",
+    "sources": [
+      {
+        "label": "Chevrolet · Manual do Tracker 2023, p. 219",
+        "url": "https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2023/chevrolet/Tracker/pt/om_ng-chevrolet_Tracker_my23-pt_BR.pdf#page=222"
+      }
+    ],
+    "checkedAt": "2026-11-26",
+    "requirements": {
+      "voltage": 12,
+      "capacityAh": 60,
+      "technology": "SLI"
+    },
+    "candidates": [],
+    "startStop": "não"
+  },
+  {
+    "id": "tracker23-com-start-stop",
+    "sources": [
+      {
+        "label": "Chevrolet · Manual do Tracker 2023, p. 219",
+        "url": "https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2023/chevrolet/Tracker/pt/om_ng-chevrolet_Tracker_my23-pt_BR.pdf#page=222"
+      }
+    ],
+    "checkedAt": "2026-11-26",
+    "requirements": {
+      "voltage": 12,
+      "capacityAh": 60,
+      "technology": "EFB"
+    },
+    "candidates": [],
+    "startStop": "sim",
+    "restriction": "O manual exige bateria EFB para o veículo equipado com Start-Stop."
+  },
+  {
+    "id": "tracker23-sem-info",
+    "sources": [
+      {
+        "label": "Chevrolet · Manual do Tracker 2023, p. 219",
+        "url": "https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2023/chevrolet/Tracker/pt/om_ng-chevrolet_Tracker_my23-pt_BR.pdf#page=222"
+      }
+    ],
+    "checkedAt": "2026-11-26",
+    "requirements": {
+      "voltage": 12,
+      "capacityAh": 60
+    },
+    "candidates": [],
+    "note": "Confirme se o veículo tem sistema Start-Stop. O manual especifica EFB quando equipado."
+  },
+  {
+    "id": "tracker-lt23-com-start-stop",
+    "sources": [
+      {
+        "label": "Chevrolet · Manual do Tracker 2023, p. 219",
+        "url": "https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2023/chevrolet/Tracker/pt/om_ng-chevrolet_Tracker_my23-pt_BR.pdf#page=222"
+      },
+      {
+        "label": "Moura · Aplicação Tracker LT 1.0 Turbo AT",
+        "url": "https://www.moura.com.br/veiculos/bateria-tracker"
+      }
+    ],
+    "checkedAt": "2026-11-26",
+    "requirements": {
+      "voltage": 12,
+      "capacityAh": 60,
+      "technology": "EFB"
+    },
+    "candidates": [
+      "moura-mf60ad"
+    ],
+    "startStop": "sim",
+    "exact": true,
+    "restriction": "O manual exige bateria EFB para o veículo equipado com Start-Stop."
+  },
+  {
+    "id": "tracker24",
+    "sources": [
+      {
+        "label": "Chevrolet · Manual do Tracker 2024, seção Especificações",
+        "url": "https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2024/chevrolet/Tracker/pt/om_ng-chevrolet_Tracker_my24-pt_BR.pdf"
+      }
+    ],
+    "checkedAt": "2026-11-26",
+    "requirements": {
+      "voltage": 12,
+      "capacityAh": 60,
+      "technology": "SLI"
+    },
+    "candidates": []
+  },
+  {
+    "id": "honda-cg160-23-24",
+    "sources": [
+      {
+        "label": "Honda · Manual CG 160 Fan e Titan 2023–2024, p. 112",
+        "url": "https://www.honda.com.br/pos-venda/motos/sites/customer_service_motos/files/manuais/MP%20CG%20160%20FAN-TITAN%20%282023~2024%29%20D2203-MAN-1303_WEB.pdf"
+      }
+    ],
+    "checkedAt": "2026-11-26",
+    "requirements": {
+      "voltage": 12,
+      "capacityAh": 4,
+      "oemModel": "DTZ5"
+    },
+    "candidates": [],
+    "note": "O manual identifica a referência original DTZ5. Confirme qualquer alternativa com a equipe."
+  },
+  {
+    "id": "honda-cg160-25-26",
+    "sources": [
+      {
+        "label": "Honda · Manual CG 160 Fan e Titan 2025–2026, p. 112",
+        "url": "https://www.honda.com.br/pos-venda/motos/sites/customer_service_motos/files/manuais/MP%20CG%20160%20Fan-Titan%20%282025~2026%29%20D2203-MAN-1332_WEB_0.pdf"
+      }
+    ],
+    "checkedAt": "2026-11-26",
+    "requirements": {
+      "voltage": 12,
+      "capacityAh": 4,
+      "oemModel": "DTZ5"
+    },
+    "candidates": [],
+    "note": "O manual identifica a referência original DTZ5. Confirme qualquer alternativa com a equipe."
+  },
+  {
+    "id": "gol-00-11",
+    "sources": [
+      {
+        "label": "Moura · Guia para Volkswagen Gol 2000–2011",
+        "url": "https://www.moura.com.br/blog/bateria-para-carro-gol-2000-2011"
+      }
+    ],
+    "checkedAt": "2026-11-26",
+    "requirements": {},
+    "candidates": [
+      "moura-m60gd"
+    ],
+    "note": "O guia abrange o modelo e o ano. Confirme a motorização e a versão antes da troca."
+  },
+  {
+    "id": "palio-13-14",
+    "sources": [
+      {
+        "label": "Moura · Guia para Fiat Palio 2013–2014",
+        "url": "https://www.moura.com.br/blog/bateria-para-carro-palio-2013-e-2014"
+      }
+    ],
+    "checkedAt": "2026-11-26",
+    "requirements": {},
+    "candidates": [
+      "moura-m60ad"
+    ],
+    "note": "O guia abrange o modelo e o ano. Confirme a motorização e a versão antes da troca."
+  }
+]
