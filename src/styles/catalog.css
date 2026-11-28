@@ -1,0 +1,458 @@
+.catalog-section {
+  padding-top: clamp(42px, 6vw, 82px);
+}
+
+.catalog-heading,
+.catalog-assistance {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px 28px;
+}
+
+.catalog-heading h2,
+.catalog-assistance h2,
+.catalog-technical h2 {
+  font-size: clamp(1.85rem, 3.1vw, 2.9rem);
+}
+
+.catalog-heading p,
+.catalog-assistance p {
+  margin-top: 9px;
+  max-width: 56ch;
+}
+
+.catalog-filters {
+  display: grid;
+  grid-template-columns: minmax(170px, 1.55fr) repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-block: 25px 16px;
+  padding: 18px 18px 7px;
+  border-block: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.catalog-field {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.catalog-field span {
+  color: var(--text);
+  font-weight: 750;
+  font-size: .88rem;
+}
+
+.catalog-field input,
+.catalog-field select {
+  width: 100%;
+  min-width: 0;
+}
+
+.catalog-filter-status {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  font-size: .89rem;
+  color: var(--muted);
+}
+
+.catalog-text-button {
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  color: var(--accent);
+  background: none;
+  font-weight: 780;
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+
+.catalog-text-button:disabled {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.catalog-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(13px, 2.5vw, 24px);
+}
+
+.catalog-heading + .catalog-list {
+  margin-top: 25px;
+}
+
+.catalog-item {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color .2s;
+}
+
+.catalog-item:focus-within,
+.catalog-item:hover {
+  border-color: #72906b;
+}
+
+.catalog-media {
+  --plate-accent: #91c680;
+  position: relative;
+  display: grid;
+  aspect-ratio: 19 / 9;
+  min-height: 154px;
+  background: #151915;
+  border-bottom: 1px solid var(--line);
+}
+
+.catalog-media--moura {
+  --plate-accent: #c5c8c4;
+  background: #181918;
+}
+
+.catalog-plate {
+  display: grid;
+  align-content: space-between;
+  gap: 10px;
+  padding: clamp(14px, 2vw, 24px);
+  background-image: linear-gradient(0deg, #a2b1a013 1px, transparent 1px);
+  background-size: 100% 21px;
+}
+
+.catalog-plate-meta {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 12px;
+  color: var(--plate-accent);
+  font-size: .79rem;
+  letter-spacing: .085em;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.catalog-plate-value {
+  justify-self: start;
+  font-family: var(--display);
+  font-size: clamp(2.5rem, 5vw, 4.7rem);
+  font-weight: 550;
+  line-height: .95;
+  letter-spacing: -.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.catalog-plate-value small {
+  font-size: .42em;
+  color: var(--plate-accent);
+  letter-spacing: 0;
+}
+
+.catalog-plate-caption {
+  color: var(--muted);
+  font-size: .79rem;
+}
+
+.catalog-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+}
+
+.catalog-item-body {
+  display: grid;
+  gap: 7px;
+  padding: 16px clamp(14px, 2vw, 24px) 12px;
+}
+
+.catalog-item h3 {
+  overflow-wrap: anywhere;
+  font-size: clamp(1.13rem, 2vw, 1.52rem);
+}
+
+.catalog-item-specs {
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+.catalog-item-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 3px 12px;
+  flex-wrap: wrap;
+  margin-top: 5px;
+  border-top: 1px solid var(--line);
+}
+
+.catalog-item-actions a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: .88rem;
+  font-weight: 800;
+}
+
+.catalog-quote-link {
+  text-decoration: none;
+  color: var(--accent);
+}
+
+.catalog-empty {
+  margin-block: 22px;
+  padding: clamp(18px, 4vw, 46px);
+  border: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.catalog-empty p,
+.catalog-empty .button {
+  margin-top: 13px;
+}
+
+.catalog-assistance {
+  align-items: center;
+  margin-top: clamp(36px, 6vw, 72px);
+  padding-block: 22px;
+  border-block: 1px solid var(--line);
+}
+
+.catalog-product-links,
+.catalog-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.catalog-product-links {
+  margin-bottom: 28px;
+}
+
+.catalog-sources a,
+.catalog-product-links a,
+.catalog-guidance a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.catalog-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 14px;
+  font-size: .88rem;
+  color: var(--muted);
+}
+
+.catalog-breadcrumb a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.catalog-product-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(24px, 6vw, 86px);
+  padding-top: clamp(14px, 3vw, 38px);
+}
+
+.catalog-product-top .catalog-media {
+  aspect-ratio: 5 / 4;
+  min-height: 230px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.catalog-product-top .catalog-plate {
+  padding: clamp(19px, 3.2vw, 44px);
+}
+
+.catalog-product-top .catalog-plate-value {
+  font-size: clamp(3.8rem, 9vw, 8rem);
+}
+
+.catalog-product-title {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.catalog-product-title h1 {
+  font-size: clamp(2.1rem, 4.85vw, 4.9rem);
+  overflow-wrap: anywhere;
+}
+
+.catalog-product-lead {
+  color: var(--text);
+  font-size: clamp(1rem, 1.75vw, 1.3rem);
+  font-weight: 650;
+}
+
+.catalog-product-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.catalog-technical {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+  gap: clamp(30px, 6vw, 92px);
+}
+
+.catalog-spec-table {
+  margin-block: 20px 12px;
+  border-top: 1px solid var(--line);
+}
+
+.catalog-spec-table div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 24px;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.catalog-spec-table dt {
+  color: var(--muted);
+}
+
+.catalog-spec-table dd {
+  margin: 0;
+  font-weight: 750;
+}
+
+.catalog-source-date {
+  margin-top: 12px;
+}
+
+.catalog-guidance {
+  display: grid;
+  gap: 23px;
+  align-content: start;
+}
+
+.catalog-guidance section > * + * {
+  margin-top: 12px;
+}
+
+.catalog-guidance .muted a {
+  display: inline;
+}
+
+.catalog-applications {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.catalog-applications li + li {
+  margin-top: 9px;
+}
+
+.catalog-applications a {
+  display: inline;
+}
+
+.catalog-related {
+  border-top: 1px solid var(--line);
+}
+
+.catalog-zoom {
+  display: block;
+  cursor: zoom-in;
+}
+
+.catalog-thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 9px;
+}
+
+.catalog-thumbnails a {
+  display: block;
+  width: 60px;
+  height: 60px;
+  border: 1px solid var(--line);
+}
+
+.catalog-dialog {
+  width: min(760px, 92vw);
+  max-height: 90vh;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.catalog-dialog::backdrop {
+  background: #000b;
+}
+
+.catalog-dialog form {
+  display: flex;
+  justify-content: end;
+}
+
+.catalog-dialog button {
+  background: var(--accent);
+  color: var(--black);
+}
+
+.catalog-dialog img {
+  width: 100%;
+  max-height: 72vh;
+}
+
+@media (max-width: 920px) {
+  .catalog-filters {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .catalog-field-search {
+    grid-column: 1 / -1;
+  }
+
+  .catalog-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .catalog-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding-inline: 0;
+    background: none;
+  }
+
+  .catalog-list,
+  .catalog-product-top,
+  .catalog-technical {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .catalog-product-title {
+    grid-row: 1;
+  }
+
+  .catalog-product-top .catalog-media {
+    aspect-ratio: 5 / 3;
+  }
+}
